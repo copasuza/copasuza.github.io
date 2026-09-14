@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06110e">
+<title>کوپا سوزا ۲۰۲۶ | Copa Suza</title>
+<style>
+:root{--bg:#04100d;--bg2:#071914;--card:rgba(10,31,24,.86);--line:rgba(210,177,75,.20);--gold:#d8b24e;--gold2:#f0cf73;--text:#f5f1e7;--muted:#aebcb5;--green:#0d3a2b;--green2:#124d39;--success:#78d9a0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% 10%,#12372a 0,#071914 28%,#04100d 65%);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.9}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(216,178,78,.025) 50%,transparent 65%)}
+a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:auto;padding:0 18px 35px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(3,13,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.topin{max-width:1180px;margin:auto;min-height:76px;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:58px;height:58px;object-fit:contain;filter:drop-shadow(0 5px 10px rgba(0,0,0,.45))}.brandtext strong{display:block;color:var(--gold2);font-size:20px}.brandtext span{display:block;color:#899a93;font-size:12px;letter-spacing:2px;direction:ltr}.nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}.nav a{padding:7px 11px;border-radius:12px;color:#d4ddd8;font-size:13px}.nav a:hover{background:#12372b;color:var(--gold2)}
+.hero{position:relative;overflow:hidden;margin-top:18px;border:1px solid var(--line);border-radius:30px;min-height:590px;background:radial-gradient(circle at 50% 35%,rgba(28,100,70,.42),transparent 34%),linear-gradient(145deg,#071d16,#030c0a 70%);display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,.35)}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}.hero:before{width:520px;height:520px;background:rgba(21,94,66,.12);left:-180px;bottom:-240px}.hero:after{width:400px;height:400px;background:rgba(216,178,78,.07);right:-150px;top:-170px}.hero-content{position:relative;z-index:2;padding:45px 20px}.hero-logo{width:min(430px,82vw);max-height:365px;object-fit:contain;filter:drop-shadow(0 20px 28px rgba(0,0,0,.5));margin-bottom:5px}.eyebrow{color:var(--gold2);font-size:18px;margin:5px 0 0}.hero h1{margin:0;font-size:clamp(38px,7vw,70px);font-weight:900;color:#f4efe3;letter-spacing:-2px}.hero h1 b{color:var(--gold);font-weight:900}.subtitle{color:#b9c5bf;font-size:17px;margin:10px 0 24px}.cta{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e1ba51,#b88924);color:#10130f;font-weight:900;padding:13px 27px;border-radius:16px;box-shadow:0 10px 30px rgba(216,178,78,.18);transition:.2s}.cta:hover{transform:translateY(-2px)}
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:18px 0}.statcard{background:linear-gradient(145deg,rgba(15,47,36,.9),rgba(7,25,19,.9));border:1px solid #1b4938;border-radius:20px;padding:18px 10px;text-align:center}.num{font-size:29px;color:var(--gold);font-weight:900;line-height:1.25}.label{font-size:12px;color:#aab8b2;margin-top:3px}
+.section{margin-top:18px;background:var(--card);border:1px solid #173d30;border-radius:24px;padding:22px;box-shadow:0 12px 40px rgba(0,0,0,.18)}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 17px}.section-title h2{margin:0;color:var(--gold2);font-size:23px}.tag{font-size:11px;color:var(--gold);background:#102e24;border:1px solid #28533f;border-radius:30px;padding:5px 10px;white-space:nowrap}
+.table-wrap{overflow-x:auto;border-radius:16px}table{width:100%;min-width:720px;border-collapse:collapse;background:#071913}th,td{padding:11px 8px;border-bottom:1px solid #17372d;text-align:center;white-space:nowrap}th{background:#123a2c;color:var(--gold2);font-size:13px}tbody tr:hover{background:#0c261d}tbody tr:nth-child(-n+8) td:first-child{color:var(--success);font-weight:900}.qualified{margin:16px 0 0;padding:12px 15px;border-radius:14px;background:#0d3024;color:#bfe5ce;border-right:3px solid var(--success)}
+.matches{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.schedule-status{color:var(--gold);font-size:12px;font-weight:900;white-space:nowrap}.match small{color:#8fa39a;font-size:11px}.match{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 15px;background:#081e17;border:1px solid #194132;border-radius:16px}.team{font-weight:700}.score{font-weight:900;color:var(--gold2);white-space:nowrap}.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.player{background:#092119;border:1px solid #194333;border-radius:18px;padding:18px;text-align:center}.player .rank{font-size:12px;color:#8fa39a}.player b{display:block;color:#f5f1e7;font-size:16px;margin:4px 0}.player span{color:var(--gold);font-size:13px}.list{margin:0;padding-right:22px}.list li{padding:6px 0;color:#d6dfda}.bracket{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:18px;align-items:stretch}.round{display:flex;flex-direction:column;gap:14px}.round-title{color:var(--gold2);font-weight:900;text-align:center;font-size:15px;margin-bottom:2px}.game{background:linear-gradient(145deg,#0c2b21,#071914);border:1px solid #234b3b;border-radius:19px;padding:15px;text-align:center}.game .date{color:var(--gold);font-size:13px;font-weight:800}.game .time{font-size:12px;color:#91a39b;margin:3px 0 10px}.game .teams{font-size:17px;font-weight:900;line-height:1.8}.game .vs{color:#6e8279;font-size:12px}.team-btn{display:block;width:100%;border:1px solid #28533f;background:#0a241b;color:var(--text);border-radius:11px;padding:7px 8px;margin:5px 0;font:inherit;font-weight:900;cursor:pointer}.team-btn:hover,.team-btn.selected{background:#174b38;color:var(--gold2);border-color:var(--gold)}.winner-slot{min-height:82px;display:flex;align-items:center;justify-content:center;border:1px dashed #39624f;border-radius:15px;background:#081b15;color:#8fa39a;padding:10px;text-align:center;font-weight:900}.winner-slot.filled{border-style:solid;color:var(--gold2);background:#0d3024}.next-card{margin:18px 0 0;background:linear-gradient(135deg,#0d3426,#071a14);border:1px solid var(--gold);border-radius:22px;padding:20px;text-align:center;box-shadow:0 12px 35px rgba(0,0,0,.2)}.next-card .kicker{color:var(--gold);font-size:12px;font-weight:900}.next-card h3{margin:4px 0;color:#f7f0df;font-size:24px}.countdown{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}.countbox{min-width:72px;background:#06150f;border:1px solid #28533f;border-radius:13px;padding:8px}.countbox b{display:block;font-size:24px;color:var(--gold2);line-height:1.2}.countbox span{font-size:10px;color:#8fa39a}.teams-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.team-card{background:#092119;border:1px solid #194333;border-radius:18px;padding:15px;text-align:center;cursor:pointer;transition:.2s}.team-card:hover{transform:translateY(-2px);border-color:var(--gold)}.team-card b{display:block;color:#f5f1e7;font-size:15px;margin-bottom:5px}.team-card span{font-size:12px;color:#aebcb5}.modal{display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.72);padding:20px;align-items:center;justify-content:center}.modal.open{display:flex}.modal-box{width:min(700px,100%);max-height:88vh;overflow:auto;background:#071913;border:1px solid var(--gold);border-radius:24px;padding:22px;position:relative}.modal-close{position:absolute;left:14px;top:10px;background:none;border:0;color:#c7d0cb;font-size:26px;cursor:pointer}.modal-box h3{margin:0 35px 4px 0;color:var(--gold2);font-size:26px}.team-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0}.mini-stat{background:#0a241b;border:1px solid #194333;border-radius:12px;padding:9px;text-align:center}.mini-stat b{display:block;color:var(--gold2);font-size:18px}.mini-stat span{font-size:10px;color:#8fa39a}.team-matches{display:grid;gap:8px}.team-matches .match{background:#081e17}
+footer{text-align:center;color:#758780;padding:28px 10px 5px;font-size:12px}footer strong{color:#b99a45}
+@media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.bracket{grid-template-columns:1fr}.teams-grid{grid-template-columns:repeat(2,1fr)}.nav{display:none}.topin{justify-content:center}.brandtext{text-align:right}}
+@media(max-width:620px){.wrap{padding:0 11px 28px}.topin{min-height:70px}.brand img{width:50px;height:50px}.brandtext strong{font-size:17px}.hero{min-height:610px;border-radius:25px;margin-top:12px}.hero-content{padding:30px 10px}.hero-logo{width:min(390px,92vw);max-height:340px}.eyebrow{font-size:16px}.hero h1{font-size:42px}.subtitle{font-size:14px}.stats{grid-template-columns:repeat(2,1fr)}.statcard{padding:15px 8px}.section{padding:17px 13px;border-radius:20px}.section-title h2{font-size:19px}.matches{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.bracket{grid-template-columns:1fr}.game .teams{font-size:16px}.teams-grid{grid-template-columns:1fr 1fr}.team-summary{grid-template-columns:repeat(2,1fr)}.countbox{min-width:65px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topin">
+  <a class="brand" href="#top"><img src="copa-suza-logo.png" alt="لوگوی کوپا سوزا"><div class="brandtext"><strong>کوپا سوزا</strong><span>COPA SUZA 2026</span></div></a>
+  <nav class="nav"><a href="#table">📊 جدول</a><a href="#schedule">🗓️ برنامه</a><a href="#matches">⚽ نتایج</a><a href="#scorers">🥇 گلزنان</a><a href="#discipline">🟨 انضباطی</a><a href="#quarter-finals">🏆 حذفی</a><a href="#teams">👥 تیم‌ها</a></nav>
+</div></div>
+
+<main class="wrap" id="top">
+<section class="hero">
+ <div class="hero-content">
+   <div class="eyebrow">پنجمین دوره مسابقات</div>
+   <img class="hero-logo" src="copa-suza-logo.png" alt="Copa Suza">
+   <h1><b>کوپا سوزا</b> ۲۰۲۶</h1>
+   <p class="subtitle">۱۶ تیم • رقابت برای ۸ سهمیه صعود • فقط یک قهرمان</p>
+   <a class="cta" href="#table">مشاهده جدول مسابقات</a>
+ </div>
+</section>
+
+<section class="stats">
+ <div class="statcard"><div class="num">۲۶</div><div class="label">بازی ثبت‌شده</div></div>
+ <div class="statcard"><div class="num">۱۲۱</div><div class="label">گل زده‌شده</div></div>
+ <div class="statcard"><div class="num">۴.۶۵</div><div class="label">میانگین گل</div></div>
+ <div class="statcard"><div class="num">۶۲</div><div class="label">کارت زرد</div></div>
+ <div class="statcard"><div class="num">۴</div><div class="label">کارت قرمز</div></div>
+ <div class="statcard"><div class="num">۹</div><div class="label">بازی مساوی</div></div>
+</section>
+
+<section class="next-card" id="next-match">
+ <div class="kicker">🔥 نزدیک‌ترین مسابقه</div>
+ <h3 id="next-title">شهدای تنگه هرمز 🆚 آذرخش گیاهدان</h3>
+ <div id="next-date">سه‌شنبه ۲۴ شهریور • ساعت ۲۰:۳۰</div>
+ <div style="margin-top:8px;color:var(--gold2);font-size:13px;font-weight:900">🏆 نیمه‌نهایی اول: حرا مارین 🆚 اتحاد خلور</div>
+ <div class="countdown" id="countdown"><div class="countbox"><b>--</b><span>روز</span></div><div class="countbox"><b>--</b><span>ساعت</span></div><div class="countbox"><b>--</b><span>دقیقه</span></div><div class="countbox"><b>--</b><span>ثانیه</span></div></div>
+</section>
+
+<section class="section" id="schedule"><div class="section-title"><h2>🗓️ برنامه مرحله حذفی</h2><span class="tag">۴ بازی یک‌چهارم نهایی</span></div>
+<div class="matches" id="schedule-list">
+<div class="match"><span><b>دوشنبه ۲۳ شهریور</b><br><small>۲۰:۳۰ • بازی اول</small></span><span class="team">چمران لاتیدان ۱ – ۲ حرا مارین</span><span class="schedule-status">برگزار شده</span></div>
+<div class="match"><span><b>دوشنبه ۲۳ شهریور</b><br><small>۲۱:۴۵ • بازی دوم</small></span><span class="team">اتحاد خلور ۲ – ۲ میناب ۱۶۸ (پنالتی ۴–۳)</span><span class="schedule-status">برگزار شده</span></div>
+<div class="match"><span><b>سه‌شنبه ۲۴ شهریور</b><br><small>۲۰:۳۰ • بازی اول</small></span><span class="team">شهدای تنگه هرمز 🆚 آذرخش گیاهدان</span><span class="schedule-status">آینده</span></div>
+<div class="match"><span><b>سه‌شنبه ۲۴ شهریور</b><br><small>۲۱:۴۵ • بازی دوم</small></span><span class="team">غارکی سوزا 🆚 فانوس یاسوج</span><span class="schedule-status">آینده</span></div>
+</div>
+<p style="color:#8fa39a;font-size:12px;margin:12px 0 0;text-align:center">⏱️ زمان بازی بعدی به‌صورت خودکار در کارت بالا نمایش داده می‌شود.</p>
+</section>
+
+<section class="section" id="table"><div class="section-title"><h2>📊 جدول نهایی مرحله گروهی</h2><span class="tag">امتیاز → تفاضل → گل زده</span></div>
+<div class="table-wrap"><table><thead><tr><th>رتبه</th><th>تیم</th><th>بازی</th><th>برد</th><th>مساوی</th><th>باخت</th><th>گل زده</th><th>گل خورده</th><th>تفاضل</th><th>امتیاز</th></tr></thead><tbody>
+<tr><td>1</td><td>اتحاد خلور</td><td>3</td><td>3</td><td>0</td><td>0</td><td>14</td><td>5</td><td>+9</td><td><b>9</b></td></tr>
+<tr><td>2</td><td>شهدای تنگه هرمز</td><td>3</td><td>2</td><td>1</td><td>0</td><td>11</td><td>5</td><td>+6</td><td><b>7</b></td></tr>
+<tr><td>3</td><td>چمران لاتیدان</td><td>3</td><td>2</td><td>1</td><td>0</td><td>10</td><td>6</td><td>+4</td><td><b>7</b></td></tr>
+<tr><td>4</td><td>غارکی سوزا</td><td>3</td><td>2</td><td>1</td><td>0</td><td>8</td><td>4</td><td>+4</td><td><b>7</b></td></tr>
+<tr><td>5</td><td>فانوس یاسوج</td><td>3</td><td>2</td><td>0</td><td>1</td><td>16</td><td>10</td><td>+6</td><td><b>6</b></td></tr>
+<tr><td>6</td><td>حرا مارین</td><td>3</td><td>2</td><td>0</td><td>1</td><td>10</td><td>8</td><td>+2</td><td><b>6</b></td></tr>
+<tr><td>7</td><td>آذرخش گیاهدان</td><td>3</td><td>1</td><td>2</td><td>0</td><td>10</td><td>6</td><td>+4</td><td><b>5</b></td></tr>
+<tr><td>8</td><td>میناب ۱۶۸</td><td>3</td><td>1</td><td>2</td><td>0</td><td>6</td><td>5</td><td>+1</td><td><b>5</b></td></tr>
+<tr><td>9</td><td>صحرا دفاری</td><td>3</td><td>1</td><td>1</td><td>1</td><td>8</td><td>9</td><td>-1</td><td><b>4</b></td></tr>
+<tr><td>10</td><td>متو ماهیان رمچاه</td><td>3</td><td>1</td><td>1</td><td>1</td><td>7</td><td>8</td><td>-1</td><td><b>4</b></td></tr>
+<tr><td>11</td><td>فجر مبین رمچاه</td><td>3</td><td>1</td><td>0</td><td>2</td><td>3</td><td>4</td><td>-1</td><td><b>3</b></td></tr>
+<tr><td>12</td><td>ستارگان افغان</td><td>3</td><td>0</td><td>1</td><td>2</td><td>4</td><td>8</td><td>-4</td><td><b>1</b></td></tr>
+<tr><td>13</td><td>امید درگهان</td><td>3</td><td>0</td><td>1</td><td>2</td><td>3</td><td>7</td><td>-4</td><td><b>1</b></td></tr>
+<tr><td>14</td><td>شاهین سوزا</td><td>3</td><td>0</td><td>1</td><td>2</td><td>2</td><td>13</td><td>-11</td><td><b>1</b></td></tr>
+<tr><td>15</td><td>سلمان جنوب</td><td>3</td><td>0</td><td>0</td><td>3</td><td>4</td><td>9</td><td>-5</td><td><b>0</b></td></tr>
+<tr><td>16</td><td>جوانان سوزا</td><td>3</td><td>0</td><td>0</td><td>3</td><td>1</td><td>10</td><td>-9</td><td><b>0</b></td></tr>
+</tbody></table></div>
+<p class="qualified">🟢 تیم‌های صعودکننده: اتحاد خلور، شهدای تنگه هرمز، چمران لاتیدان، غارکی سوزا، فانوس یاسوج، حرا مارین، آذرخش گیاهدان، میناب ۱۶۸</p>
+</section>
+
+<section class="section" id="matches"><div class="section-title"><h2>⚽ نتایج مسابقات</h2><span class="tag">۲۶ بازی</span></div><div class="matches">
+<div class="match"><span class="team">شاهین سوزا</span><span class="score">۱ – ۱</span><span class="team">ستارگان افغان</span></div>
+<div class="match"><span class="team">میناب ۱۶۸</span><span class="score">۲ – ۲</span><span class="team">امید درگهان</span></div>
+<div class="match"><span class="team">جوانان سوزا</span><span class="score">۰ – ۱</span><span class="team">متو ماهیان رمچاه</span></div>
+<div class="match"><span class="team">آذرخش گیاهدان</span><span class="score">۲ – ۲</span><span class="team">شهدای تنگه هرمز</span></div>
+<div class="match"><span class="team">غارکی سوزا</span><span class="score">۲ – ۱</span><span class="team">فجر مبین رمچاه</span></div>
+<div class="match"><span class="team">اتحاد خلور</span><span class="score">۲ – ۱</span><span class="team">ستارگان افغان</span></div>
+<div class="match"><span class="team">متو ماهیان رمچاه</span><span class="score">۲ – ۴</span><span class="team">شهدای تنگه هرمز</span></div>
+<div class="match"><span class="team">حرا مارین</span><span class="score">۳ – ۲</span><span class="team">سلمان جنوب</span></div>
+<div class="match"><span class="team">صحرا دفاری</span><span class="score">۳ – ۳</span><span class="team">چمران لاتیدان</span></div>
+<div class="match"><span class="team">غارکی سوزا</span><span class="score">۳ – ۳</span><span class="team">میناب ۱۶۸</span></div>
+<div class="match"><span class="team">فجر مبین رمچاه</span><span class="score">۲ – ۱</span><span class="team">امید درگهان</span></div>
+<div class="match"><span class="team">جوانان سوزا</span><span class="score">۱ – ۵</span><span class="team">شهدای تنگه هرمز</span></div>
+<div class="match"><span class="team">شاهین سوزا</span><span class="score">۱ – ۴</span><span class="team">اتحاد خلور</span></div>
+<div class="match"><span class="team">متو ماهیان رمچاه</span><span class="score">۴ – ۴</span><span class="team">آذرخش گیاهدان</span></div>
+<div class="match"><span class="team">صحرا دفاری</span><span class="score">۳ – ۲</span><span class="team">سلمان جنوب</span></div>
+<div class="match"><span class="team">حرا مارین</span><span class="score">۳ – ۴</span><span class="team">چمران لاتیدان</span></div>
+<div class="match"><span class="team">فجر مبین رمچاه</span><span class="score">۰ – ۱</span><span class="team">میناب ۱۶۸</span></div>
+<div class="match"><span class="team">فانوس یاسوج</span><span class="score">۳ – ۸</span><span class="team">اتحاد خلور</span></div>
+<div class="match"><span class="team">غارکی سوزا</span><span class="score">۳ – ۰</span><span class="team">امید درگهان</span></div>
+<div class="match"><span class="team">فانوس یاسوج</span><span class="score">۸ – ۰</span><span class="team">شاهین سوزا</span></div>
+<div class="match"><span class="team">جوانان سوزا</span><span class="score">۰ – ۴</span><span class="team">آذرخش گیاهدان</span></div>
+<div class="match"><span class="team">سلمان جنوب</span><span class="score">۰ – ۳</span><span class="team">چمران لاتیدان</span></div>
+<div class="match"><span class="team">حرا مارین</span><span class="score">۴ – ۲</span><span class="team">صحرا دفاری</span></div>
+<div class="match"><span class="team">فانوس یاسوج</span><span class="score">۵ – ۲</span><span class="team">ستارگان افغان</span></div>
+ <div class="match"><span class="team">چمران لاتیدان</span><span class="score">۱ – ۲</span><span class="team">حرا مارین</span></div>
+ <div class="match"><span class="team">اتحاد خلور</span><span class="score">۲ – ۲ (۴ – ۳ پنالتی)</span><span class="team">میناب ۱۶۸</span></div>
+</div></section>
+
+<section class="section" id="scorers"><div class="section-title"><h2>🥇 جدول گلزنان</h2><span class="tag">برترین گلزنان</span></div><div class="cards">
+<div class="player"><div class="rank">۱</div><b>محمدرضا آرمون</b><span>فانوس یاسوج • ۸ گل</span></div>
+<div class="player"><div class="rank">۲</div><b>وحید اسدی</b><span>غارکی سوزا • ۷ گل</span></div>
+<div class="player"><div class="rank">۳</div><b>علی سلمانی</b><span>اتحاد خلور • ۶ گل</span></div>
+<div class="player"><div class="rank">۴</div><b>سعید نساجی</b><span>اتحاد خلور • ۴ گل</span></div>
+<div class="player"><div class="rank">۵</div><b>عرفان علیاری</b><span>فانوس یاسوج • ۴ گل</span></div>
+</div></section>
+
+
+
+<section class="section" id="discipline"><div class="section-title"><h2>🟨🟥 انضباطی</h2><span class="tag">قوانین</span></div><p><b>قانون:</b> ۲ کارت زرد = محرومیت از بازی بعدی.</p></section>
+
+<section class="section" id="quarter-finals"><div class="section-title"><h2>🏆 براکت مرحله حذفی</h2><span class="tag">یک‌چهارم نهایی → نیمه‌نهایی → فینال</span></div>
+<div class="bracket">
+<div class="round"><div class="round-title">یک‌چهارم نهایی</div>
+<div class="game"><div class="date">دوشنبه ۲۳ شهریور</div><div class="time">بازی اول • ۲۰:۳۰</div><button class="team-btn" data-qf="1" data-team="چمران لاتیدان">چمران لاتیدان</button><div class="vs">مقابل</div><button class="team-btn selected" data-qf="1" data-team="حرا مارین">حرا مارین</button><div class="qf-result">پایان • ۱ – ۲ به سود حرا مارین</div></div>
+<div class="game"><div class="date">دوشنبه ۲۳ شهریور</div><div class="time">بازی دوم • ۲۱:۴۵</div><button class="team-btn selected" data-qf="2" data-team="اتحاد خلور">اتحاد خلور</button><div class="vs">مقابل</div><button class="team-btn" data-qf="2" data-team="میناب ۱۶۸">میناب ۱۶۸</button><div class="qf-result">پایان • ۲–۲ • پنالتی ۴–۳ به سود اتحاد خلور</div></div>
+<div class="game"><div class="date">سه‌شنبه ۲۴ شهریور</div><div class="time">بازی اول • ۲۰:۳۰</div><button class="team-btn" data-qf="3" data-team="شهدای تنگه هرمز">شهدای تنگه هرمز</button><div class="vs">مقابل</div><button class="team-btn" data-qf="3" data-team="آذرخش گیاهدان">آذرخش گیاهدان</button></div>
+<div class="game"><div class="date">سه‌شنبه ۲۴ شهریور</div><div class="time">بازی دوم • ۲۱:۴۵</div><button class="team-btn" data-qf="4" data-team="غارکی سوزا">غارکی سوزا</button><div class="vs">مقابل</div><button class="team-btn" data-qf="4" data-team="فانوس یاسوج">فانوس یاسوج</button></div></div>
+<div class="round"><div class="round-title">نیمه‌نهایی</div><div class="winner-slot" id="sf1">حرا مارین 🆚 اتحاد خلور</div><div class="winner-slot" id="sf2">برنده بازی ۳ 🆚 برنده بازی ۴</div></div>
+<div class="round"><div class="round-title">فینال 🏆</div><div class="winner-slot" id="final">برنده نیمه‌نهایی ۱ 🆚 برنده نیمه‌نهایی ۲</div><button class="cta" id="reset-bracket" style="border:0;cursor:pointer;width:100%;margin-top:auto">پاک کردن انتخاب‌ها</button></div>
+</div><p style="color:#8fa39a;font-size:12px;margin:14px 0 0;text-align:center">برای نمایش برنده هر بازی، روی نام تیم برنده بزنید.</p></section>
+
+<section class="section" id="teams"><div class="section-title"><h2>👥 تیم‌های مسابقات</h2><span class="tag">برای مشاهده جزئیات کلیک کنید</span></div><div class="teams-grid" id="teams-grid"></div></section>
+
+<div class="modal" id="team-modal"><div class="modal-box"><button class="modal-close" id="modal-close">×</button><h3 id="modal-title">تیم</h3><div class="team-summary" id="modal-summary"></div><div class="section-title" style="margin-top:18px"><h2 style="font-size:18px">⚽ بازی‌های مرحله گروهی</h2></div><div class="team-matches" id="modal-matches"></div><div id="modal-ko-wrap" style="display:none"><div class="section-title" style="margin-top:18px"><h2 style="font-size:18px">🏆 بازی‌های مرحله حذفی</h2></div><div class="team-matches" id="modal-ko"></div></div></div></div>
+
+<footer>© 2026 <strong>COPA SUZA</strong> — پنجمین دوره مسابقات کوپا سوزا</footer>
+</main>
+<script>
+const teamData={
+"اتحاد خلور":{p:3,w:3,d:0,l:0,gf:14,ga:5,gd:9,pts:9,m:["اتحاد خلور ۲ – ۱ ستارگان افغان","شاهین سوزا ۱ – ۴ اتحاد خلور","فانوس یاسوج ۳ – ۸ اتحاد خلور"],ko:["یک‌چهارم نهایی: اتحاد خلور ۲ – ۲ میناب ۱۶۸ (پنالتی ۴–۳) • صعود اتحاد خلور"]},
+"شهدای تنگه هرمز":{p:3,w:2,d:1,l:0,gf:11,ga:5,gd:6,pts:7,m:["آذرخش گیاهدان ۲ – ۲ شهدای تنگه هرمز","متو ماهیان رمچاه ۲ – ۴ شهدای تنگه هرمز","جوانان سوزا ۱ – ۵ شهدای تنگه هرمز"],ko:["یک‌چهارم نهایی: شهدای تنگه هرمز 🆚 آذرخش گیاهدان • سه‌شنبه ۲۴ شهریور • ۲۰:۳۰"]},
+"چمران لاتیدان":{p:3,w:2,d:1,l:0,gf:10,ga:6,gd:4,pts:7,m:["صحرا دفاری ۳ – ۳ چمران لاتیدان","حرا مارین ۳ – ۴ چمران لاتیدان","سلمان جنوب ۰ – ۳ چمران لاتیدان"],ko:["یک‌چهارم نهایی: چمران لاتیدان ۱ – ۲ حرا مارین • حذف چمران لاتیدان"]},
+"غارکی سوزا":{p:3,w:2,d:1,l:0,gf:8,ga:4,gd:4,pts:7,m:["غارکی سوزا ۲ – ۱ فجر مبین رمچاه","غارکی سوزا ۳ – ۳ میناب ۱۶۸","غارکی سوزا ۳ – ۰ امید درگهان"],ko:["یک‌چهارم نهایی: غارکی سوزا 🆚 فانوس یاسوج • سه‌شنبه ۲۴ شهریور • ۲۱:۴۵"]},
+"فانوس یاسوج":{p:3,w:2,d:0,l:1,gf:16,ga:10,gd:6,pts:6,m:["فانوس یاسوج ۳ – ۸ اتحاد خلور","فانوس یاسوج ۸ – ۰ شاهین سوزا","فانوس یاسوج ۵ – ۲ ستارگان افغان"],ko:["یک‌چهارم نهایی: غارکی سوزا 🆚 فانوس یاسوج • سه‌شنبه ۲۴ شهریور • ۲۱:۴۵"]},
+"حرا مارین":{p:3,w:2,d:0,l:1,gf:10,ga:8,gd:2,pts:6,m:["حرا مارین ۳ – ۲ سلمان جنوب","حرا مارین ۳ – ۴ چمران لاتیدان","حرا مارین ۴ – ۲ صحرا دفاری"],ko:["یک‌چهارم نهایی: چمران لاتیدان ۱ – ۲ حرا مارین • صعود حرا مارین","نیمه‌نهایی اول: حرا مارین 🆚 اتحاد خلور"]},
+"آذرخش گیاهدان":{p:3,w:1,d:2,l:0,gf:10,ga:6,gd:4,pts:5,m:["آذرخش گیاهدان ۲ – ۲ شهدای تنگه هرمز","متو ماهیان رمچاه ۴ – ۴ آذرخش گیاهدان","جوانان سوزا ۰ – ۴ آذرخش گیاهدان"],ko:["یک‌چهارم نهایی: شهدای تنگه هرمز 🆚 آذرخش گیاهدان • سه‌شنبه ۲۴ شهریور • ۲۰:۳۰"]},
+"میناب ۱۶۸":{p:3,w:1,d:2,l:0,gf:6,ga:5,gd:1,pts:5,m:["میناب ۱۶۸ ۲ – ۲ امید درگهان","غارکی سوزا ۳ – ۳ میناب ۱۶۸","فجر مبین رمچاه ۰ – ۱ میناب ۱۶۸"],ko:["یک‌چهارم نهایی: اتحاد خلور ۲ – ۲ میناب ۱۶۸ (پنالتی ۴–۳) • حذف میناب ۱۶۸"]},
+"صحرا دفاری":{p:3,w:1,d:1,l:1,gf:8,ga:9,gd:-1,pts:4,m:["صحرا دفاری ۳ – ۳ چمران لاتیدان","صحرا دفاری ۳ – ۲ سلمان جنوب","حرا مارین ۴ – ۲ صحرا دفاری"]},
+"متو ماهیان رمچاه":{p:3,w:1,d:1,l:1,gf:7,ga:8,gd:-1,pts:4,m:["جوانان سوزا ۰ – ۱ متو ماهیان رمچاه","متو ماهیان رمچاه ۲ – ۴ شهدای تنگه هرمز","متو ماهیان رمچاه ۴ – ۴ آذرخش گیاهدان"]},
+"فجر مبین رمچاه":{p:3,w:1,d:0,l:2,gf:3,ga:4,gd:-1,pts:3,m:["غارکی سوزا ۲ – ۱ فجر مبین رمچاه","فجر مبین رمچاه ۲ – ۱ امید درگهان","فجر مبین رمچاه ۰ – ۱ میناب ۱۶۸"]},
+"ستارگان افغان":{p:3,w:0,d:1,l:2,gf:4,ga:8,gd:-4,pts:1,m:["شاهین سوزا ۱ – ۱ ستارگان افغان","اتحاد خلور ۲ – ۱ ستارگان افغان","فانوس یاسوج ۵ – ۲ ستارگان افغان"]},
+"امید درگهان":{p:3,w:0,d:1,l:2,gf:3,ga:7,gd:-4,pts:1,m:["میناب ۱۶۸ ۲ – ۲ امید درگهان","فجر مبین رمچاه ۲ – ۱ امید درگهان","غارکی سوزا ۳ – ۰ امید درگهان"]},
+"شاهین سوزا":{p:3,w:0,d:1,l:2,gf:2,ga:13,gd:-11,pts:1,m:["شاهین سوزا ۱ – ۱ ستارگان افغان","شاهین سوزا ۱ – ۴ اتحاد خلور","فانوس یاسوج ۸ – ۰ شاهین سوزا"]},
+"سلمان جنوب":{p:3,w:0,d:0,l:3,gf:4,ga:9,gd:-5,pts:0,m:["حرا مارین ۳ – ۲ سلمان جنوب","صحرا دفاری ۳ – ۲ سلمان جنوب","سلمان جنوب ۰ – ۳ چمران لاتیدان"]},
+"جوانان سوزا":{p:3,w:0,d:0,l:3,gf:1,ga:10,gd:-9,pts:0,m:["جوانان سوزا ۰ – ۱ متو ماهیان رمچاه","جوانان سوزا ۱ – ۵ شهدای تنگه هرمز","جوانان سوزا ۰ – ۴ آذرخش گیاهدان"]}
+};
+const teamsGrid=document.getElementById('teams-grid');
+Object.entries(teamData).forEach(([name,d])=>{const el=document.createElement('div');el.className='team-card';el.innerHTML=`<b>${name}</b><span>${d.p} بازی • ${d.pts} امتیاز • ${d.gf} گل زده</span>`;el.onclick=()=>openTeam(name);teamsGrid.appendChild(el);});
+function openTeam(name){const d=teamData[name];document.getElementById('modal-title').textContent=name;document.getElementById('modal-summary').innerHTML=[['بازی',d.p],['برد',d.w],['مساوی',d.d],['باخت',d.l],['گل زده',d.gf],['گل خورده',d.ga],['تفاضل',d.gd>0?'+'+d.gd:d.gd],['امتیاز',d.pts]].map(x=>`<div class="mini-stat"><b>${x[1]}</b><span>${x[0]}</span></div>`).join('');document.getElementById('modal-matches').innerHTML=d.m.map(x=>`<div class="match"><span class="team">${x}</span></div>`).join('');const koWrap=document.getElementById('modal-ko-wrap');const ko=document.getElementById('modal-ko');if(d.ko&&d.ko.length){koWrap.style.display='block';ko.innerHTML=d.ko.map(x=>`<div class="match"><span class="team">${x}</span></div>`).join('');}else{koWrap.style.display='none';ko.innerHTML='';}document.getElementById('team-modal').classList.add('open');}
+document.getElementById('modal-close').onclick=()=>document.getElementById('team-modal').classList.remove('open');document.getElementById('team-modal').onclick=e=>{if(e.target.id==='team-modal')e.currentTarget.classList.remove('open');};
+document.querySelectorAll('#table td:nth-child(2)').forEach(td=>{td.style.cursor='pointer';td.title='مشاهده جزئیات تیم';td.onclick=()=>openTeam(td.textContent.trim());});
+const upcomingMatches=[
+ {title:'چمران لاتیدان 🆚 حرا مارین',date:'دوشنبه ۲۳ شهریور',time:'۲۰:۳۰',iso:'2026-09-14T20:30:00+03:30'},
+ {title:'اتحاد خلور 🆚 میناب ۱۶۸',date:'دوشنبه ۲۳ شهریور',time:'۲۱:۴۵',iso:'2026-09-14T21:45:00+03:30'},
+ {title:'شهدای تنگه هرمز 🆚 آذرخش گیاهدان',date:'سه‌شنبه ۲۴ شهریور',time:'۲۰:۳۰',iso:'2026-09-15T20:30:00+03:30'},
+ {title:'غارکی سوزا 🆚 فانوس یاسوج',date:'سه‌شنبه ۲۴ شهریور',time:'۲۱:۴۵',iso:'2026-09-15T21:45:00+03:30'}
+];
+function fa(n){return String(Math.max(0,Math.floor(n))).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);}
+function updateSchedule(){
+  const now=Date.now();
+  const items=document.querySelectorAll('#schedule-list .match');
+  upcomingMatches.forEach((m,i)=>{
+    const start=Date.parse(m.iso);
+    const status=items[i]&&items[i].querySelector('.schedule-status');
+    if(status){status.textContent=now>=start?'برگزار شده':'آینده';status.style.color=now>=start?'#8fa39a':'var(--gold)';}
+  });
+  const next=upcomingMatches.find(m=>Date.parse(m.iso)>now);
+  const title=document.getElementById('next-title');
+  const date=document.getElementById('next-date');
+  const box=document.getElementById('countdown');
+  if(!title||!date||!box)return;
+  if(!next){
+    title.textContent='تمام مسابقات برنامه‌ریزی‌شده برگزار شده‌اند';
+    date.textContent='منتظر اعلام برنامه مرحله بعد باشید';
+    box.innerHTML='<div style="color:var(--gold2);font-weight:900">🏆 ادامه مسابقات به‌زودی</div>';
+    return;
+  }
+  title.textContent=next.title;
+  date.textContent=next.date+' • ساعت '+next.time;
+  const diff=Math.max(0,Date.parse(next.iso)-Date.now());
+  const days=Math.floor(diff/86400000);
+  const hours=Math.floor((diff%86400000)/3600000);
+  const minutes=Math.floor((diff%3600000)/60000);
+  const seconds=Math.floor((diff%60000)/1000);
+  const values=[days,hours,minutes,seconds];
+  const labels=['روز','ساعت','دقیقه','ثانیه'];
+  box.innerHTML=values.map((v,i)=>`<div class="countbox"><b>${fa(v)}</b><span>${labels[i]}</span></div>`).join('');
+}
+updateSchedule();
+window.setInterval(updateSchedule,1000);
+const winners={1:'حرا مارین',2:'اتحاد خلور'};
+document.querySelectorAll('.team-btn').forEach(btn=>btn.addEventListener('click',()=>{const q=btn.dataset.qf;winners[q]=btn.dataset.team;document.querySelectorAll(`.team-btn[data-qf="${q}"]`).forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');renderBracket();}));
+function renderBracket(){const sf1=winners[1]&&winners[2]?`${winners[1]} 🆚 ${winners[2]}`:'برنده بازی ۱ 🆚 برنده بازی ۲';const sf2=winners[3]&&winners[4]?`${winners[3]} 🆚 ${winners[4]}`:'برنده بازی ۳ 🆚 برنده بازی ۴';const final=(winners.sf1&&winners.sf2)?`${winners.sf1} 🆚 ${winners.sf2}`:'برنده نیمه‌نهایی ۱ 🆚 برنده نیمه‌نهایی ۲';[['sf1',sf1],['sf2',sf2],['final',final]].forEach(([id,t])=>{const el=document.getElementById(id);el.textContent=t;el.classList.toggle('filled',!t.includes('برنده'));});}
+document.getElementById('sf1').onclick=()=>{if(winners[1]&&winners[2]){winners.sf1=prompt('برنده نیمه‌نهایی ۱ را انتخاب کنید:',winners[1])===winners[2]?winners[2]:winners[1];renderBracket();}};document.getElementById('sf2').onclick=()=>{if(winners[3]&&winners[4]){winners.sf2=prompt('برنده نیمه‌نهایی ۲ را انتخاب کنید:',winners[3])===winners[4]?winners[4]:winners[3];renderBracket();}};
+document.getElementById('reset-bracket').onclick=()=>{Object.keys(winners).forEach(k=>delete winners[k]);document.querySelectorAll('.team-btn').forEach(b=>b.classList.remove('selected'));renderBracket();};
+renderBracket();
+</script>
+</body>
+</html>
