@@ -240,7 +240,7 @@ renderBracket();
     const matches=data.matches||[], group=matches.filter(m=>m.stage==='group'), finished=matches.filter(m=>m.homeScore!=null&&m.awayScore!=null);
     const goals=finished.reduce((n,m)=>n+Number(m.homeScore||0)+Number(m.awayScore||0),0);
     const draws=finished.filter(m=>m.homeScore===m.awayScore).length;
-    const yellow=matches.reduce((n,m)=>n+(m.yellowCount||0),0), red=matches.reduce((n,m)=>n+(m.redCount||0),0);
+    const yellow=(data.stats&&Number.isFinite(Number(data.stats.yellow)))?Number(data.stats.yellow):matches.reduce((n,m)=>n+(m.yellowCount||0),0), red=(data.stats&&Number.isFinite(Number(data.stats.red)))?Number(data.stats.red):matches.reduce((n,m)=>n+(m.redCount||0),0);
     document.querySelectorAll('.stats .statcard .num').forEach((el,i)=>{el.textContent=fa([finished.length,goals,finished.length?(goals/finished.length).toFixed(2):'0.00',yellow,red,draws][i])});
     const table=calcTable(matches,data.teams||[]);
     const tbody=document.querySelector('#table tbody');
