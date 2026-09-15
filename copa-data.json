@@ -224,7 +224,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "yellowCount": 3,
+      "redCount": null,
+      "homeScorers": "رشید رستمی\nاحمد نور نعیمی\nاحمد نور نعیمی",
+      "awayScorers": "محمد رمشکی\nمحمد رمشکی\nارشیا آسیابر\nسجاد طاهری"
     },
     {
       "id": 17,
@@ -428,7 +432,7 @@
     "sf2": "",
     "final": ""
   },
-  "updatedAt": "",
+  "updatedAt": "2026-09-15T15:07:33.734Z",
   "stats": {
     "yellow": 62,
     "red": 4
