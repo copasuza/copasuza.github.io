@@ -287,10 +287,10 @@
       "scorers": [],
       "yellowCount": 3,
       "redCount": null,
-      "homeScorers": "رشید رستمی\nاحمد نور نعیمی\nاحمد نور نعیمی",
-      "awayScorers": "محمد رمشکی\nمحمد رمشکی\nارشیا آسیابر\nسجاد طاهری",
-      "homeYellowCount": 1,
-      "awayYellowCount": 2,
+      "homeScorers": "",
+      "awayScorers": "",
+      "homeYellowCount": null,
+      "awayYellowCount": null,
       "homeRedCount": null,
       "awayRedCount": null
     },
@@ -536,7 +536,7 @@
     "sf2": "",
     "final": ""
   },
-  "updatedAt": "2026-09-15T15:24:59.346Z",
+  "updatedAt": "2026-09-15T16:00:38.554Z",
   "stats": {
     "yellow": 62,
     "red": 4
