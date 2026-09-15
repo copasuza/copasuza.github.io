@@ -29,7 +29,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 2,
@@ -42,7 +46,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 3,
@@ -55,7 +63,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 4,
@@ -68,7 +80,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 5,
@@ -81,7 +97,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 6,
@@ -94,7 +114,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 7,
@@ -107,7 +131,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 8,
@@ -120,7 +148,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 9,
@@ -133,7 +165,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 10,
@@ -146,7 +182,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 11,
@@ -159,7 +199,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 12,
@@ -172,7 +216,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 13,
@@ -185,7 +233,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 14,
@@ -198,7 +250,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 15,
@@ -211,7 +267,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 16,
@@ -228,7 +288,11 @@
       "yellowCount": 3,
       "redCount": null,
       "homeScorers": "رشید رستمی\nاحمد نور نعیمی\nاحمد نور نعیمی",
-      "awayScorers": "محمد رمشکی\nمحمد رمشکی\nارشیا آسیابر\nسجاد طاهری"
+      "awayScorers": "محمد رمشکی\nمحمد رمشکی\nارشیا آسیابر\nسجاد طاهری",
+      "homeYellowCount": 3,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 17,
@@ -241,7 +305,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 18,
@@ -254,7 +322,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 19,
@@ -267,7 +339,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 20,
@@ -280,7 +356,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 21,
@@ -293,7 +373,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 22,
@@ -306,7 +390,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 23,
@@ -319,7 +407,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 24,
@@ -332,7 +424,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 25,
@@ -345,7 +441,11 @@
       "penaltiesAway": null,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     },
     {
       "id": 26,
@@ -358,7 +458,11 @@
       "penaltiesAway": 3,
       "date": "",
       "time": "",
-      "scorers": []
+      "scorers": [],
+      "homeYellowCount": null,
+      "awayYellowCount": null,
+      "homeRedCount": null,
+      "awayRedCount": null
     }
   ],
   "schedule": [
@@ -432,7 +536,7 @@
     "sf2": "",
     "final": ""
   },
-  "updatedAt": "2026-09-15T15:12:04.278Z",
+  "updatedAt": "2026-09-15T15:22:58.624Z",
   "stats": {
     "yellow": 62,
     "red": 4
