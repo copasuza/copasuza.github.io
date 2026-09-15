@@ -428,5 +428,9 @@
     "sf2": "",
     "final": ""
   },
-  "updatedAt": "2026-09-15T14:26:50.373Z"
+  "updatedAt": "",
+  "stats": {
+    "yellow": 62,
+    "red": 4
+  }
 }
