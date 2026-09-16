@@ -1,0 +1,41 @@
+name: Fix public site render error
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-index-render.yml'
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix script order
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          old="const setSlot=(id,a,b)=>{const e=document.getElementById(id);if(e)e.textContent=(a||'برنده بازی')+' 🆚 '+(b||'برنده بازی')};setSlot('sf1',(sfs[0]&&sfs[0].home)||qfw[3]||ko.qf4,(sfs[0]&&sfs[0].away)||qfw[2]||ko.qf3);setSlot('sf2',(sfs[1]&&sfs[1].home)||qfw[0]||ko.qf1,(sfs[1]&&sfs[1].away)||qfw[1]||ko.qf2);const sfs=matches.filter(m=>m.stage==='sf').sort((a,b)=>(+a.id||0)-(+b.id||0));setSlot('final',winnerOf(sfs[0])||ko.finalA||'برنده نیمه‌نهایی ۱',winnerOf(sfs[1])||ko.finalB||'برنده نیمه‌نهایی ۲');"
+          new="const sfs=matches.filter(m=>m.stage==='sf').sort((a,b)=>(+a.id||0)-(+b.id||0));const setSlot=(id,a,b)=>{const e=document.getElementById(id);if(e)e.textContent=(a||'برنده بازی')+' 🆚 '+(b||'برنده بازی')};setSlot('sf1',(sfs[0]&&sfs[0].home)||qfw[3]||ko.qf4,(sfs[0]&&sfs[0].away)||qfw[2]||ko.qf3);setSlot('sf2',(sfs[1]&&sfs[1].home)||qfw[0]||ko.qf1,(sfs[1]&&sfs[1].away)||qfw[1]||ko.qf2);setSlot('final',winnerOf(sfs[0])||ko.finalA||'برنده نیمه‌نهایی ۱',winnerOf(sfs[1])||ko.finalB||'برنده نیمه‌نهایی ۲');"
+          if old not in s:
+              raise SystemExit('Target script not found')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
+      - name: Commit fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Fix Copa Suza public render order'
+          git push
+      - name: Remove temporary workflow
+        if: always()
+        run: |
+          git rm .github/workflows/fix-index-render.yml || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Remove temporary render fix workflow' || true
+          git push || true
