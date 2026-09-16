@@ -503,6 +503,44 @@
           "awayRedCount": null,
           "homeScorers": "یحیی نساجی\nصائم شریفی\nوحید اسدی\nگل بخودی\nسینا بخشی",
           "awayScorers": "محمود صادقی \nمحمود صادقی\nمحمود صادقی\nمحمود صادقی\nمحمود صادقی\nمحمد رضا آرمون\nفرشید بی بی‌باک"
+        },
+        {
+          "id": 29,
+          "stage": "sf",
+          "homeScore": null,
+          "awayScore": null,
+          "penaltiesHome": null,
+          "penaltiesAway": null,
+          "date": "پنج‌شنبه ۲۶ شهریور",
+          "time": "۲۰:۳۰",
+          "scorers": [],
+          "homeYellowCount": null,
+          "awayYellowCount": null,
+          "homeRedCount": null,
+          "awayRedCount": null,
+          "bestPlayer": "",
+          "ethicsPlayer": "",
+          "home": "فانوس یاسوج",
+          "away": "شهدای تنگه هرمز"
+        },
+        {
+          "id": 30,
+          "stage": "sf",
+          "homeScore": null,
+          "awayScore": null,
+          "penaltiesHome": null,
+          "penaltiesAway": null,
+          "date": "پنج‌شنبه ۲۶ شهریور",
+          "time": "۲۲:۰۰",
+          "scorers": [],
+          "homeYellowCount": null,
+          "awayYellowCount": null,
+          "homeRedCount": null,
+          "awayRedCount": null,
+          "bestPlayer": "",
+          "ethicsPlayer": "",
+          "home": "حرا مارین",
+          "away": "اتحاد خلور"
         }
       ],
       "schedule": [
@@ -537,6 +575,22 @@
           "label": "بازی دوم",
           "home": "غارکی سوزا",
           "away": "فانوس یاسوج"
+        },
+        {
+          "date": "پنج‌شنبه ۲۶ شهریور",
+          "time": "۲۰:۳۰",
+          "home": "فانوس یاسوج",
+          "away": "شهدای تنگه هرمز",
+          "stage": "sf",
+          "iso": "2026-09-17T20:30:00+03:30"
+        },
+        {
+          "date": "پنج‌شنبه ۲۶ شهریور",
+          "time": "۲۲:۰۰",
+          "home": "حرا مارین",
+          "away": "اتحاد خلور",
+          "stage": "sf",
+          "iso": "2026-09-17T22:00:00+03:30"
         }
       ],
       "scorers": [
