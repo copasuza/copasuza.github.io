@@ -1,0 +1,120 @@
+name: Update Copa Suza semifinal schedule
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.event.head_commit.message != 'chore: apply semifinal schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update schedule and knockout matches
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path('copa-data.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          t = next(x for x in data.get('tournaments', []) if x.get('id') == 'copa-suza-2026')
+
+          matches = t.get('matches', [])
+          for m in matches:
+              if m.get('id') == 28:
+                  m['stage'] = 'qf'
+
+          matches = [m for m in matches if m.get('id') not in (29, 30)]
+          matches.extend([
+              {
+                  'id': 29,
+                  'home': 'فانوس یاسوج',
+                  'away': 'شهدای تنگه هرمز',
+                  'homeScore': None,
+                  'awayScore': None,
+                  'stage': 'sf',
+                  'penaltiesHome': None,
+                  'penaltiesAway': None,
+                  'date': 'پنج‌شنبه ۲۶ شهریور',
+                  'time': '۲۰:۳۰',
+                  'iso': '2026-09-17T20:30:00+03:30',
+                  'homeScorers': '',
+                  'awayScorers': '',
+                  'homeYellowCount': None,
+                  'awayYellowCount': None,
+                  'homeRedCount': None,
+                  'awayRedCount': None
+              },
+              {
+                  'id': 30,
+                  'home': 'حرا مارین',
+                  'away': 'اتحاد خلور',
+                  'homeScore': None,
+                  'awayScore': None,
+                  'stage': 'sf',
+                  'penaltiesHome': None,
+                  'penaltiesAway': None,
+                  'date': 'پنج‌شنبه ۲۶ شهریور',
+                  'time': '۲۲:۰۰',
+                  'iso': '2026-09-17T22:00:00+03:30',
+                  'homeScorers': '',
+                  'awayScorers': '',
+                  'homeYellowCount': None,
+                  'awayYellowCount': None,
+                  'homeRedCount': None,
+                  'awayRedCount': None
+              }
+          ])
+          t['matches'] = matches
+
+          t['schedule'] = [
+              {
+                  'id': 5,
+                  'date': 'پنج‌شنبه ۲۶ شهریور',
+                  'time': '۲۰:۳۰',
+                  'label': 'بازی اول',
+                  'home': 'فانوس یاسوج',
+                  'away': 'شهدای تنگه هرمز',
+                  'stage': 'sf',
+                  'iso': '2026-09-17T20:30:00+03:30'
+              },
+              {
+                  'id': 6,
+                  'date': 'پنج‌شنبه ۲۶ شهریور',
+                  'time': '۲۲:۰۰',
+                  'label': 'بازی دوم',
+                  'home': 'حرا مارین',
+                  'away': 'اتحاد خلور',
+                  'stage': 'sf',
+                  'iso': '2026-09-17T22:00:00+03:30'
+              }
+          ]
+
+          t['knockout'] = {
+              'qf1': 'حرا مارین',
+              'qf2': 'اتحاد خلور',
+              'qf3': 'شهدای تنگه هرمز',
+              'qf4': 'فانوس یاسوج',
+              'sf1': 'حرا مارین',
+              'sf2': 'فانوس یاسوج',
+              'final': ''
+          }
+
+          data['updatedAt'] = '2026-09-16T16:30:00+03:30'
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit data and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/update-semifinals.yml
+          git add copa-data.json .github/workflows/update-semifinals.yml
+          git commit -m "chore: apply semifinal schedule"
+          git push
