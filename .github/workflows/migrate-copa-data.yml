@@ -1,0 +1,56 @@
+name: Migrate Copa data to multi-tournament
+
+on:
+  push:
+    paths:
+      - '.github/workflows/migrate-copa-data.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Convert legacy data
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'copa-data.json';
+          const raw = fs.readFileSync(path, 'utf8');
+          const data = JSON.parse(raw);
+          if (Array.isArray(data.tournaments) && data.tournaments.length) {
+            console.log('Already migrated; nothing to do.');
+            process.exit(0);
+          }
+          const legacy = {...data};
+          delete legacy.updatedAt;
+          const tournament = {
+            id: 'copa-suza-2026',
+            name: 'کوپا سوزا',
+            title: 'کوپا سوزا',
+            year: '۲۰۲۶',
+            edition: 'پنجمین دوره مسابقات',
+            ...legacy
+          };
+          const output = {
+            schemaVersion: 2,
+            tournaments: [tournament],
+            updatedAt: new Date().toISOString()
+          };
+          fs.writeFileSync(path, JSON.stringify(output, null, 2) + '\n');
+          console.log('Converted copa-data.json to multi-tournament structure.');
+          NODE
+
+      - name: Commit migration and remove one-time workflow
+        run: |
+          git config user.name 'Copa Suza Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add copa-data.json
+          git rm .github/workflows/migrate-copa-data.yml
+          git diff --cached --quiet && exit 0 || true
+          git commit -m 'تبدیل اطلاعات کوپا سوزا به ساختار چند تورنمنتی'
+          git push
