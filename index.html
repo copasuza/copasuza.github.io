@@ -87,8 +87,8 @@ const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
 const winners={};
 function renderBracket(){const sf1=winners[1]&&winners[2]?`${winners[1]} 🆚 ${winners[2]}`:'برنده بازی ۱ 🆚 برنده بازی ۲';const sf2=winners[3]&&winners[4]?`${winners[3]} 🆚 ${winners[4]}`:'برنده بازی ۳ 🆚 برنده بازی ۴';const final=(winners.sf1&&winners.sf2)?`${winners.sf1} 🆚 ${winners.sf2}`:'برنده نیمه‌نهایی ۱ 🆚 برنده نیمه‌نهایی ۲';[['sf1',sf1],['sf2',sf2],['final',final]].forEach(([id,t])=>{const el=document.getElementById(id);el.textContent=t;el.classList.toggle('filled',!t.includes('برنده'));});}
 document.querySelectorAll('.team-btn').forEach(btn=>btn.addEventListener('click',()=>{const q=btn.dataset.qf;if(!btn.dataset.team)return;winners[q]=btn.dataset.team;document.querySelectorAll(`.team-btn[data-qf="${q}"]`).forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');renderBracket();}));
-document.getElementById('sf1').onclick=()=>{if(winners[1]&&winners[2]){winners.sf1=prompt('برنده نیمه‌نهایی ۱ را انتخاب کنید:',winners[1])===winners[2]?winners[2]:winners[1];renderBracket();}};
-document.getElementById('sf2').onclick=()=>{if(winners[3]&&winners[4]){winners.sf2=prompt('برنده نیمه‌نهایی ۲ را انتخاب کنید:',winners[3])===winners[4]?winners[4]:winners[3];renderBracket();}};
+document.getElementById('sf1').onclick=null;
+document.getElementById('sf2').onclick=null;
 document.getElementById('reset-bracket').onclick=()=>{Object.keys(winners).forEach(k=>delete winners[k]);document.querySelectorAll('.team-btn').forEach(b=>b.classList.remove('selected'));renderBracket();};
 renderBracket();
 </script>
