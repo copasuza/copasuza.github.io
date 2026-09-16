@@ -266,8 +266,8 @@ renderBracket();
       [['homeScorers',m.home],['awayScorers',m.away]].forEach(([k,team])=>
         (m[k]||'').split(/\n|،|,/).map(x=>x.trim()).filter(Boolean).forEach(name=>{
           const key=name+'||'+team;
-          scorerMap[key]=scorerMap[key]||{name,team,goals:0};
-          scorerMap[key].goals++;
+          // فقط گلزنانی که از قبل در فهرست مدیریتی data.scorers اضافه شده‌اند، نمایش داده و به‌روزرسانی شوند.
+          if(scorerMap[key]) scorerMap[key].goals++;
         })
       );
     });
