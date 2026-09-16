@@ -479,6 +479,22 @@
       "awayRedCount": null,
       "homeScorers": "ابراهیم ناصرنیا\nابراهیم ناصرنیا\nسجاد گدری",
       "awayScorers": "مرتضی دریانورد\nمیر محمد زیوری"
+    },
+    {
+      "id": 28,
+      "home": "غارکی سوزا",
+      "away": "فانوس یاسوج",
+      "homeScore": 5,
+      "awayScore": 7,
+      "stage": "group",
+      "penaltiesHome": null,
+      "penaltiesAway": null,
+      "homeYellowCount": 3,
+      "homeRedCount": null,
+      "awayYellowCount": 3,
+      "awayRedCount": null,
+      "homeScorers": "یحیی نساجی\nصائم شریفی\nوحید اسدی\nگل بخودی\nسینا بخشی",
+      "awayScorers": "محمود صادقی \nمحمود صادقی\nمحمود صادقی\nمحمود صادقی\nمحمود صادقی\nمحمد رضا آرمون\nفرشید بی بی‌باک"
     }
   ],
   "schedule": [
@@ -552,7 +568,7 @@
     "sf2": "",
     "final": ""
   },
-  "updatedAt": "2026-09-16T07:16:02.880Z",
+  "updatedAt": "2026-09-16T07:38:38.899Z",
   "stats": {
     "yellow": 62,
     "red": 4
