@@ -1,0 +1,99 @@
+name: Apply Copa Suza semifinal schedule
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: "!contains(github.event.head_commit.message, 'Apply semifinal schedule')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch semifinal schedule
+        run: |
+          python3 <<'PY'
+          import json
+          from pathlib import Path
+
+          data_path = Path('copa-data.json')
+          data = json.loads(data_path.read_text(encoding='utf-8'))
+          t = next(x for x in data.get('tournaments', []) if x.get('id') == 'copa-suza-2026')
+
+          matches = t.setdefault('matches', [])
+          # Replace/create the two semifinal placeholders without touching other results.
+          sf1 = next((m for m in matches if m.get('id') == 29), None)
+          sf2 = next((m for m in matches if m.get('id') == 30), None)
+          base = {
+              'homeScore': None, 'awayScore': None,
+              'penaltiesHome': None, 'penaltiesAway': None,
+              'date': 'پنج‌شنبه ۲۶ شهریور', 'time': '', 'scorers': [],
+              'homeYellowCount': None, 'awayYellowCount': None,
+              'homeRedCount': None, 'awayRedCount': None,
+              'bestPlayer': '', 'ethicsPlayer': ''
+          }
+          if sf1 is None:
+              sf1 = {'id': 29, 'stage': 'sf'}
+              matches.append(sf1)
+          sf1.update(base, home='فانوس یاسوج', away='شهدای تنگه هرمز', stage='sf')
+          sf1['time'] = '۲۰:۳۰'
+          if sf2 is None:
+              sf2 = {'id': 30, 'stage': 'sf'}
+              matches.append(sf2)
+          sf2.update(base, home='حرا مارین', away='اتحاد خلور', stage='sf')
+          sf2['time'] = '۲۲:۰۰'
+
+          schedule = t.setdefault('schedule', [])
+          schedule = [s for s in schedule if not (
+              s.get('stage') == 'sf' or
+              ({s.get('home'), s.get('away')} in [
+                  {'فانوس یاسوج', 'شهدای تنگه هرمز'},
+                  {'حرا مارین', 'اتحاد خلور'}
+              ])
+          )]
+          schedule.extend([
+              {
+                  'date': 'پنج‌شنبه ۲۶ شهریور', 'time': '۲۰:۳۰',
+                  'home': 'فانوس یاسوج', 'away': 'شهدای تنگه هرمز',
+                  'stage': 'sf', 'iso': '2026-09-17T20:30:00+03:30'
+              },
+              {
+                  'date': 'پنج‌شنبه ۲۶ شهریور', 'time': '۲۲:۰۰',
+                  'home': 'حرا مارین', 'away': 'اتحاد خلور',
+                  'stage': 'sf', 'iso': '2026-09-17T22:00:00+03:30'
+              }
+          ])
+          t['schedule'] = schedule
+          data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          index_path = Path('index.html')
+          html = index_path.read_text(encoding='utf-8')
+          old1 = "setSlot('sf1',qfw[0]||ko.qf1,qfw[1]||ko.qf2);"
+          old2 = "setSlot('sf2',qfw[2]||ko.qf3,qfw[3]||ko.qf4);"
+          new1 = "setSlot('sf1',(sfs[0]&&sfs[0].home)||qfw[3]||ko.qf4,(sfs[0]&&sfs[0].away)||qfw[2]||ko.qf3);"
+          new2 = "setSlot('sf2',(sfs[1]&&sfs[1].home)||qfw[0]||ko.qf1,(sfs[1]&&sfs[1].away)||qfw[1]||ko.qf2);"
+          if old1 not in html or old2 not in html:
+              raise SystemExit('Expected semifinal bracket code was not found; refusing to modify index.html')
+          html = html.replace(old1, new1).replace(old2, new2)
+          index_path.write_text(html, encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add copa-data.json index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Apply semifinal schedule'
+          git push
+      - name: Remove temporary workflow
+        if: success()
+        run: |
+          rm -f .github/workflows/apply-semifinals.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u .github/workflows/apply-semifinals.yml
+          git commit -m 'Remove temporary semifinal workflow' || exit 0
+          git push
