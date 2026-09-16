@@ -585,24 +585,7 @@
         "yellow": 62,
         "red": 4
       }
-    },
-    {
-      "id": "tournament-1789559756282",
-      "name": "تست",
-      "title": "تست",
-      "year": "۱۴۰۵",
-      "edition": "اولین دوره",
-      "teams": [],
-      "matches": [],
-      "schedule": [],
-      "scorers": [],
-      "knockout": {},
-      "stats": {
-        "yellow": 0,
-        "red": 0
-      },
-      "disciplineRule": "۲ کارت زرد = محرومیت از بازی بعدی."
     }
   ],
-  "updatedAt": "2026-09-16T11:57:19.339Z"
+  "updatedAt": "2026-09-16T12:00:35.938Z"
 }
