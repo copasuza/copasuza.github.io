@@ -1,0 +1,38 @@
+name: Fix admin refresh
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-admin-refresh.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch admin panel
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('admin/index.html')
+          s=p.read_text(encoding='utf-8')
+          old="const $=id=>document.getElementById(id);let data=null,sha=null,rootData=null,currentTournamentId=null;"
+          new="const $=id=>document.getElementById(id);let data=null,sha=null,rootData=null,currentTournamentId=null;try{const saved=JSON.parse(localStorage.getItem('copaSuzaAdminConfig')||'{}');if(saved.owner)$('owner').value=saved.owner;if(saved.repo)$('repo').value=saved.repo;if(saved.branch)$('branch').value=saved.branch;if(saved.token)$('token').value=saved.token}catch(e){}"
+          if old not in s:
+            raise SystemExit('target not found')
+          s=s.replace(old,new,1)
+          old2="$('connect').onclick=async()=>{try{$('status').textContent='در حال اتصال…';await getFile();$('authCard').classList.add('hide');$('status').textContent='اتصال موفق بود'}catch(e){$('status').textContent=e.message}};"
+          new2="$('connect').onclick=async()=>{try{localStorage.setItem('copaSuzaAdminConfig',JSON.stringify({owner:$('owner').value.trim(),repo:$('repo').value.trim(),branch:$('branch').value.trim(),token:$('token').value.trim()}));$('status').textContent='در حال اتصال…';await getFile();$('authCard').classList.add('hide');$('status').textContent='اتصال موفق بود'}catch(e){$('status').textContent=e.message}};"
+          if old2 not in s:
+            raise SystemExit('connect target not found')
+          s=s.replace(old2,new2,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add admin/index.html
+          git rm .github/workflows/fix-admin-refresh.yml
+          git commit -m 'Fix admin panel refresh persistence'
+          git push
