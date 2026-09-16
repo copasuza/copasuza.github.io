@@ -463,6 +463,22 @@
       "awayYellowCount": null,
       "homeRedCount": null,
       "awayRedCount": null
+    },
+    {
+      "id": 27,
+      "home": "شهدای تنگه هرمز",
+      "away": "آذرخش گیاهدان",
+      "homeScore": 3,
+      "awayScore": 2,
+      "stage": "qf",
+      "penaltiesHome": null,
+      "penaltiesAway": null,
+      "homeYellowCount": null,
+      "homeRedCount": null,
+      "awayYellowCount": 2,
+      "awayRedCount": null,
+      "homeScorers": "ابراهیم ناصرنیا\nابراهیم ناصرنیا\nسجاد گدری",
+      "awayScorers": "مرتضی دریانورد\nمیر محمد زیوری"
     }
   ],
   "schedule": [
@@ -536,7 +552,7 @@
     "sf2": "",
     "final": ""
   },
-  "updatedAt": "2026-09-16T06:50:25.423Z",
+  "updatedAt": "2026-09-16T06:52:01.069Z",
   "stats": {
     "yellow": 62,
     "red": 4
