@@ -1,4 +1,4 @@
-name: Hide finished matches from schedule
+name: Fix public site scorer source
 
 on:
   push:
@@ -13,23 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update schedule rendering
+      - name: Fix scorer rendering
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          old = "const sch=data.schedule||[],sl=document.getElementById('schedule-list');"
-          new = "const schAll=data.schedule||[],sch=schAll.filter(x=>x.homeScore==null&&x.awayScore==null&&x.iso&&Date.parse(x.iso)>Date.now()),sl=document.getElementById('schedule-list');"
+          old = "const scorerMap={};(data.scorers||[]).forEach(x=>{const key=(x.name||'')+'||'+(x.team||'');if(key!=='||')scorerMap[key]={name:x.name,team:x.team,goals:Number(x.goals||0)}});matches.filter(m=>m.stage&&m.stage!=='group').forEach(m=>[['homeScorers',m.home],['awayScorers',m.away]].forEach(([k,team])=>(m[k]||'').split(/\\n|،|,/).map(x=>x.trim()).filter(Boolean).forEach(name=>{const key=name+'||'+team;if(scorerMap[key])scorerMap[key].goals++})));const sc=Object.values(scorerMap).slice().sort((a,b)=>(b.goals||0)-(a.goals||0)).slice(0,10)"
+          new = "const scorerMap={};(data.scorers||[]).forEach(x=>{const key=(x.name||'')+'||'+(x.team||'');if(key!=='||')scorerMap[key]={name:x.name,team:x.team,goals:Number(x.goals||0)}});const sc=Object.values(scorerMap).slice().sort((a,b)=>(b.goals||0)-(a.goals||0)).slice(0,10)"
           if old not in s:
-              raise SystemExit('target code not found')
+              raise SystemExit('scorer target code not found')
           p.write_text(s.replace(old,new,1),encoding='utf-8')
           PY
-      - name: Commit change
+      - name: Remove temporary workflow and commit
         run: |
+          rm -f .github/workflows/filter-finished-schedule.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          git diff --cached --quiet && exit 0
-          git commit -m "fix: hide finished matches from schedule"
+          git add index.html .github/workflows/filter-finished-schedule.yml
+          git commit -m "fix: use admin scorer list only"
           git push
