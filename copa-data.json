@@ -681,6 +681,22 @@
           "homeRedPlayers": "",
           "awayYellowPlayers": "",
           "awayRedPlayers": ""
+        },
+        {
+          "id": 31,
+          "home": "",
+          "away": "",
+          "homeScore": null,
+          "awayScore": null,
+          "stage": "sf",
+          "penaltiesHome": null,
+          "penaltiesAway": null,
+          "homeYellowPlayers": "",
+          "homeRedPlayers": "",
+          "awayYellowPlayers": "",
+          "awayRedPlayers": "",
+          "homeScorers": "",
+          "awayScorers": ""
         }
       ],
       "schedule": [
@@ -750,5 +766,5 @@
       }
     }
   ],
-  "updatedAt": "2026-09-17T22:47:57.503Z"
+  "updatedAt": "2026-09-17T22:48:43.177Z"
 }
