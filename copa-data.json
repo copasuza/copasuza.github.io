@@ -684,19 +684,23 @@
         },
         {
           "id": 31,
-          "home": "",
-          "away": "",
-          "homeScore": null,
-          "awayScore": null,
-          "stage": "sf",
+          "home": "فانوس یاسوج",
+          "away": "حرا مارین",
+          "homeScore": 2,
+          "awayScore": 0,
+          "stage": "final",
           "penaltiesHome": null,
           "penaltiesAway": null,
-          "homeYellowPlayers": "",
+          "homeYellowPlayers": "صدیق فضیلت",
           "homeRedPlayers": "",
-          "awayYellowPlayers": "",
+          "awayYellowPlayers": "احمد نور نعیمی",
           "awayRedPlayers": "",
-          "homeScorers": "",
-          "awayScorers": ""
+          "homeScorers": "محمود صادقی\nمحمد رضا آرمون ",
+          "awayScorers": "",
+          "homeYellowCount": 1,
+          "awayYellowCount": 1,
+          "homeRedCount": 0,
+          "awayRedCount": 0
         }
       ],
       "schedule": [
@@ -747,16 +751,16 @@
           "away": "اتحاد خلور",
           "stage": "sf",
           "iso": "2026-09-17T22:00:00+03:30"
-     },
+        },
         {
-  "date": "شنبه ۲۸ شهریور",
-  "time": "۲۰:۰۰",
-  "label": "فینال",
-  "home": "فانوس یاسوج",
-  "away": "حرا مارین",
-  "stage": "final",
-  "iso": "2026-09-19T20:00:00+03:30"
-}
+          "date": "شنبه ۲۸ شهریور",
+          "time": "۲۰:۰۰",
+          "label": "فینال",
+          "home": "فانوس یاسوج",
+          "away": "حرا مارین",
+          "stage": "final",
+          "iso": "2026-09-19T20:00:00+03:30"
+        }
       ],
       "scorers": [
         {
@@ -806,5 +810,5 @@
       }
     }
   ],
-  "updatedAt": "2026-09-18T00:32:15.345Z"
+  "updatedAt": "2026-09-19T22:11:18.972Z"
 }
