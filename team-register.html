@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#06110e">
+<title>ثبت اطلاعات تیم | کوپا سوزا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04100d;--card:#0a2119;--line:#214d3b;--gold:#d8b24e;--gold2:#f0cf73;--text:#f5f1e7;--muted:#aebcb5;--ok:#78d9a0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#12372a,#04100d 55%);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.9}.wrap{width:min(900px,calc(100% - 24px));margin:auto;padding:18px 0 40px}
+header{background:#06140f;border:1px solid var(--line);border-radius:22px;padding:18px;text-align:center;margin-bottom:14px}header img{width:72px;height:72px;object-fit:contain}h1{font-size:25px;margin:5px 0;color:var(--gold2)}header p{margin:0;color:var(--muted);font-size:12px}
+.card{background:rgba(10,31,24,.94);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:14px}.title{color:var(--gold2);font-size:19px;font-weight:900;margin:0 0 15px;border-right:3px solid var(--gold);padding-right:10px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}label{font-size:12px;color:#c9d3ce;font-weight:700}input{width:100%;background:#061711;border:1px solid #28533f;color:var(--text);border-radius:12px;padding:11px 12px;font:inherit;font-size:13px;outline:none}input:focus{border-color:var(--gold)}input[readonly]{background:#0c2a20;color:var(--gold2)}
+.notice{background:#0d3024;border-right:3px solid var(--gold);border-radius:12px;padding:11px 13px;font-size:12px;color:#cbd8d2;margin-bottom:15px}
+.players{overflow:auto}.players table{width:100%;min-width:720px;border-collapse:collapse}.players th,.players td{padding:8px;border-bottom:1px solid #17372d;text-align:center}.players th{background:#123a2c;color:var(--gold2);font-size:12px}.players td input{min-width:125px}.players td:first-child{width:40px;color:var(--gold);font-weight:900}
+.actions{text-align:center;margin-top:18px}.submit{border:0;background:linear-gradient(135deg,#e1ba51,#b88924);color:#10130f;font:inherit;font-weight:900;border-radius:14px;padding:12px 28px;cursor:pointer}.submit:disabled{opacity:.55;cursor:not-allowed}.privacy{font-size:11px;color:#8fa39a;text-align:center;margin-top:12px}
+.status{display:none;margin-top:15px;border-radius:12px;padding:12px;text-align:center}.status.show{display:block}.status.warn{background:#3a2c0d;color:#f0cf73}.status.ok{background:#0d3024;color:#9be5b8}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.card{padding:15px}h1{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<img src="copa-suza-logo.png" alt="لوگوی کوپا سوزا">
+<h1>ثبت اطلاعات تیم</h1>
+<p>سامانه ثبت اطلاعات تیم‌ها و بازیکنان — کوپا سوزا</p>
+</header>
+
+<form id="team-form">
+<section class="card">
+<h2 class="title">🏷️ اطلاعات تیم</h2>
+<div class="notice">لطفاً اطلاعات را با دقت وارد کنید. کد ملی و تاریخ تولد بازیکنان برای بررسی مدارک ثبت می‌شود.</div>
+<div class="grid">
+<div class="field full"><label>نام تیم</label><input id="teamName" name="teamName" required placeholder="نام تیم"></div>
+</div>
+</section>
+
+<section class="card">
+<h2 class="title">👥 کادر تیم</h2>
+<div class="grid">
+<div class="field"><label>نام سرمربی</label><input name="headCoach" required></div>
+<div class="field"><label>نام مربی</label><input name="coach" required></div>
+<div class="field"><label>نام سرپرست</label><input name="manager" required></div>
+<div class="field"><label>نام پزشکیار</label><input name="medic" required></div>
+</div>
+</section>
+
+<section class="card">
+<h2 class="title">⚽ فهرست بازیکنان</h2>
+<div class="notice">حداکثر ۱۲ بازیکن. برای هر بازیکن: نام و نام خانوادگی، نام پدر، کد ملی و تاریخ تولد.</div>
+<div class="players"><table><thead><tr><th>ردیف</th><th>نام و نام خانوادگی</th><th>نام پدر</th><th>کد ملی</th><th>تاریخ تولد</th></tr></thead><tbody id="players"></tbody></table></div>
+</section>
+
+<section class="card">
+<div class="notice">با ثبت نهایی، سرپرست تأیید می‌کند که اطلاعات واردشده صحیح است و مسئولیت صحت اطلاعات بر عهده تیم است.</div>
+<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="confirm" style="width:auto" required> اطلاعات واردشده را بررسی و تأیید می‌کنم.</label>
+<div class="actions"><button class="submit" id="submit" type="submit">ثبت نهایی اطلاعات</button></div>
+<div class="status" id="status"></div>
+<div class="privacy">اطلاعات هویتی بازیکنان نباید در صفحات عمومی سایت نمایش داده شود.</div>
+</section>
+</form>
+</div>
+<script>
+const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const qs=new URLSearchParams(location.search);
+const team=qs.get('team');
+const teamInput=document.getElementById('teamName');
+if(team){teamInput.value=team;teamInput.readOnly=true}
+const tbody=document.getElementById('players');
+for(let i=1;i<=12;i++){tbody.insertAdjacentHTML('beforeend',`<tr><td>${fa(i)}</td><td><input name="player_${i}_name" required></td><td><input name="player_${i}_father" required></td><td><input name="player_${i}_nationalId" inputmode="numeric" maxlength="10" pattern="[0-9۰-۹]{10}" required></td><td><input name="player_${i}_birthDate" type="date" required></td></tr>`)}
+document.getElementById('team-form').addEventListener('submit',e=>{
+ e.preventDefault();
+ const status=document.getElementById('status');
+ status.className='status show warn';
+ status.textContent='فرم آماده است، اما اتصال امن به سامانه ذخیره‌سازی هنوز فعال نشده است. اطلاعات فعلاً ارسال یا ذخیره نمی‌شود.';
+});
+</script>
+</body>
+</html>
