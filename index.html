@@ -24,7 +24,7 @@ footer{text-align:center;color:#758780;padding:28px 10px 5px;font-size:12px}foot
 <body>
 <div class="topbar"><div class="topin">
   <a class="brand" href="#top"><img src="copa-suza-logo.png" alt="لوگوی کوپا سوزا"><div class="brandtext"><strong>کوپا سوزا</strong><span>COPA SUZA 2026</span></div></a>
-  <div style="display:flex;align-items:center;gap:10px"><select id="tournament-select" class="tournament-select" aria-label="انتخاب تورنمنت"></select><nav class="nav"><a href="#table">📊 جدول</a><a href="#schedule">🗓️ برنامه</a><a href="#matches">⚽ نتایج</a><a href="#scorers">🥇 گلزنان</a><a href="#discipline">🟨 انضباطی</a><a href="#quarter-finals">🏆 حذفی</a><a href="#teams">👥 تیم‌ها</a></nav></div>
+  <div style="display:flex;align-items:center;gap:10px"><select id="tournament-select" class="tournament-select" aria-label="انتخاب تورنمنت"></select><nav class="nav"><a href="#table">📊 جدول</a><a href="#schedule">🗓️ برنامه</a><a href="#matches">⚽ نتایج</a><a href="#news">📰 اخبار</a><a href="#scorers">🥇 گلزنان</a><a href="#discipline">🟨 انضباطی</a><a href="#quarter-finals">🏆 حذفی</a><a href="#teams">👥 تیم‌ها</a></nav></div>
 </div></div>
 
 <main class="wrap" id="top">
@@ -77,17 +77,20 @@ footer{text-align:center;color:#758780;padding:28px 10px 5px;font-size:12px}foot
 </div><p style="color:#8fa39a;font-size:12px;margin:14px 0 0;text-align:center">نتایج و تیم‌های صعودکننده بر اساس اطلاعات ثبت‌شده در مسابقات نمایش داده می‌شوند.</p></section>
 
 <section class="section" id="news"><div class="section-title"><h2>📰 اخبار و رویدادهای کوپا سوزا</h2><span class="tag">آخرین رویدادها</span></div>
-<div style="background:linear-gradient(135deg,#0d3426,#071a14);border:1px solid var(--gold);border-radius:20px;padding:20px;text-align:right">
+<div style="background:linear-gradient(135deg,#0d3426,#071a14);border:1px solid var(--gold);border-radius:20px;overflow:hidden;text-align:right">
+<div style="padding:10px 14px 0;text-align:center"><img src="copa-suza-logo.png" alt="لوگوی رسمی کوپا سوزا" style="width:72px;height:72px;object-fit:contain"></div>
+<img src="images/06_champion_fanus_yasuj.jpeg" alt="جشن قهرمانی فانوس یاسوج" style="display:block;width:100%;max-height:520px;object-fit:contain;background:#071a14">
+<div style="padding:18px 20px 20px">
 <h3 style="margin:0 0 8px;color:var(--gold2);font-size:21px">🏆 فانوس یاسوج قهرمان پنجمین دوره مسابقات کوپا سوزا شد</h3>
 <p style="margin:0;color:#c6d0cb;font-size:13px;line-height:2">فانوس یاسوج با پیروزی ۲–۰ مقابل حرا مارین در دیدار فینال، عنوان قهرمانی پنجمین دوره مسابقات کوپا سوزا را به دست آورد.</p>
-</div>
+</div></div>
 <div class="section-title" style="margin-top:22px"><h2 style="font-size:19px">🏅 جوایز مسابقات</h2></div>
-<div class="cards" style="grid-template-columns:repeat(5,1fr)">
-<div class="player"><div class="rank">🥇 بهترین بازیکن جام</div><b>علی‌اکبر بی‌باک</b><span>فانوس یاسوج</span></div>
-<div class="player"><div class="rank">🧤 بهترین دروازه‌بان</div><b>سروش عزیززاده</b><span>فانوس یاسوج</span></div>
-<div class="player"><div class="rank">⭐ پدیده مسابقات</div><b>محمد ملاحی</b><span>جوانان سوزا</span></div>
-<div class="player"><div class="rank">⚽ برترین گلزن</div><b>محمدرضا آرمون</b><span>فانوس یاسوج</span></div>
-<div class="player"><div class="rank">🤝 جام اخلاق مسابقات</div><b>شهدای تنگه هرمز</b><span>تیم اخلاق مسابقات</span></div>
+<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr));align-items:stretch">
+<div class="player" style="overflow:hidden;padding:0;text-align:center"><img src="images/01_best_player_aliakbar_bibak.jpeg" alt="علی‌اکبر بی‌باک" style="display:block;width:100%;height:220px;object-fit:contain;background:#071a14"><div style="padding:12px"><div class="rank">🥇 بهترین بازیکن جام</div><b>علی‌اکبر بی‌باک</b><span>فانوس یاسوج</span></div></div>
+<div class="player" style="overflow:hidden;padding:0;text-align:center"><img src="images/02_best_goalkeeper_soroush_azizzadeh.jpeg" alt="سروش عزیززاده" style="display:block;width:100%;height:220px;object-fit:contain;background:#071a14"><div style="padding:12px"><div class="rank">🧤 بهترین دروازه‌بان</div><b>سروش عزیززاده</b><span>فانوس یاسوج</span></div></div>
+<div class="player" style="overflow:hidden;padding:0;text-align:center"><img src="images/03_breakthrough_mohammad_malahi.jpeg" alt="محمد ملاحی" style="display:block;width:100%;height:220px;object-fit:contain;background:#071a14"><div style="padding:12px"><div class="rank">⭐ پدیده مسابقات</div><b>محمد ملاحی</b><span>جوانان سوزا</span></div></div>
+<div class="player" style="overflow:hidden;padding:0;text-align:center"><img src="images/04_top_scorer_mohammadreza_armoun.jpeg" alt="محمدرضا آرمون" style="display:block;width:100%;height:220px;object-fit:contain;background:#071a14"><div style="padding:12px"><div class="rank">⚽ برترین گلزن</div><b>محمدرضا آرمون</b><span>فانوس یاسوج</span></div></div>
+<div class="player" style="overflow:hidden;padding:0;text-align:center"><img src="images/05_fair_play_shohadaye_tangeh_hormoz.jpeg" alt="تیم شهدای تنگه هرمز" style="display:block;width:100%;height:220px;object-fit:contain;background:#071a14"><div style="padding:12px"><div class="rank">🤝 جام اخلاق مسابقات</div><b>شهدای تنگه هرمز</b><span>تیم اخلاق مسابقات</span></div></div>
 </div></section>
 
 <section class="section" id="teams"><div class="section-title"><h2>👥 تیم‌های مسابقات</h2><span class="tag">برای مشاهده جزئیات کلیک کنید</span></div><div class="teams-grid" id="teams-grid"></div></section>
