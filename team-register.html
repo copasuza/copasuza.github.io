@@ -79,6 +79,7 @@ const en=n=>String(n).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
 const qs=new URLSearchParams(location.search);
 const team=qs.get('team');
 const token=qs.get('token');
+const testMode=qs.get('test')==='1';
 const teamInput=document.getElementById('teamName');
 if(team){teamInput.value=team;teamInput.readOnly=true}
 
@@ -96,7 +97,9 @@ for(let i=1;i<=12;i++){
 function nationalIdIsValid(value){
   const id=en(value).replace(/\D/g,'');
   if(!/^\d{10}$/.test(id)) return false;
-  if(/^(d)\1{9}$/.test(id)) return false;
+  // حالت تست: فقط ۱۰ رقمی بودن بررسی می‌شود و کد ملی واقعی لازم نیست.
+  if(testMode) return true;
+  if(/^(\d)\1{9}$/.test(id)) return false;
   let sum=0;
   for(let i=0;i<9;i++) sum+=Number(id[i])*(10-i);
   const r=sum%11;
@@ -160,7 +163,7 @@ form.addEventListener('submit',async e=>{
   if(!TEAM_FORM_ENDPOINT){
     status.className='status show warn';
     status.textContent='فرم از نظر ساختار و اعتبارسنجی آماده است. اتصال امن به سامانه ثبت اطلاعات در مرحله بعد فعال می‌شود.';
-    meta.textContent='اطلاعات این فرم فعلاً در هیچ سامانه‌ای ذخیره یا ارسال نمی‌شود.';
+    meta.textContent=(testMode?'حالت تست فعال است؛ کدهای ملی فقط باید ۱۰ رقمی باشند. ':'')+'اطلاعات این فرم فعلاً در هیچ سامانه‌ای ذخیره یا ارسال نمی‌شود.';
     console.log('Copa Suza registration payload (not sent):',payload);
     return;
   }
