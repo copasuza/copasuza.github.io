@@ -74,18 +74,16 @@ header{background:#06140f;border:1px solid var(--line);border-radius:22px;paddin
 <div class="actions"><button class="submit" id="submit" type="submit">ثبت نهایی اطلاعات</button></div>
 <div class="status" id="status"></div>
 <div class="meta" id="meta"></div>
-<div class="privacy">اطلاعات هویتی بازیکنان نباید در صفحات عمومی سایت نمایش داده شود.</div>
+<div class="privacy">اطلاعات ثبت‌شده فقط برای بررسی کمیته استفاده می‌شود و اطلاعات بازیکنان در صفحات عمومی سایت نمایش داده نخواهد شد.</div>
 </section>
 </form>
 </div>
 
 <script>
 /*
-  آماده‌سازی برای اتصال به Supabase:
-  فعلاً این مقدار خالی است و هیچ اطلاعاتی ارسال نمی‌شود.
-  در مرحله بعد، این آدرس با Edge Function امن کوپا سوزا جایگزین می‌شود.
+  اتصال به سامانه ثبت‌نام کوپا سوزا
 */
-const TEAM_FORM_ENDPOINT = '';
+const TEAM_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwww-GFFwYWkXm1uR0YJ0Bvd7LYy9HLv5x-A0uhFMcwH1fG8uCpbpFehqXvE_KFE4Xc/exec';
 
 const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
 const en=n=>String(n).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
@@ -146,22 +144,13 @@ form.addEventListener('submit',async e=>{
 
   const payload=buildPayload(form);
 
-  // تا زمان راه‌اندازی Edge Function، اطلاعات عمداً ارسال نمی‌شود.
-  if(!TEAM_FORM_ENDPOINT){
-    status.className='status show warn';
-    status.textContent='فرم از نظر ساختار و اعتبارسنجی آماده است. اتصال امن به سامانه ثبت اطلاعات در مرحله بعد فعال می‌شود.';
-    meta.textContent=(testMode?'حالت تست فعال است؛ کدهای ملی فقط باید ۱۰ رقمی باشند. ':'')+'اطلاعات این فرم فعلاً در هیچ سامانه‌ای ذخیره یا ارسال نمی‌شود.';
-    console.log('Copa Suza registration payload (not sent):',payload);
-    return;
-  }
-
   button.disabled=true;
   button.textContent='در حال ارسال...';
 
   try{
     const response=await fetch(TEAM_FORM_ENDPOINT,{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
       body:JSON.stringify(payload)
     });
     const result=await response.json().catch(()=>({}));
