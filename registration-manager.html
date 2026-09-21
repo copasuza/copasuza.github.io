@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#06110e">
+<title>مدیریت ثبت‌نام تیم‌ها | کوپا سوزا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04100d;--card:#0a2119;--line:#214d3b;--gold:#d8b24e;--gold2:#f0cf73;--text:#f5f1e7;--muted:#aebcb5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#12372a,#04100d 60%);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.9}.wrap{width:min(1050px,calc(100% - 24px));margin:auto;padding:18px 0 40px}
+header,.card{background:rgba(10,31,24,.96);border:1px solid var(--line);border-radius:22px;padding:20px;margin-bottom:14px}header{text-align:center}header img{width:68px;height:68px;object-fit:contain}h1{font-size:24px;margin:5px 0;color:var(--gold2)}header p{margin:0;color:var(--muted);font-size:12px}.title{color:var(--gold2);font-size:18px;font-weight:900;margin:0 0 14px;border-right:3px solid var(--gold);padding-right:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}label{font-size:12px;color:#c9d3ce;font-weight:700}input,textarea{width:100%;background:#061711;border:1px solid #28533f;color:var(--text);border-radius:12px;padding:10px 12px;font:inherit;font-size:13px;outline:none}textarea{min-height:230px;resize:vertical}input:focus,textarea:focus{border-color:var(--gold)}
+.notice{background:#0d3024;border-right:3px solid var(--gold);border-radius:12px;padding:11px 13px;font-size:12px;color:#cbd8d2;margin-bottom:14px}.warn{background:#3a2c0d}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.btn{border:0;background:linear-gradient(135deg,#e1ba51,#b88924);color:#10130f;font:inherit;font-weight:900;border-radius:12px;padding:10px 17px;cursor:pointer}.btn.secondary{background:#173b2d;color:#f0cf73;border:1px solid #2b624b}.small{font-size:11px;color:#91a69c}
+.table-wrap{overflow:auto;margin-top:15px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:9px 8px;border-bottom:1px solid #17372d;text-align:center;font-size:12px}th{background:#123a2c;color:var(--gold2)}code{color:var(--gold2);direction:ltr;display:inline-block}.copy{padding:6px 10px;border:1px solid #35684f;background:#102d22;color:#f0cf73;border-radius:8px;cursor:pointer;font:inherit;font-size:11px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.field.full{grid-column:auto}header,.card{padding:14px 11px}h1{font-size:21px}.table-wrap{margin-left:-2px;margin-right:-2px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<img src="copa-suza-logo.png" alt="لوگوی کوپا سوزا">
+<h1>مدیریت ثبت‌نام تیم‌ها</h1>
+<p>ساخت لینک اختصاصی برای هر تورنمنت — کوپا سوزا</p>
+</header>
+
+<section class="card">
+<h2 class="title">🏆 مشخصات تورنمنت</h2>
+<div class="grid">
+<div class="field"><label>نام تورنمنت</label><input id="edition" placeholder="مثلاً سوپرکاپ سوزا ۱۴۰۶"></div>
+<div class="field"><label>تعداد تیم‌ها</label><input id="count" type="number" min="1" max="64" value="16"></div>
+<div class="field full"><label>نام تیم‌ها (هر تیم در یک خط)</label><textarea id="teams" placeholder="تیم اول
+تیم دوم
+تیم سوم"></textarea></div>
+</div>
+<div class="notice warn">این صفحه فعلاً ابزار آماده‌سازی کمیته است. تولید لینک در این مرحله روی مرورگر انجام می‌شود و اعتبارسنجی واقعی توکن‌ها بعد از اتصال به سامانه مرکزی فعال خواهد شد. این صفحه را عمومی منتشر نکنید.</div>
+<div class="actions">
+<button class="btn" id="generate">ساخت لینک‌های اختصاصی</button>
+<button class="btn secondary" id="clear">پاک کردن</button>
+</div>
+</section>
+
+<section class="card" id="resultCard" style="display:none">
+<h2 class="title">🔗 لینک‌های آماده ارسال</h2>
+<div class="small" id="summary"></div>
+<div class="table-wrap"><table><thead><tr><th>ردیف</th><th>نام تیم</th><th>کد اختصاصی</th><th>لینک</th><th>عملیات</th></tr></thead><tbody id="result"></tbody></table></div>
+<div class="actions">
+<button class="btn" id="copyAll">کپی همه لینک‌ها</button>
+<button class="btn secondary" id="downloadCsv">دریافت فایل CSV</button>
+</div>
+</section>
+</div>
+
+<script>
+const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const result=document.getElementById('result');
+const resultCard=document.getElementById('resultCard');
+const summary=document.getElementById('summary');
+let generated=[];
+
+function randomToken(){
+  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let s='KS-';
+  for(let i=0;i<8;i++) s+=chars[Math.floor(Math.random()*chars.length)];
+  return s;
+}
+function makeLink(team,token){
+  return new URL('team-register.html?team='+encodeURIComponent(team)+'&token='+encodeURIComponent(token),location.href).href;
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+document.getElementById('generate').onclick=()=>{
+  const edition=document.getElementById('edition').value.trim()||'تورنمنت کوپا سوزا';
+  const names=document.getElementById('teams').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+  const wanted=Math.max(1,Math.min(64,parseInt(document.getElementById('count').value,10)||names.length||1));
+  if(!names.length){alert('حداقل نام یک تیم را وارد کنید.');return;}
+  if(names.length>wanted){alert('تعداد نام تیم‌ها از تعداد تعیین‌شده بیشتر است.');return;}
+  if(names.length<wanted){alert('تعداد نام تیم‌ها با تعداد تیم‌ها برابر نیست.');return;}
+  generated=names.map((team,i)=>({row:i+1,team,token:randomToken(),link:makeLink(team,randomToken())}));
+  // regenerate token/link consistently
+  generated=generated.map(x=>{const token=randomToken();return {...x,token,link:makeLink(x.team,token)};});
+  result.innerHTML=generated.map(x=>'<tr><td>'+fa(x.row)+'</td><td>'+escapeHtml(x.team)+'</td><td><code>'+x.token+'</code></td><td><a href="'+x.link+'" target="_blank" rel="noopener">باز کردن فرم</a></td><td><button class="copy" data-link="'+encodeURIComponent(x.link)+'">کپی لینک</button></td></tr>').join('');
+  summary.textContent='تورنمنت: '+edition+' | تعداد تیم‌ها: '+fa(generated.length)+' | لینک‌ها آماده ارسال به سرپرستان هستند.';
+  resultCard.style.display='block';
+  result.querySelectorAll('.copy').forEach(btn=>btn.onclick=()=>navigator.clipboard.writeText(decodeURIComponent(btn.dataset.link)).then(()=>{btn.textContent='کپی شد ✓';setTimeout(()=>btn.textContent='کپی لینک',1200)}));
+};
+
+document.getElementById('copyAll').onclick=()=>{
+  const text=generated.map(x=>x.team+'\n'+x.link).join('\n\n');
+  navigator.clipboard.writeText(text).then(()=>alert('همه لینک‌ها کپی شد.'));
+};
+document.getElementById('downloadCsv').onclick=()=>{
+  const rows=[['ردیف','نام تیم','کد اختصاصی','لینک'],...generated.map(x=>[x.row,x.team,x.token,x.link])];
+  const csv='\\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='لینک-ثبت-نام-تیم‌ها.csv';a.click();URL.revokeObjectURL(a.href);
+};
+document.getElementById('clear').onclick=()=>{
+  document.getElementById('edition').value='';
+  document.getElementById('teams').value='';
+  result.innerHTML='';generated=[];resultCard.style.display='none';
+};
+</script>
+</body>
+</html>
