@@ -1,16 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>پنل مدیریت کوپا سوزا</title>
-  <meta http-equiv="refresh" content="0;url=https://script.google.com/macros/s/AKfycbxgX5aZ-d1fvYwO4plIa9RWPgLo9E8Afod2DnlXvVMYGT3Qukk4JDtHXZuiTgpI6QoGlA/exec?admin=1">
-  <script>
-    window.location.replace("https://script.google.com/macros/s/AKfycbxgX5aZ-d1fvYwO4plIa9RWPgLo9E8Afod2DnlXvVMYGT3Qukk4JDtHXZuiTgpI6QoGlA/exec?admin=1");
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پنل مدیریت کوپا سوزا</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f1f5f9;color:#0f172a}
+.header{background:#172554;color:#fff;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+.header h1{margin:0;font-size:26px}.header p{margin:8px 0 0;opacity:.9;font-size:14px}
+.logout-btn{width:auto;margin-top:12px;padding:8px 18px;min-height:38px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:8px;cursor:pointer;font-family:inherit}
+.container{max-width:1400px;margin:24px auto;padding:0 18px}.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:18px}
+.card,.filters,.table-wrap{background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid #e2e8f0}
+.card{padding:16px;text-align:center}.card .title{font-size:13px;color:#64748b;margin-bottom:8px}.card .value{font-size:25px;font-weight:bold}
+.filters{padding:16px;margin-bottom:18px;display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:12px;align-items:end}
+.field label{display:block;font-weight:bold;font-size:13px;margin-bottom:7px;color:#334155}
+input,select,button{width:100%;min-height:42px;border-radius:9px;border:1px solid #cbd5e1;padding:8px 12px;font-family:inherit;font-size:14px;background:#fff}
+input:focus,select:focus{outline:none;border-color:#2563eb}button{cursor:pointer;background:#172554;color:#fff;border:none;font-weight:bold}button:hover{opacity:.92}
+.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1050px}th{background:#1e293b;color:#fff;padding:13px 10px;font-size:13px;white-space:nowrap}td{border-bottom:1px solid #e2e8f0;padding:10px;text-align:center;font-size:13px;white-space:nowrap}tr:hover td{background:#f8fafc}
+.status-select{min-width:145px;font-size:12px;padding:5px;min-height:36px}.status-approved{background:#dcfce7;color:#166534}.status-pending{background:#fef3c7;color:#92400e}.status-correction{background:#fee2e2;color:#991b1b}.status-none{background:#f1f5f9;color:#475569}
+.link{color:#2563eb;text-decoration:none;font-weight:bold}.details-btn{width:auto;min-height:34px;padding:5px 12px;background:#0f766e;margin:2px}.empty{padding:40px;text-align:center;color:#64748b}.footer{text-align:center;color:#64748b;font-size:12px;margin:15px 0 25px}
+.modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:9999;padding:25px;overflow-y:auto}.modal-box{max-width:850px;margin:20px auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.25)}
+.modal-header{background:#172554;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.modal-header button{width:auto;min-height:34px;padding:5px 12px;background:rgba(255,255,255,.15)}
+.modal-content{padding:20px}.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}.info-item{background:#f8fafc;padding:10px;border-radius:9px;border:1px solid #e2e8f0}.info-label{font-size:12px;color:#64748b;margin-bottom:4px}.info-value{font-weight:bold}.players-table{width:100%;min-width:auto}.players-table th{background:#334155}
+.reason{margin-top:15px;background:#fff7ed;border:1px solid #fed7aa;padding:12px;border-radius:9px}.loading{text-align:center;padding:45px;font-size:15px;color:#475569}
+.toast{position:fixed;left:20px;bottom:20px;background:#0f172a;color:#fff;padding:12px 18px;border-radius:10px;display:none;z-index:10000;box-shadow:0 5px 20px rgba(0,0,0,.2)}
+.login-screen{position:fixed;inset:0;background:#f1f5f9;display:flex;align-items:center;justify-content:center;z-index:99999}.login-box{width:360px;max-width:90%;background:#fff;padding:30px;border-radius:16px;box-shadow:0 10px 35px rgba(0,0,0,.15);text-align:center}.login-icon{font-size:42px}.login-box h2{color:#172554}.login-box p{color:#64748b;font-size:13px}.login-box input{text-align:center;margin-top:10px}.login-button{margin-top:12px}.login-error{color:#dc2626;margin-top:12px;font-size:13px;min-height:20px}
+@media(max-width:1000px){.stats{grid-template-columns:repeat(3,1fr)}.filters{grid-template-columns:1fr 1fr}}@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
+</style>
 </head>
-<body style="font-family:Tahoma,sans-serif;text-align:center;padding:60px">
-  <h2>در حال انتقال به پنل مدیریت کوپا سوزا...</h2>
-  <p>اگر انتقال انجام نشد، صفحه را دوباره باز کنید.</p>
+<body>
+<div class="header"><h1>🏆 پنل مدیریت کوپا سوزا</h1><button class="logout-btn" onclick="logoutAdminPanel()">🚪 خروج از پنل</button><p>مدیریت ثبت‌نام تیم‌ها، بررسی وضعیت و اطلاعات بازیکنان</p></div>
+<div class="container">
+<div class="stats">
+<div class="card"><div class="title">👥 کل تیم‌ها</div><div class="value" id="total">0</div></div>
+<div class="card"><div class="title">📨 ثبت‌نام شده</div><div class="value" id="submitted">0</div></div>
+<div class="card"><div class="title">🟢 تأیید شده</div><div class="value" id="approved">0</div></div>
+<div class="card"><div class="title">🟡 در انتظار</div><div class="value" id="pending">0</div></div>
+<div class="card"><div class="title">🔴 نیاز به اصلاح</div><div class="value" id="correction">0</div></div>
+<div class="card"><div class="title">📈 پیشرفت تأیید</div><div class="value" id="progress">0%</div></div>
+</div>
+<div class="filters">
+<div class="field"><label>🔎 جستجوی تیم</label><input id="search" type="text" placeholder="نام تیم را وارد کنید..." oninput="renderTable()"></div>
+<div class="field"><label>🎯 وضعیت</label><select id="statusFilter" onchange="renderTable()"><option value="همه">همه وضعیت‌ها</option><option value="تأیید شد">تأیید شد</option><option value="در انتظار بررسی">در انتظار بررسی</option><option value="نیاز به اصلاح">نیاز به اصلاح</option><option value="ثبت‌نام نشده">ثبت‌نام نشده</option></select></div>
+<div class="field"><label>🏆 تورنمنت</label><select id="tournamentFilter" onchange="renderTable()"><option value="همه">همه تورنمنت‌ها</option></select></div>
+<div><button onclick="loadData()">🔄 بروزرسانی</button></div>
+</div>
+<div class="table-wrap"><div id="loading" class="loading">⏳ در حال دریافت اطلاعات...</div><table id="teamTable" style="display:none"><thead><tr><th>ردیف</th><th>تورنمنت</th><th>نام تیم</th><th>وضعیت</th><th>تاریخ ثبت</th><th>کد دسترسی</th><th>فرم ثبت‌نام</th><th>جزئیات</th></tr></thead><tbody id="tableBody"></tbody></table></div>
+<div class="footer">سامانه مدیریت کوپا سوزا</div>
+</div>
+<div class="modal" id="detailsModal"><div class="modal-box"><div class="modal-header"><strong>👁️ جزئیات ثبت‌نام</strong><button onclick="closeDetails()">بستن ✕</button></div><div class="modal-content" id="detailsContent"></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const API_URL="https://script.google.com/macros/s/AKfycbxgX5aZ-d1fvYwO4plIa9RWPgLo9E8Afod2DnlXvVMYGT3Qukk4JDtHXZuiTgpI6QoGlA/exec";
+let allTeams=[],adminSessionToken="";
+
+function apiGet(params){return new Promise((resolve,reject)=>{
+ const callbackName="copaApi_"+Date.now()+"_"+Math.floor(Math.random()*100000),script=document.createElement("script");let finished=false;
+ const timeout=setTimeout(()=>{if(finished)return;finished=true;cleanup();reject(new Error("زمان پاسخ API تمام شد."))},20000);
+ function cleanup(){clearTimeout(timeout);if(script.parentNode)script.parentNode.removeChild(script);try{delete window[callbackName]}catch(e){window[callbackName]=undefined}}
+ window[callbackName]=result=>{if(finished)return;finished=true;cleanup();resolve(result)};
+ script.onerror=()=>{if(finished)return;finished=true;cleanup();reject(new Error("ارتباط با سرور کوپا سوزا برقرار نشد."))};
+ const query=new URLSearchParams();query.set("api","1");query.set("callback",callbackName);
+ Object.keys(params||{}).forEach(key=>{if(params[key]!==undefined&&params[key]!==null)query.set(key,String(params[key]))});
+ script.src=API_URL+"?"+query.toString();document.head.appendChild(script);
+})}
+
+function showLoginScreen(message){let screen=document.getElementById("loginScreen");if(!screen){screen=document.createElement("div");screen.id="loginScreen";screen.className="login-screen";screen.innerHTML='<div class="login-box"><div class="login-icon">🔐</div><h2>ورود به پنل مدیریت</h2><p>رمز ورود مدیر را وارد کنید</p><input id="adminPassword" type="password" placeholder="رمز ورود"><button id="loginButton" class="login-button">🔓 ورود</button><div id="loginError" class="login-error"></div></div>';document.body.appendChild(screen);document.getElementById("loginButton").onclick=loginAdminPanel;document.getElementById("adminPassword").addEventListener("keydown",e=>{if(e.key==="Enter")loginAdminPanel()})}screen.style.display="flex";const error=document.getElementById("loginError");if(error)error.innerText=message||""}
+
+async function loginAdminPanel(){const input=document.getElementById("adminPassword"),error=document.getElementById("loginError"),button=document.getElementById("loginButton"),password=input.value.trim();if(!password){error.innerText="رمز ورود را وارد کنید.";return}error.innerText="⏳ در حال بررسی...";button.disabled=true;try{const result=await apiGet({action:"login",password});if(result&&result.success){adminSessionToken=result.sessionToken;sessionStorage.setItem("copaAdminSession",adminSessionToken);document.getElementById("loginScreen").style.display="none";loadData()}else error.innerText=(result&&result.message)||"رمز ورود صحیح نیست."}catch(err){error.innerText="❌ خطا در ارتباط با سرور: "+(err.message||err)}finally{button.disabled=false}}
+
+async function logoutAdminPanel(){const token=adminSessionToken;if(token){try{await apiGet({action:"logout",session:token})}catch(e){}}adminSessionToken="";sessionStorage.removeItem("copaAdminSession");showLoginScreen("با موفقیت خارج شدید.")}
+
+async function loadData(){if(!adminSessionToken){showLoginScreen();return}const loading=document.getElementById("loading"),table=document.getElementById("teamTable");loading.style.display="block";loading.innerText="⏳ در حال دریافت اطلاعات...";table.style.display="none";try{const data=await apiGet({action:"dashboard",session:adminSessionToken});if(data&&data.unauthorized){adminSessionToken="";sessionStorage.removeItem("copaAdminSession");showLoginScreen(data.message);return}if(!data||data.success===false)throw new Error((data&&data.message)||"دریافت اطلاعات انجام نشد.");allTeams=data.teams||[];updateStats(data.stats||{});buildTournamentFilter();renderTable();loading.style.display="none";table.style.display="table"}catch(err){loading.innerHTML="❌ خطا در دریافت اطلاعات: "+escapeHtml(err.message||err)}}
+
+function updateStats(s){document.getElementById("total").innerText=s.total||0;document.getElementById("submitted").innerText=s.submitted||0;document.getElementById("approved").innerText=s.approved||0;document.getElementById("pending").innerText=s.pending||0;document.getElementById("correction").innerText=s.correction||0;document.getElementById("progress").innerText=(s.progress||0)+"%"}
+
+function buildTournamentFilter(){const select=document.getElementById("tournamentFilter"),oldValue=select.value;select.innerHTML='<option value="همه">همه تورنمنت‌ها</option>';const set=new Set();allTeams.forEach(t=>{if(t.tournament)set.add(t.tournament)});Array.from(set).sort().forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;select.appendChild(o)});if(Array.from(select.options).some(o=>o.value===oldValue))select.value=oldValue}
+
+function renderTable(){const search=document.getElementById("search").value.trim().toLowerCase(),status=document.getElementById("statusFilter").value,tournament=document.getElementById("tournamentFilter").value,filtered=allTeams.filter(item=>{const team=String(item.team||"").toLowerCase();return(!search||team.includes(search))&&(status==="همه"||item.status===status)&&(tournament==="همه"||item.tournament===tournament)}),body=document.getElementById("tableBody");body.innerHTML="";if(!filtered.length){body.innerHTML='<tr><td colspan="8" class="empty">هیچ تیمی با فیلترهای انتخاب‌شده پیدا نشد.</td></tr>';return}
+filtered.forEach((item,index)=>{const tr=document.createElement("tr"),link=item.link?'<a class="link" href="'+escapeHtml(item.link)+'" target="_blank">🔗 مشاهده فرم</a>':"-",sc=getStatusClass(item.status);let ss;if(item.status==="ثبت‌نام نشده")ss='<select class="status-select status-none" disabled><option>ثبت‌نام نشده</option></select>';else ss='<select class="status-select '+sc+'" onchange="changeStatusFromElement(this)" data-tournament="'+escapeHtml(item.tournament)+'" data-team="'+escapeHtml(item.team)+'">'+buildStatusOptions(item.status)+'</select>';
+tr.innerHTML='<td>'+(index+1)+'</td><td>'+escapeHtml(item.tournament)+'</td><td><strong>'+escapeHtml(item.team)+'</strong></td><td>'+ss+'</td><td>'+escapeHtml(item.date||"-")+'</td><td>'+escapeHtml(item.token||"-")+'</td><td>'+link+'</td><td><button class="details-btn" onclick="showDetailsByData(this)" data-tournament="'+escapeHtml(item.tournament)+'" data-team="'+escapeHtml(item.team)+'">👁️ مشاهده</button><button class="details-btn" onclick="generateTeamLinkByData(this)" data-tournament="'+escapeHtml(item.tournament)+'" data-team="'+escapeHtml(item.team)+'">🔗 لینک</button><button class="details-btn" onclick="printTeamPdfByData(this)" data-tournament="'+escapeHtml(item.tournament)+'" data-team="'+escapeHtml(item.team)+'">📄 PDF</button></td>';body.appendChild(tr)})}
+
+function buildStatusOptions(current){return["در انتظار بررسی","تأیید شد","نیاز به اصلاح"].map(s=>'<option value="'+escapeHtml(s)+'"'+(s===current?" selected":"")+'>'+escapeHtml(s)+"</option>").join("")}
+function changeStatusFromElement(select){changeStatus(select.dataset.tournament,select.dataset.team,select.value,select)}
+async function changeStatus(tournament,team,newStatus,selectElement){if(newStatus==="نیاز به اصلاح"){const reason=prompt("📝 دلیل نیاز به اصلاح\n\nتیم: "+team,"");if(reason===null||!reason.trim()){loadData();return}await saveStatus(tournament,team,newStatus,reason.trim());return}await saveStatus(tournament,team,newStatus,"")}
+async function saveStatus(tournament,team,status,reason){try{showToast("⏳ در حال ذخیره وضعیت...");const result=await apiGet({action:"status",session:adminSessionToken,tournament,team,status,reason});if(result&&result.unauthorized){showLoginScreen(result.message);return}if(result&&result.success){showToast("✅ وضعیت تیم با موفقیت تغییر کرد.");loadData()}else{showToast("❌ "+((result&&result.message)||"عملیات انجام نشد."));loadData()}}catch(err){showToast("❌ خطا: "+(err.message||err));loadData()}}
+
+function showDetailsByData(button){showDetails(button.dataset.tournament,button.dataset.team)}
+async function showDetails(tournament,team){document.getElementById("detailsContent").innerHTML='<div class="loading">⏳ در حال دریافت اطلاعات...</div>';document.getElementById("detailsModal").style.display="block";try{const data=await apiGet({action:"details",session:adminSessionToken,tournament,team});if(!data||!data.success){if(data&&data.unauthorized){closeDetails();showLoginScreen(data.message);return}document.getElementById("detailsContent").innerHTML='<div class="empty">❌ '+escapeHtml((data&&data.message)||"اطلاعات این تیم پیدا نشد.")+"</div>";return}renderDetails(data)}catch(err){document.getElementById("detailsContent").innerHTML='<div class="empty">❌ خطا در دریافت اطلاعات: '+escapeHtml(err.message||err)+"</div>"}}
+
+function generateTeamLinkByData(button){generateTeamLink(button.dataset.tournament,button.dataset.team)}
+async function generateTeamLink(tournament,team){try{showToast("⏳ در حال ساخت لینک...");const result=await apiGet({action:"team-link",session:adminSessionToken,tournament,team});if(result&&result.unauthorized){showLoginScreen(result.message);return}if(result&&result.success){showToast("✅ لینک اختصاصی تیم آماده شد.");if(result.link){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(result.link).then(()=>showToast("✅ لینک ساخته شد و در کلیپ‌بورد کپی شد.")).catch(()=>window.prompt("لینک اختصاصی تیم:",result.link))}else window.prompt("لینک اختصاصی تیم:",result.link)}loadData()}else showToast("❌ "+((result&&result.message)||"ساخت لینک انجام نشد."))}catch(err){showToast("❌ خطا: "+(err.message||err))}}
+
+function printTeamPdfByData(button){printTeamPdf(button.dataset.tournament,button.dataset.team)}
+async function printTeamPdf(tournament,team){try{showToast("⏳ در حال آماده‌سازی فرم...");const data=await apiGet({action:"details",session:adminSessionToken,tournament,team});if(!data||!data.success){showToast("❌ اطلاعات این تیم پیدا نشد.");return}const info=data.info||{},players=data.players||[];let rows="";players.forEach(p=>{rows+='<tr><td>'+escapeHtml(p.number)+'</td><td>'+escapeHtml(p.name||"")+'</td><td>'+escapeHtml(p.father||"")+'</td></tr>'});const reason=info.correctionReason?'<div class="reason"><strong>دلیل نیاز به اصلاح:</strong> '+escapeHtml(info.correctionReason)+"</div>":"";const w=window.open("","_blank");if(!w){showToast("❌ مرورگر اجازه باز کردن پنجره جدید را نداد.");return}w.document.write('<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><title>فرم ثبت‌نام - '+escapeHtml(info.team)+'</title><style>@page{size:A4;margin:14mm}body{font-family:Tahoma,Arial,sans-serif;direction:rtl;color:#172033;font-size:12px;line-height:1.8}.header{text-align:center;border-bottom:3px solid #172a46;padding-bottom:12px;margin-bottom:18px}.header h1{margin:0;font-size:21px}.header h2{margin:5px 0;font-size:15px;font-weight:normal}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:15px}.box{border:1px solid #ccd3dd;border-radius:6px;padding:8px;background:#f8fafc}.label{font-size:10px;color:#64748b}.value{font-weight:bold}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{border:1px solid #b8c0cc;padding:7px;text-align:right}th{background:#e9eef5}.reason{margin:12px 0;padding:10px;border:1px solid #d9a441;background:#fff8e7;border-radius:6px}.footer{margin-top:24px;text-align:center;font-size:10px;color:#64748b}</style></head><body><div class="header"><h1>کمیته برگزاری مسابقات کوپا سوزا</h1><h2>فرم ثبت‌نام رسمی تیم</h2></div><div class="grid">'+pdfBox("🏆 تورنمنت",info.tournament)+pdfBox("👥 نام تیم",info.team)+pdfBox("👨‍🏫 سرمربی",info.headCoach)+pdfBox("👤 مربی",info.coach)+pdfBox("📋 سرپرست",info.manager)+pdfBox("⚕️ پزشکیار",info.medic)+pdfBox("📅 تاریخ ثبت",info.date)+pdfBox("🎯 وضعیت",info.status)+'</div>'+reason+'<h3>فهرست بازیکنان</h3><table><thead><tr><th style="width:12%">ردیف</th><th>نام بازیکن</th><th>نام پدر</th></tr></thead><tbody>'+rows+'</tbody></table><div class="footer">این سند از پنل مدیریت کوپا سوزا تهیه شده است.</div></body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),500)}catch(err){showToast("❌ خطا در آماده‌سازی PDF: "+(err.message||err))}}
+function pdfBox(label,value){return'<div class="box"><div class="label">'+escapeHtml(label)+'</div><div class="value">'+escapeHtml(value||"-")+"</div></div>"}
+
+function renderDetails(data){const info=data.info||{};let players="";(data.players||[]).forEach(p=>{players+='<tr><td>'+escapeHtml(p.number)+'</td><td>'+escapeHtml(p.name)+'</td><td>'+escapeHtml(p.father)+'</td></tr>'});let reason="";if(info.correctionReason)reason='<div class="reason"><strong>📝 دلیل نیاز به اصلاح</strong><div style="margin-top:6px">'+escapeHtml(info.correctionReason)+"</div></div>";document.getElementById("detailsContent").innerHTML='<div class="info-grid">'+infoItem("🏆 تورنمنت",info.tournament)+infoItem("👥 نام تیم",info.team)+infoItem("👨‍🏫 سرمربی",info.headCoach)+infoItem("👤 مربی",info.coach)+infoItem("📋 سرپرست",info.manager)+infoItem("⚕️ پزشکیار",info.medic)+infoItem("📅 تاریخ ثبت",info.date)+infoItem("🔑 کد دسترسی",info.token)+infoItem("🎯 وضعیت",info.status)+'</div>'+reason+'<h3>👥 بازیکنان</h3><table class="players-table"><thead><tr><th>ردیف</th><th>نام بازیکن</th><th>نام پدر</th></tr></thead><tbody>'+players+"</tbody></table>"}
+function infoItem(label,value){return'<div class="info-item"><div class="info-label">'+escapeHtml(label)+'</div><div class="info-value">'+escapeHtml(value||"-")+"</div></div>"}
+function getStatusClass(status){if(status==="تأیید شد")return"status-approved";if(status==="نیاز به اصلاح")return"status-correction";if(status==="در انتظار بررسی")return"status-pending";return"status-none"}
+function closeDetails(){document.getElementById("detailsModal").style.display="none"}
+function showToast(message){const toast=document.getElementById("toast");toast.innerText=message;toast.style.display="block";setTimeout(()=>toast.style.display="none",3000)}
+function escapeHtml(value){return String(value==null?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function startAdminPanel(){const savedToken=sessionStorage.getItem("copaAdminSession");if(savedToken){adminSessionToken=savedToken;loadData()}else showLoginScreen()}
+startAdminPanel();
+</script>
 </body>
 </html>
