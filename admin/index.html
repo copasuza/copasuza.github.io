@@ -22,6 +22,17 @@
       <div class="field"><label>وضعیت</label><select id="regStatusFilter"><option value="">همه وضعیت‌ها</option><option>ثبت‌نام نشده</option><option>در انتظار بررسی</option><option>تأیید شد</option><option>نیاز به اصلاح</option></select></div>
     </div>
     <div class="field" style="margin-top:10px"><label>جستجوی تیم</label><input id="regSearch" placeholder="نام تیم..."></div>
+    <div class="card" style="margin-top:12px">
+      <div class="top"><div><h3>🔗 ساخت لینک ثبت‌نام تیم</h3><div class="small">برای هر تیم یک لینک اختصاصی بساز و برای سرپرست ارسال کن.</div></div></div>
+      <div class="grid2">
+        <div class="field"><label>تورنمنت</label><select id="regCreateTournament"><option value="">انتخاب تورنمنت</option></select></div>
+        <div class="field"><label>نام تیم</label><input id="regCreateTeam" placeholder="مثلاً اتحاد خلور"></div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="btn" id="regCreateLink">🔗 ساخت لینک اختصاصی</button>
+        <div class="status" id="regCreateStatus">تورنمنت و نام تیم را انتخاب کنید.</div>
+      </div>
+    </div>
     <div id="regTableWrap" style="margin-top:14px;overflow:auto"></div>
     <div style="margin-top:12px"><button class="btn danger" id="regLogout">خروج از مدیریت تیم‌ها</button></div>
   </div>
@@ -54,9 +65,32 @@ function regStats(d){
 function regTournamentOptions(){
   const rows=regDashboard?.teams||[];
   const vals=[...new Set(rows.map(x=>x.tournament).filter(Boolean))];
+  const dataVals=(rootData?.tournaments||[]).map(t=>String(t.name||t.title||'').trim()).filter(Boolean);
+  const all=[...new Set([...vals,...dataVals])];
   const old=$('regTournamentFilter').value;
-  $('regTournamentFilter').innerHTML='<option value="">همه تورنمنت‌ها</option>'+vals.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');
-  if(vals.includes(old))$('regTournamentFilter').value=old;
+  $('regTournamentFilter').innerHTML='<option value="">همه تورنمنت‌ها</option>'+all.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');
+  if(all.includes(old))$('regTournamentFilter').value=old;
+  if($('regCreateTournament')){
+    const createOld=$('regCreateTournament').value;
+    $('regCreateTournament').innerHTML='<option value="">انتخاب تورنمنت</option>'+all.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');
+    if(all.includes(createOld))$('regCreateTournament').value=createOld;
+  }
+}
+async function regCreateTeamLink(){
+  const tournament=$('regCreateTournament').value.trim();
+  const team=$('regCreateTeam').value.trim();
+  if(!tournament||!team){$('regCreateStatus').textContent='تورنمنت و نام تیم را وارد کنید.';return}
+  $('regCreateStatus').textContent='در حال ساخت لینک…';
+  try{
+    const j=await regRequest({action:'team-link',sessionToken:regSession,tournament,team});
+    const link=j.link||j.url||j.data?.link||'';
+    if(!link)throw new Error(j.message||'لینک دریافت نشد');
+    await navigator.clipboard.writeText(link).catch(()=>{});
+    $('regCreateStatus').innerHTML='✅ لینک ساخته شد. <button class="btn secondary" id="regCopyLink">کپی لینک</button><div class="small" style="margin-top:8px;word-break:break-all">'+esc(link)+'</div>';
+    $('regCopyLink').onclick=async()=>{await navigator.clipboard.writeText(link).catch(()=>{});$('regCreateStatus').textContent='✅ لینک کپی شد.'};
+    $('regCreateTeam').value='';
+    await regLoad();
+  }catch(e){$('regCreateStatus').textContent='❌ '+e.message}
 }
 function regRenderTable(){
   const rows=regDashboard?.teams||[];
@@ -142,6 +176,7 @@ $('regSearch').oninput=regRenderTable;
 $('regTournamentFilter').onchange=regRenderTable;
 $('regStatusFilter').onchange=regRenderTable;
 $('regCloseDetails').onclick=()=>$('regDetailsCard').classList.add('hide');
+$('regCreateLink').onclick=regCreateTeamLink;
 $('regLogout').onclick=async()=>{
   try{if(regSession)await regRequest({action:'logout',sessionToken:regSession})}catch(e){}
   regSession='';regDashboard=null;localStorage.removeItem('copaSuzaRegSession');
