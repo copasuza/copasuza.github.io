@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ثبت‌نام تیم | کوپا سوزا</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <section class="card hero">
+      <div class="brand">⚽ COPA SUZA</div>
+      <h1>فرم ثبت‌نام تیم</h1>
+      <p>اطلاعات تیم و ۱۲ بازیکن را با دقت وارد کنید.</p>
+      <div id="teamInfo" class="team-info">در حال دریافت اطلاعات لینک...</div>
+    </section>
+
+    <form id="registrationForm" class="card hidden">
+      <div class="section-title">👥 کادر تیم</div>
+      <div class="grid">
+        <label>سرمربی<input id="headCoach" required></label>
+        <label>مربی<input id="coach"></label>
+        <label>سرپرست<input id="manager" required></label>
+        <label>پزشکیار<input id="medic"></label>
+      </div>
+
+      <div class="section-title players-title">⚽ بازیکنان</div>
+      <p class="hint">نام و نام خانوادگی و نام پدر هر ۱۲ بازیکن الزامی است.</p>
+      <div id="players"></div>
+
+      <div class="submit-area">
+        <button type="submit" id="submitBtn">ثبت نهایی اطلاعات</button>
+        <div id="status" class="status"></div>
+      </div>
+    </form>
+
+    <section id="result" class="card hidden"></section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
