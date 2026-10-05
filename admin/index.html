@@ -102,7 +102,7 @@ async function regCreateTeamLink(){
     if(!link)throw new Error(j.message||'لینک دریافت نشد');
     await copyLinkText(link);
     $('regCreateStatus').innerHTML='✅ لینک ساخته شد. <button class="btn secondary" id="regCopyLink">کپی لینک</button><div class="small" style="margin-top:8px;word-break:break-all">'+esc(link)+'</div>';
-    $('regCopyLink').onclick=async()=>{await navigator.clipboard.writeText(link).catch(()=>{});$('regCreateStatus').textContent='✅ لینک کپی شد.'};
+    $('regCopyLink').onclick=async()=>{const ok=await copyLinkText(link);$('regCreateStatus').textContent=ok?'✅ لینک کپی شد.':'❌ کپی خودکار انجام نشد؛ لینک را دستی کپی کنید.'};
     $('regCreateTeam').value='';
     await regLoad();
   }catch(e){$('regCreateStatus').textContent='❌ '+e.message}
