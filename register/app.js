@@ -1,4 +1,4 @@
-const API='https://script.google.com/macros/s/AKfycbxgX5aZ-d1fvYwO4plIa9RWPgLo9E8Afod2DnlXvVMYGT3Qukk4JDtHXZuiTgpI6QoGlA/exec';
+const API='https://xetlzucmcothkisddiyh.supabase.co/functions/v1/copa-suza-api';
 const qs=new URLSearchParams(location.search);
 const accessToken=(qs.get('access_token')||'').trim();
 const team=(qs.get('team')||'').trim();
