@@ -76,14 +76,14 @@ function regTournamentOptions(){
     if(all.includes(createOld))$('regCreateTournament').value=createOld;
   }
 }
-async function regCreateTeamLink(){
+function buildRegistrationPageLink(raw){try{const u=new URL(raw);const token=u.searchParams.get('access_token')||'';const team=u.searchParams.get('team')||'';const tournament=u.searchParams.get('tournament')||'';if(!token)return raw;const q=new URLSearchParams({access_token:token,team,tournament});return 'https://copasuza.github.io/register/?'+q.toString()}catch(e){return raw}} async function regCreateTeamLink(){
   const tournament=$('regCreateTournament').value.trim();
   const team=$('regCreateTeam').value.trim();
   if(!tournament||!team){$('regCreateStatus').textContent='تورنمنت و نام تیم را وارد کنید.';return}
   $('regCreateStatus').textContent='در حال ساخت لینک…';
   try{
     const j=await regRequest({action:'team-link',sessionToken:regSession,tournament,team});
-    const link=j.link||j.url||j.data?.link||'';
+    const rawLink=j.link||j.url||j.data?.link||''; const link=buildRegistrationPageLink(rawLink);
     if(!link)throw new Error(j.message||'لینک دریافت نشد');
     await navigator.clipboard.writeText(link).catch(()=>{});
     $('regCreateStatus').innerHTML='✅ لینک ساخته شد. <button class="btn secondary" id="regCopyLink">کپی لینک</button><div class="small" style="margin-top:8px;word-break:break-all">'+esc(link)+'</div>';
