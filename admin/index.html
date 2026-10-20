@@ -9,6 +9,10 @@
       <div class="field"><label>افزودن تیم جدید</label><div class="roster-add-team"><input id="rosterNewTeamName" placeholder="نام دقیق تیم"><button class="btn" id="rosterAddTeam" type="button">+ افزودن تیم</button></div></div>
     </div>
     <div class="notice" style="margin-top:10px">فهرست اولیه بازیکنان از نام‌هایی ساخته شده که قبلاً در گلزنان و کارت‌های مسابقات ثبت شده‌اند؛ این فهرست ممکن است کامل نباشد. فهرست رسمی هر تیم را بررسی و تکمیل کن. اطلاعات مسابقات قبلی حفظ می‌شود.</div><div class="grid2" style="margin-top:12px"><div class="field"><label>افزودن گروهی بازیکنان</label><textarea id="rosterBulkNames" rows="4" placeholder="نام هر بازیکن را در یک خط بچسبان&#10;مثلاً:&#10;علی احمدی&#10;محمد رضایی"></textarea></div><div style="display:flex;flex-direction:column;justify-content:end;gap:8px"><button class="btn secondary" type="button" id="rosterBulkAdd">افزودن اسامی از متن</button><div class="small">هر خط یک بازیکن است. نام‌های تکراری در همان تیم دوباره اضافه نمی‌شوند. بعد از افزودن، نام پدر و شماره پیراهن را می‌توانی در جدول تکمیل کنی.</div></div></div>
+<div class="grid2" style="margin-top:12px">
+      <div class="field"><label>اصلاح نام تیم انتخابی</label><div class="roster-add-team"><input id="rosterRenameTeamName" placeholder="نام صحیح تیم"><button class="btn secondary" id="rosterRenameTeam" type="button">تغییر نام</button></div></div>
+      <div class="field"><label>حذف تیم</label><button class="btn danger" id="rosterDeleteTeam" type="button">حذف تیم انتخابی</button><div class="small">حذف فقط وقتی ممکن است که تیم در بازی، برنامه یا جدول گلزنان استفاده نشده باشد.</div></div>
+    </div>
   </div>
   <div class="card">
     <div class="top"><div><h3 id="rosterCurrentTitle">بازیکنان تیم</h3><div class="small">نام بازیکن الزامی است؛ نام پدر و شماره پیراهن اختیاری‌اند.</div></div><button class="btn" id="rosterAddPlayer" type="button">+ افزودن بازیکن</button></div>
@@ -162,13 +166,54 @@ async function saveToGitHub(statusElement,message){
     if(statusElement) statusElement.textContent='❌ '+error.message;
   }
 }
-function saveRosterBank(){
+function renameRosterTeam(){
+  const oldName=$('rosterTeamSelect').value;
+  const newName=String($('rosterRenameTeamName').value||'').trim();
+  if(!oldName){$('rosterSaveStatus').textContent='ابتدا تیم را انتخاب کن.';return;}
+  if(!newName){$('rosterSaveStatus').textContent='نام جدید تیم را وارد کن.';return;}
+  if(newName===oldName){$('rosterSaveStatus').textContent='نام جدید با نام فعلی یکسان است.';return;}
+  if(teamList().indexOf(newName)!==-1){$('rosterSaveStatus').textContent='تیمی با این نام از قبل وجود دارد.';return;}
+  data.teams=(data.teams||[]).map(function(t){if(typeof t==='string')return t===oldName?newName:t;if(t&&t.name===oldName)return Object.assign({},t,{name:newName});return t;});
+  data.rosters[newName]=data.rosters[oldName]||[];
+  delete data.rosters[oldName];
+  (data.matches||[]).forEach(function(m){if(m.home===oldName)m.home=newName;if(m.away===oldName)m.away=newName;});
+  (data.schedule||[]).forEach(function(m){if(m.home===oldName)m.home=newName;if(m.away===oldName)m.away=newName;});
+  (data.scorers||[]).forEach(function(s){if(s.team===oldName)s.team=newName;});
+  function replaceNameDeep(obj){
+    if(Array.isArray(obj)){obj.forEach(function(v,i){if(typeof v==='string'&&v===oldName)obj[i]=newName;else if(v&&typeof v==='object')replaceNameDeep(v);});}
+    else if(obj&&typeof obj==='object'){Object.keys(obj).forEach(function(k){const v=obj[k];if(typeof v==='string'&&v===oldName)obj[k]=newName;else if(v&&typeof v==='object')replaceNameDeep(v);});}
+  }
+  replaceNameDeep(data.knockout);
+  $('rosterRenameTeamName').value='';
+  renderTournamentManager();
+  $('rosterTeamSelect').value=newName;
+  renderRosterManager();
+  $('rosterSaveStatus').textContent='نام تیم و ارجاع‌های داخل این تورنمنت اصلاح شد؛ برای ثبت دائمی ذخیره بانک در GitHub را بزن.';
+}
+function deleteRosterTeam(){
   const team=$('rosterTeamSelect').value;
-  const players=data.rosters[team]||[];
-  const empty=players.findIndex(function(p){return !String(p.name||'').trim();});
-  if(empty!==-1){
-    $('rosterSaveStatus').textContent='❌ نام بازیکن ردیف '+fa(empty+1)+' خالی است؛ تکمیلش کن یا ردیف را حذف کن.';
-    return;
+  if(!team){$('rosterSaveStatus').textContent='ابتدا تیم را انتخاب کن.';return;}
+  const used=(data.matches||[]).some(function(m){return m.home===team||m.away===team;})||
+    (data.schedule||[]).some(function(m){return m.home===team||m.away===team;})||
+    (data.scorers||[]).some(function(s){return s.team===team;})||
+    JSON.stringify(data.knockout||{}).includes(team);
+  if(used){$('rosterSaveStatus').textContent='این تیم در اطلاعات مسابقات استفاده شده و برای حفظ آمار قابل حذف نیست؛ در صورت نیاز از «تغییر نام» استفاده کن.';return;}
+  if(!confirm('تیم «'+team+'» و فهرست بازیکنانش حذف شود؟'))return;
+  data.teams=teamList().filter(function(t){return t!==team;});
+  delete data.rosters[team];
+  renderTournamentManager();
+  $('rosterSaveStatus').textContent='تیم حذف شد؛ برای ثبت دائمی ذخیره بانک در GitHub را بزن.';
+}
+function saveRosterBank(){
+  for(const team of teamList()){
+    const players=data.rosters[team]||[];
+    const empty=players.findIndex(function(p){return !String(p.name||'').trim();});
+    if(empty!==-1){
+      $('rosterTeamSelect').value=team;
+      renderRosterManager();
+      $('rosterSaveStatus').textContent='❌ نام بازیکن ردیف '+fa(empty+1)+' در تیم «'+team+'» خالی است؛ تکمیلش کن یا ردیف را حذف کن.';
+      return;
+    }
   }
   saveToGitHub($('rosterSaveStatus'),'ثبت بانک تیم‌ها و بازیکنان کوپا سوزا');
 }
@@ -250,6 +295,8 @@ function teamList(){
 $('rosterTeamSelect').onchange=renderRosterManager;
 $('rosterAddTeam').onclick=addRosterTeam;
 $('rosterNewTeamName').onkeydown=function(e){if(e.key==='Enter') addRosterTeam();};
+$('rosterRenameTeam').onclick=renameRosterTeam;
+$('rosterDeleteTeam').onclick=deleteRosterTeam;
 $('rosterAddPlayer').onclick=function(){
   const team=$('rosterTeamSelect').value;
   if(!team) return;
