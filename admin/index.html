@@ -287,11 +287,6 @@ function renderKnockoutMatches(){
     el.appendChild(d);
   });
 }
-function teamList(){
-  const raw=Array.isArray(data?.teams)?data.teams:[];
-  const names=raw.map(function(x){return typeof x==='string'?x:(x&&x.name)||'';}).filter(Boolean);
-  return Array.from(new Set(names));
-}
 $('rosterTeamSelect').onchange=renderRosterManager;
 $('rosterAddTeam').onclick=addRosterTeam;
 $('rosterNewTeamName').onkeydown=function(e){if(e.key==='Enter') addRosterTeam();};
