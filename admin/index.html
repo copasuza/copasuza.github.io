@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="card">
-    <div class="top"><div><h3 id="rosterCurrentTitle">بازیکنان تیم</h3><div class="small">نام بازیکن الزامی است؛ نام پدر و شماره پیراهن اختیاری‌اند.</div></div><button class="btn" id="rosterAddPlayer" type="button">+ افزودن بازیکن</button></div>
+    <div class="top"><div><h3 id="rosterCurrentTitle">بازیکنان تیم</h3><div class="small">نام بازیکن الزامی است؛ شماره پیراهن اختیاری است. نام پدر یا اطلاعات خصوصی در این بانک ثبت نمی‌شود.</div></div><button class="btn" id="rosterAddPlayer" type="button">+ افزودن بازیکن</button></div>
     <div id="rosterTableWrap"></div>
     <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" id="rosterSave" type="button">💾 ذخیره بانک در GitHub</button><span class="status" id="rosterSaveStatus">تغییرات تا زمان ذخیره فقط در این صفحه هستند.</span></div>
   </div>
@@ -28,8 +28,8 @@ function ensureRosterData(){
   teamList().forEach(function(team){
     if(!Array.isArray(data.rosters[team])) data.rosters[team]=[];
     data.rosters[team]=data.rosters[team].map(function(p){
-      if(typeof p==='string') return {name:p,fatherName:'',number:''};
-      return {name:String(p.name||p.full_name||'').trim(),fatherName:String(p.fatherName||p.father_name||p.father||'').trim(),number:String(p.number||'').trim()};
+      if(typeof p==='string') return {name:p,number:''};
+      return {name:String(p.name||p.full_name||'').trim(),number:String(p.number||'').trim()};
     });
   });
 }
@@ -113,8 +113,8 @@ function renderRosterManager(){
     $('rosterTableWrap').innerHTML='<div class="status">برای این تیم هنوز بازیکنی ثبت نشده؛ روی «افزودن بازیکن» بزن.</div>';
     return;
   }
-  $('rosterTableWrap').innerHTML='<div style="overflow:auto"><table class="roster-table"><thead><tr><th>#</th><th>نام و نام خانوادگی *</th><th>نام پدر</th><th>شماره پیراهن</th><th>حذف</th></tr></thead><tbody>'+players.map(function(player,i){
-    return '<tr><td>'+fa(i+1)+'</td><td><input data-roster-index="'+i+'" data-roster-field="name" value="'+esc(player.name||'')+'" placeholder="نام کامل بازیکن"></td><td><input data-roster-index="'+i+'" data-roster-field="fatherName" value="'+esc(player.fatherName||'')+'" placeholder="اختیاری"></td><td><input data-roster-index="'+i+'" data-roster-field="number" value="'+esc(player.number||'')+'" placeholder="—"></td><td><button type="button" class="btn danger" data-roster-delete="'+i+'">حذف</button></td></tr>';
+  $('rosterTableWrap').innerHTML='<div style="overflow:auto"><table class="roster-table"><thead><tr><th>#</th><th>نام و نام خانوادگی *</th><th>شماره پیراهن</th><th>حذف</th></tr></thead><tbody>'+players.map(function(player,i){
+    return '<tr><td>'+fa(i+1)+'</td><td><input data-roster-index="'+i+'" data-roster-field="name" value="'+esc(player.name||'')+'" placeholder="نام کامل بازیکن"></td><td><input data-roster-index="'+i+'" data-roster-field="number" value="'+esc(player.number||'')+'" placeholder="—"></td><td><button type="button" class="btn danger" data-roster-delete="'+i+'">حذف</button></td></tr>';
   }).join('')+'</tbody></table></div>';
   $('rosterTableWrap').querySelectorAll('[data-roster-field]').forEach(function(input){
     input.oninput=function(){
@@ -301,23 +301,24 @@ $('rosterAddPlayer').onclick=function(){
   const team=$('rosterTeamSelect').value;
   if(!team) return;
   if(!data.rosters[team]) data.rosters[team]=[];
-  data.rosters[team].push({name:'',fatherName:'',number:''});
+  data.rosters[team].push({name:'',number:''});
   renderRosterManager();
   const inputs=$('rosterTableWrap').querySelectorAll('[data-roster-field="name"]');
   if(inputs.length) inputs[inputs.length-1].focus();
 };
+function rosterNameKey(value){return String(value||'').trim().replace(/\s+/g,' ').replace(/[يى]/g,'ی').replace(/ك/g,'ک').toLocaleLowerCase();}
 function addRosterBulkPlayers(){
   const team=$('rosterTeamSelect').value;
   if(!team){$('rosterSaveStatus').textContent='ابتدا تیم را انتخاب کن.';return;}
   const names=String($('rosterBulkNames').value||'').split(/\r?\n/).map(function(n){return n.trim().replace(/\s+/g,' ');}).filter(Boolean);
   if(!names.length){$('rosterSaveStatus').textContent='فهرست اسامی را در کادر وارد کن.';return;}
   if(!data.rosters[team]) data.rosters[team]=[];
-  const existing=data.rosters[team].map(function(p){return String(p.name||'').trim().replace(/\s+/g,' ').toLocaleLowerCase();});
+  const existing=data.rosters[team].map(function(p){return rosterNameKey(p.name);});
   let added=0;
   names.forEach(function(name){
-    const key=name.toLocaleLowerCase();
+    const key=rosterNameKey(name);
     if(existing.indexOf(key)!==-1) return;
-    data.rosters[team].push({name:name,fatherName:'',number:''});
+    data.rosters[team].push({name:name,number:''});
     existing.push(key);added++;
   });
   $('rosterBulkNames').value='';
