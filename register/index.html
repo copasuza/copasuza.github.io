@@ -3,39 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ثبت‌نام تیم | کوپا سوزا</title>
+  <title>ثبت‌نام آنلاین فعلاً غیرفعال است | کوپا سوزا</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .disabled-note{max-width:760px;margin:24px auto;text-align:center}
+    .disabled-note h1{line-height:1.9}
+    .disabled-note p{line-height:2}
+    .disabled-symbol{font-size:42px}
+    .home-link{display:inline-block;margin-top:12px;text-decoration:none;padding:11px 18px;border-radius:10px;background:#d9b85c;color:#10150f;font-weight:800}
+  </style>
 </head>
 <body>
-  <main class="page">
+  <main class="page disabled-note">
     <section class="card hero">
       <div class="brand">⚽ COPA SUZA</div>
-      <h1>فرم ثبت‌نام تیم</h1>
-      <p>اطلاعات تیم و ۱۲ بازیکن را با دقت وارد کنید.</p>
-      <div id="teamInfo" class="team-info">در حال دریافت اطلاعات لینک...</div>
+      <div class="disabled-symbol">📋</div>
+      <h1>ثبت‌نام آنلاین تیم‌ها فعلاً غیرفعال است</h1>
+      <p>در حال حاضر اطلاعات تیم‌ها و بازیکنان توسط کمیته برگزاری ثبت می‌شود. لطفاً فهرست نهایی اسامی را مستقیماً به کمیته تحویل دهید.</p>
+      <p class="hint">از لینک‌های ثبت‌نام قبلی برای ارسال اطلاعات استفاده نکنید.</p>
+      <a class="home-link" href="../">بازگشت به سایت کوپا سوزا</a>
     </section>
-
-    <form id="registrationForm" class="card hidden">
-      <div class="section-title">👥 کادر تیم</div>
-      <div class="grid">
-        <label>سرمربی<input id="headCoach" required></label>
-        <label>مربی<input id="coach"></label>
-        <label>سرپرست<input id="manager" required></label>
-        <label>پزشکیار<input id="medic"></label>
-      </div>
-
-      <div class="section-title players-title">⚽ بازیکنان</div>
-      <p class="hint">نام و نام خانوادگی و نام پدر هر ۱۲ بازیکن الزامی است.</p>
-      <div id="players"></div>
-
-      <div class="submit-area">
-        <button type="submit" id="submitBtn">ثبت نهایی اطلاعات</button>
-        <div id="status" class="status"></div>
-      </div>
-    </form>
-
-    <section id="result" class="card hidden"></section>
   </main>
-  <script src="app.js"></script>
 </body>
 </html>
