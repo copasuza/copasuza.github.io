@@ -80,7 +80,7 @@ function ensureRosterData(){
   rosterDb.teams=Array.from(new Set(rosterDb.teams.map(function(t){return String(typeof t==='string'?t:(t&&t.name)||'').trim();}).filter(Boolean)));
   rosterDb.teams.forEach(function(team){
     if(!Array.isArray(rosterDb.rosters[team]))rosterDb.rosters[team]=[];
-    rosterDb.rosters[team]=rosterDb.rosters[team].map(function(p){if(typeof p==='string')return {name:p.trim(),number:''};return {name:String(p.name||p.full_name||'').trim(),number:String(p.number||'').trim()};}).filter(function(p){return p.name;});
+    rosterDb.rosters[team]=rosterDb.rosters[team].map(function(p){if(typeof p==='string')return {name:p.trim(),number:''};return {name:String(p.name||p.full_name||'').trim(),number:String(p.number||'').trim()};});
   });
 }
 function rosterPlayers(team){
