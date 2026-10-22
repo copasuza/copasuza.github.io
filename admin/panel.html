@@ -80,12 +80,32 @@ function enhanceLegacy(){
      cardBoxes.forEach(el=>{el.style.order='20'});
    });
  }
+ function bindMatchSaveButtons(){
+   d.querySelectorAll('button').forEach(btn=>{
+     if(!/ثبت\s*مسابقه/.test(btn.textContent||''))return;
+     if(btn.dataset.copaSaveBound)return;
+     btn.dataset.copaSaveBound='1';
+     btn.addEventListener('click',function(e){
+       e.preventDefault();
+       e.stopImmediatePropagation();
+       const win=d.defaultView;
+       if(win && typeof win.saveToGitHub==='function'){
+         const status=d.getElementById('status')||d.getElementById('tournamentStatus');
+         win.saveToGitHub(status,'ثبت مسابقه');
+       }else{
+         const saveBtn=d.getElementById('save');
+         if(saveBtn)saveBtn.click();
+       }
+     },true);
+   });
+ }
  document.querySelectorAll('.nav button[data-tab]').forEach(btn=>{
    btn.onclick=()=>{const target=d.querySelector('.tab[data-tab="'+btn.dataset.tab+'"]');if(target){target.click();setActive(btn);closeMenu();}}
  });
  document.querySelectorAll('.nav button[data-section]').forEach(btn=>{btn.onclick=()=>{const el=d.getElementById('registrationList')||d.getElementById('registrationsList');if(el)el.scrollIntoView({behavior:'smooth'});closeMenu()}});
- const observer=new MutationObserver(()=>{syncActive();tidyMatches()});const tabs=d.querySelector('.tabs');if(tabs)observer.observe(tabs,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
- const list=d.getElementById('matchesList');if(list){new MutationObserver(tidyMatches).observe(list,{subtree:true,childList:true});}
+ const observer=new MutationObserver(()=>{syncActive();tidyMatches();bindMatchSaveButtons()});const tabs=d.querySelector('.tabs');if(tabs)observer.observe(tabs,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+ const list=d.getElementById('matchesList');if(list){new MutationObserver(()=>{tidyMatches();bindMatchSaveButtons()}).observe(list,{subtree:true,childList:true});}
+ bindMatchSaveButtons();
  tidyMatches();syncActive();
 }
 function setActive(btn){document.querySelectorAll('.nav button[data-tab]').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
