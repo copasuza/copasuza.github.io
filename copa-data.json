@@ -819,7 +819,26 @@
         "تیم آزمایشی الف",
         "تیم آزمایشی ب"
       ],
-      "matches": [],
+      "matches": [
+        {
+          "id": 1,
+          "home": "تیم آزمایشی الف",
+          "away": "تیم آزمایشی ب",
+          "homeScore": 1,
+          "awayScore": 2,
+          "stage": "group",
+          "homeYellowPlayers": "تست الف",
+          "homeRedPlayers": "تست الف",
+          "awayYellowPlayers": "تست دوم",
+          "awayRedPlayers": "",
+          "homeScorers": "تست الف",
+          "awayScorers": "علی آزمایشی\nعلی آزمایشی",
+          "homeYellowCount": 1,
+          "homeRedCount": 1,
+          "awayYellowCount": 1,
+          "awayRedCount": 0
+        }
+      ],
       "schedule": [],
       "scorers": [],
       "knockout": {},
@@ -829,5 +848,5 @@
       }
     }
   ],
-  "updatedAt": "2026-10-20T16:39:42.653Z"
+  "updatedAt": "2026-10-22T09:39:33.321Z"
 }
