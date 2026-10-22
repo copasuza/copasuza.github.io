@@ -205,7 +205,7 @@ function renderMatches(){
       '<div class="matchtop"><div>'+fa(m.id)+'</div>'+teamSelect('home',m.home)+teamSelect('away',m.away)+'<input data-k="homeScore" type="number" value="'+(m.homeScore??'')+'" placeholder="گل"><input data-k="awayScore" type="number" value="'+(m.awayScore??'')+'" placeholder="گل"><select data-k="stage"><option value="group">گروهی</option><option value="qf">یک‌چهارم</option><option value="sf">نیمه‌نهایی</option><option value="final">فینال</option></select><button type="button" class="btn danger del">حذف</button></div>',
       '<div class="matchextra"><div class="teamstats"><h4>🟢 '+esc(m.home||'تیم اول')+'</h4><div class="teamstatsgrid"><div><div class="matchlabel">🟨 کارت زرد</div>'+playerPicker('homeYellowPlayers',m.home,m.homeYellowPlayers,false)+'</div><div><div class="matchlabel">🟥 کارت قرمز</div>'+playerPicker('homeRedPlayers',m.home,m.homeRedPlayers,false)+'</div></div></div>',
       '<div class="teamstats"><h4>🔵 '+esc(m.away||'تیم دوم')+'</h4><div class="teamstatsgrid"><div><div class="matchlabel">🟨 کارت زرد</div>'+playerPicker('awayYellowPlayers',m.away,m.awayYellowPlayers,false)+'</div><div><div class="matchlabel">🟥 کارت قرمز</div>'+playerPicker('awayRedPlayers',m.away,m.awayRedPlayers,false)+'</div></div></div>',
-      '<div><div class="matchlabel">⚽ گلزنان تیم اول</div>'+playerPicker('homeScorers',m.home,m.homeScorers,true)+'</div><div><div class="matchlabel">⚽ گلزنان تیم دوم</div>'+playerPicker('awayScorers',m.away,m.awayScorers,true)+'</div></div><div class="matchhint">برای هر گل، گلزن را از فهرست انتخاب و «افزودن» را بزن؛ اگر بازیکن چند گل زده، چند بار انتخابش کن.</div>'
+      '<div><div class="matchlabel">⚽ گلزنان تیم اول</div>'+playerPicker('homeScorers',m.home,m.homeScorers,true)+'</div><div><div class="matchlabel">⚽ گلزنان تیم دوم</div>'+playerPicker('awayScorers',m.away,m.awayScorers,true)+'</div></div><div class="matchhint">برای هر گل، گلزن را از فهرست انتخاب و «افزودن» را بزن؛ اگر بازیکن چند گل زده، چند بار انتخابش کن.</div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn match-save">💾 ثبت مسابقه</button><span class="status match-save-status">تغییرات این بازی هنوز ذخیره نشده است.</span></div>'
     ].join('');
     d.querySelector('[data-k="stage"]').value=m.stage||'group';
     d.querySelectorAll('input,select,textarea').forEach(function(x){
@@ -216,6 +216,13 @@ function renderMatches(){
       };
     });
     wirePlayerPickers(d,function(){syncMatch(i,d);});
+    d.querySelector('.match-save').onclick=function(){
+      syncMatch(i,d);
+      saveToGitHub(d.querySelector('.match-save-status'),'ثبت نتیجه مسابقه شماره '+m.id);
+    };
+    d.querySelectorAll('input,select,textarea').forEach(function(x){
+      x.addEventListener('input',function(){const st=d.querySelector('.match-save-status');if(st)st.textContent='تغییرات ذخیره‌نشده است.';});
+    });
     d.querySelector('.del').onclick=function(){data.matches.splice(i,1);renderMatches();};
     el.appendChild(d);
   });
