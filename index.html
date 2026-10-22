@@ -116,7 +116,7 @@ const teamModal=document.getElementById('team-modal'),teamModalClose=document.ge
     updateDiscipline(matches);
     function updateDiscipline(allMatches){
       const players={};
-      const names=value=>{if(Array.isArray(value))return value.map(x=>typeof x==='string'?x.trim():String(x?.name||x?.player||'').trim()).filter(Boolean);const str=String(value||'').trim();if(!str)return [];return str.split(/[،,;\\n]+/).map(x=>x.trim()).filter(Boolean)};
+      const names=value=>{if(Array.isArray(value))return value.map(x=>typeof x==='string'?x.trim():String(x?.name||x?.player||'').trim()).filter(Boolean);const str=String(value||'').trim();if(!str)return [];return str.split(/[،,;]+/).flatMap(x=>x.split(String.fromCharCode(10))).map(x=>x.trim()).filter(Boolean)};
       const add=(name,team,type,match)=>{const key=name.toLocaleLowerCase('fa')+'||'+team;if(!players[key])players[key]={name,team,yellow:0,red:0,matches:[]};if(type==='yellow')players[key].yellow++;else players[key].red++;if(match&&!players[key].matches.includes(match))players[key].matches.push(match)};
       allMatches.forEach(m=>{names(m.homeYellowPlayers).forEach(n=>add(n,m.home,'yellow',m.id));names(m.homeRedPlayers).forEach(n=>add(n,m.home,'red',m.id));names(m.awayYellowPlayers).forEach(n=>add(n,m.away,'yellow',m.id));names(m.awayRedPlayers).forEach(n=>add(n,m.away,'red',m.id));});
       const list=Object.values(players).sort((a,b)=>(b.yellow>=2)-(a.yellow>=2)||b.yellow-a.yellow||b.red-a.red||a.name.localeCompare(b.name,'fa'));
