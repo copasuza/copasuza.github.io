@@ -817,7 +817,9 @@
       "edition": "آزمایشی",
       "teams": [
         "تیم آزمایشی الف",
-        "تیم آزمایشی ب"
+        "تیم آزمایشی ب",
+        "تیم آزمایشی ج",
+        "تیم آزمایشی د"
       ],
       "matches": [
         {
@@ -837,6 +839,24 @@
           "homeRedCount": 1,
           "awayYellowCount": 1,
           "awayRedCount": 0
+        },
+        {
+          "id": 2,
+          "home": "تیم آزمایشی ج",
+          "away": "",
+          "homeScore": 2,
+          "awayScore": 1,
+          "stage": "group",
+          "homeYellowPlayers": "",
+          "homeRedPlayers": "",
+          "awayYellowPlayers": "",
+          "awayRedPlayers": "",
+          "homeScorers": "",
+          "awayScorers": "",
+          "homeYellowCount": 0,
+          "homeRedCount": 0,
+          "awayYellowCount": 0,
+          "awayRedCount": 0
         }
       ],
       "schedule": [],
@@ -848,5 +868,5 @@
       }
     }
   ],
-  "updatedAt": "2026-10-22T09:52:01.473Z"
+  "updatedAt": "2026-10-22T11:40:13.736Z"
 }
