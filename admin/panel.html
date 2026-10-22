@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پنل مدیریتی کوپا سوزا</title>
+<style>
+:root{--bg:#06110d;--side:#091b14;--card:#0b2119;--line:#244b3a;--gold:#d9b85c;--text:#edf3ef;--muted:#90a49a;--active:#194a37}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Vazirmatn,sans-serif;height:100vh;overflow:hidden}.shell{height:100vh;display:flex;flex-direction:column}.head{height:64px;flex:0 0 64px;background:var(--side);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:relative;z-index:5}.brand{display:flex;align-items:center;gap:10px}.brand .ball{font-size:27px}.brand strong{color:var(--gold);font-size:18px}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.head-actions{display:flex;gap:8px;align-items:center}.view{display:inline-flex;align-items:center;text-decoration:none;color:#eaf2ed;background:#163629;border:1px solid #315b48;padding:8px 12px;border-radius:9px;font-weight:700;font-size:12px}.toggle{display:none;border:1px solid var(--line);background:#10291f;color:var(--gold);border-radius:9px;padding:8px 10px;font-size:18px}.body{display:flex;min-height:0;flex:1}.side{width:230px;flex:0 0 230px;background:var(--side);border-left:1px solid var(--line);padding:14px 10px;overflow:auto}.side-title{color:var(--muted);font-size:10px;padding:4px 10px 8px}.nav{display:flex;flex-direction:column;gap:5px}.nav button{border:1px solid transparent;background:transparent;color:#dbe8e0;text-align:right;padding:11px 12px;border-radius:10px;font:inherit;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:9px}.nav button:hover{background:#10291f}.nav button.active{background:var(--active);border-color:var(--gold);color:var(--gold);font-weight:800}.nav .sub{padding-right:32px;font-size:12px;color:#b9c9c1}.divider{height:1px;background:#18362a;margin:10px 5px}.content{min-width:0;flex:1;position:relative;background:var(--bg)}iframe{border:0;width:100%;height:100%;display:block;background:var(--bg)}.mobile-shade{display:none}
+@media(max-width:800px){.head{height:58px;flex-basis:58px;padding:0 10px}.toggle{display:block}.head .view{display:none}.side{position:absolute;z-index:20;right:0;top:58px;bottom:0;width:245px;transform:translateX(105%);transition:.2s;box-shadow:-10px 0 35px #0008}.side.open{transform:translateX(0)}.mobile-shade{position:absolute;inset:58px 0 0;background:#0008;z-index:19}.mobile-shade.show{display:block}.brand strong{font-size:15px}.brand small{font-size:9px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="head">
+  <div class="brand"><span class="ball">⚽</span><div><strong>کوپا سوزا</strong><small>پنل مدیریت تورنمنت</small></div></div>
+  <div class="head-actions"><a class="view" href="../" target="_blank">مشاهده سایت ↗</a><button class="toggle" id="menuToggle">☰</button></div>
+</header>
+<div class="body">
+  <aside class="side" id="side">
+    <div class="side-title">مدیریت</div>
+    <div class="nav">
+      <button data-tab="dashboard" class="active"><span>📊</span> داشبورد</button>
+      <button data-tab="matches"><span>⚽</span> نتایج بازی‌ها</button>
+      <button data-tab="schedule"><span>🗓️</span> برنامه مسابقات</button>
+      <button data-tab="scorers"><span>🥇</span> گلزنان</button>
+      <button data-tab="knockout"><span>🏆</span> مراحل حذفی</button>
+      <div class="divider"></div>
+      <div class="side-title">تیم‌ها و بازیکنان</div>
+      <button data-tab="players"><span>👥</span> بانک تیم‌ها و بازیکنان</button>
+      <button data-section="registration"><span>📋</span> ثبت‌نام تیم‌ها</button>
+      <div class="divider"></div>
+      <button data-tab="settings"><span>⚙️</span> تنظیمات</button>
+    </div>
+  </aside>
+  <div class="mobile-shade" id="shade"></div>
+  <main class="content"><iframe id="legacy" src="index.html" title="پنل مدیریت کوپا سوزا"></iframe></main>
+</div>
+</div>
+<script>
+const frame=document.getElementById('legacy'),side=document.getElementById('side'),toggle=document.getElementById('menuToggle'),shade=document.getElementById('shade');
+function closeMenu(){side.classList.remove('open');shade.classList.remove('show')}
+toggle.onclick=()=>{side.classList.toggle('open');shade.classList.toggle('show')};shade.onclick=closeMenu;
+function wire(){
+ const d=frame.contentDocument;if(!d)return;
+ d.querySelectorAll('.tabs').forEach(x=>x.style.display='none');
+ d.body.style.overflow='auto';d.body.style.background='#06110d';
+ const wrap=d.querySelector('.wrap');if(wrap){wrap.style.maxWidth='none';wrap.style.padding='14px 18px';}
+ const oldTop=d.querySelector('.wrap > .top');if(oldTop)oldTop.style.display='none';
+ document.querySelectorAll('.nav button[data-tab]').forEach(btn=>{
+   btn.onclick=()=>{
+     const target=d.querySelector('.tab[data-tab="'+btn.dataset.tab+'"]');
+     if(target){target.click();setActive(btn);closeMenu();}
+   };
+ });
+ document.querySelectorAll('.nav button[data-section]').forEach(btn=>{
+   btn.onclick=()=>{
+     const el=d.getElementById('registrationList')||d.getElementById('registrationsList');
+     if(el)el.scrollIntoView({behavior:'smooth'});
+     closeMenu();
+   };
+ });
+ const observer=new MutationObserver(()=>syncActive());
+ const tabs=d.querySelector('.tabs');if(tabs)observer.observe(tabs,{subtree:true,attributes:true,attributeFilter:['class']});
+ syncActive();
+}
+function setActive(btn){document.querySelectorAll('.nav button[data-tab]').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+function syncActive(){const d=frame.contentDocument;if(!d)return;const active=d.querySelector('.tab.active');if(active){const b=document.querySelector('.nav button[data-tab="'+active.dataset.tab+'"]');if(b)setActive(b)}}
+frame.addEventListener('load',()=>setTimeout(wire,50));
+</script>
+</body>
+</html>
