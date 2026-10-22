@@ -843,19 +843,19 @@
         {
           "id": 2,
           "home": "تیم آزمایشی ج",
-          "away": "",
+          "away": "تیم آزمایشی د",
           "homeScore": 2,
           "awayScore": 1,
           "stage": "group",
-          "homeYellowPlayers": "",
-          "homeRedPlayers": "",
-          "awayYellowPlayers": "",
+          "homeYellowPlayers": "بازیکن اول ج",
+          "homeRedPlayers": "بازیکن سوم ج",
+          "awayYellowPlayers": "بازیکن اول د",
           "awayRedPlayers": "",
-          "homeScorers": "",
-          "awayScorers": "",
-          "homeYellowCount": 0,
-          "homeRedCount": 0,
-          "awayYellowCount": 0,
+          "homeScorers": "بازیکن اول ج\nگل بخودی",
+          "awayScorers": "بازیکن اول د",
+          "homeYellowCount": 1,
+          "homeRedCount": 1,
+          "awayYellowCount": 1,
           "awayRedCount": 0
         }
       ],
@@ -868,5 +868,5 @@
       }
     }
   ],
-  "updatedAt": "2026-10-22T11:40:13.736Z"
+  "updatedAt": "2026-10-22T11:48:10.331Z"
 }
