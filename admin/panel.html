@@ -21,9 +21,9 @@
     <div class="side-title">مدیریت تورنمنت</div>
     <div class="nav">
       <button data-tab="dashboard" class="active"><span>📊</span> داشبورد</button>
+      <button data-tab="scorers"><span>🥇</span> گلزنان</button>
       <button data-tab="matches"><span>⚽</span> نتایج بازی‌ها</button>
       <button data-tab="schedule"><span>🗓️</span> برنامه مسابقات</button>
-      <button data-tab="scorers"><span>🥇</span> گلزنان</button>
       <button data-tab="knockout"><span>🏆</span> مراحل حذفی</button>
       <div class="divider"></div>
       <div class="side-title">تیم‌ها و بازیکنان</div>
@@ -56,20 +56,37 @@ function enhanceLegacy(){
    .field label,.matchlabel,.ko-label{font-size:13px!important}
    .field input,.field select,.field textarea{font-size:15px!important;padding:11px!important}
    .btn{font-size:14px!important;padding:11px 16px!important}
-   .matchtop{font-size:14px!important}
+   .matchrow{padding:16px 0 20px!important;margin-bottom:14px!important;border:1px solid #28513e!important;border-radius:14px!important;background:#0a2017!important;box-shadow:0 4px 14px #0003!important}
+   .matchrow>*{margin-left:14px!important;margin-right:14px!important}
+   .matchtop{font-size:14px!important;gap:9px!important}
+   .matchextra{gap:12px!important;margin-top:14px!important}
    .matchhint,.ko-hint{font-size:13px!important}
    .reg-table th{font-size:13px!important}.reg-table td{font-size:14px!important}
    .roster-table th,.roster-table td{font-size:14px!important}
    .player-picker-row select{font-size:14px!important}
+   .matchrow .scorers,.matchrow [class*="scorer"],.matchrow [id*="scorer"],.matchrow [id*="goal"]{order:-10}
+   .matchrow .cards,.matchrow [class*="card"],.matchrow [id*="card"],.matchrow [class*="yellow"],.matchrow [class*="red"]{order:20}
+   @media(max-width:800px){.matchtop{grid-template-columns:1fr 1fr!important}.matchextra{grid-template-columns:1fr!important}.matchrow>*{margin-left:10px!important;margin-right:10px!important}}
  `;
  d.head.appendChild(style);
  const wrap=d.querySelector('.wrap');if(wrap){wrap.style.maxWidth='none';wrap.style.padding='18px 22px'}
  const oldTop=d.querySelector('.wrap > .top');if(oldTop)oldTop.style.display='none';
+ function tidyMatches(){
+   d.querySelectorAll('.matchrow').forEach(row=>{
+     const boxes=[...row.children];
+     const scoreBoxes=boxes.filter(el=>/گلزن|گلزنان|scorer|goal/i.test(el.textContent||''));
+     const cardBoxes=boxes.filter(el=>/کارت|زرد|قرمز|card|yellow|red/i.test(el.textContent||''));
+     scoreBoxes.forEach(el=>{el.style.order='-10'});
+     cardBoxes.forEach(el=>{el.style.order='20'});
+   });
+ }
  document.querySelectorAll('.nav button[data-tab]').forEach(btn=>{
    btn.onclick=()=>{const target=d.querySelector('.tab[data-tab="'+btn.dataset.tab+'"]');if(target){target.click();setActive(btn);closeMenu();}}
  });
  document.querySelectorAll('.nav button[data-section]').forEach(btn=>{btn.onclick=()=>{const el=d.getElementById('registrationList')||d.getElementById('registrationsList');if(el)el.scrollIntoView({behavior:'smooth'});closeMenu()}});
- const observer=new MutationObserver(()=>syncActive());const tabs=d.querySelector('.tabs');if(tabs)observer.observe(tabs,{subtree:true,attributes:true,attributeFilter:['class']});syncActive();
+ const observer=new MutationObserver(()=>{syncActive();tidyMatches()});const tabs=d.querySelector('.tabs');if(tabs)observer.observe(tabs,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+ const list=d.getElementById('matchesList');if(list){new MutationObserver(tidyMatches).observe(list,{subtree:true,childList:true});}
+ tidyMatches();syncActive();
 }
 function setActive(btn){document.querySelectorAll('.nav button[data-tab]').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 function syncActive(){const d=frame.contentDocument;if(!d)return;const active=d.querySelector('.tab.active');if(active){const b=document.querySelector('.nav button[data-tab="'+active.dataset.tab+'"]');if(b)setActive(b)}}
