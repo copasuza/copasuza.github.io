@@ -825,14 +825,14 @@
           "home": "تیم آزمایشی الف",
           "away": "تیم آزمایشی ب",
           "homeScore": 1,
-          "awayScore": 2,
+          "awayScore": 3,
           "stage": "group",
           "homeYellowPlayers": "تست الف",
           "homeRedPlayers": "تست الف",
           "awayYellowPlayers": "تست دوم",
           "awayRedPlayers": "",
           "homeScorers": "تست الف",
-          "awayScorers": "رضا فوتبالی\nرضا فوتبالی",
+          "awayScorers": "رضا فوتبالی\nرضا فوتبالی\nگل بخودی",
           "homeYellowCount": 1,
           "homeRedCount": 1,
           "awayYellowCount": 1,
@@ -848,5 +848,5 @@
       }
     }
   ],
-  "updatedAt": "2026-10-22T09:50:54.949Z"
+  "updatedAt": "2026-10-22T09:51:11.767Z"
 }
