@@ -135,17 +135,19 @@ const teamModal=document.getElementById('team-modal'),teamModalClose=document.ge
       Object.values(booked).forEach(p=>{
         p.events.forEach(event=>{
           const next=ordered.find((m,i)=>i>event.index&&(m.home===p.team||m.away===p.team));
-          if(next&&(next.homeScore==null||next.awayScore==null)){
-            if(!pending.some(x=>x.name===p.name&&x.team===p.team))pending.push({name:p.name,team:p.team,reason:event.reason,nextMatch:next});
+          // If a following match exists and is already completed, treat the suspension as served.
+          // If no next fixture has been entered yet, keep the player listed as suspended.
+          if(!next||(next.homeScore==null||next.awayScore==null)){
+            if(!pending.some(x=>x.name===p.name&&x.team===p.team))pending.push({name:p.name,team:p.team,reason:event.reason,nextMatch:next||null});
           }
         });
       });
       const summary=document.getElementById('discipline-summary');
-      if(summary)summary.innerHTML=`<div class="statcard"><div class="num">${fa(pending.length)}</div><div class="label">محرومان بازی بعد</div></div>`;
+      if(summary)summary.innerHTML=`<div class="statcard"><div class="num">${fa(pending.length||0)}</div><div class="label">محرومان بازی بعد</div></div>`;
       const box=document.getElementById('discipline-list');if(!box)return;
       if(!pending.length){box.innerHTML='<p class="empty">در حال حاضر بازیکن محرومی برای بازی بعدی ثبت نشده است.</p>';return;}
       pending.sort((a,b)=>a.team.localeCompare(b.team,'fa')||a.name.localeCompare(b.name,'fa'));
-      box.innerHTML=`<div style="overflow-x:auto"><table class="data-table" style="width:100%;border-collapse:collapse"><thead><tr><th>بازیکن محروم</th><th>تیم</th><th>دلیل محرومیت</th><th>بازی بعدی تیم</th></tr></thead><tbody>${pending.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.team)}</td><td>${esc(p.reason)}</td><td>${esc(p.nextMatch.home)} – ${esc(p.nextMatch.away)}</td></tr>`).join('')}</tbody></table></div>`;
+      box.innerHTML=`<div style="overflow-x:auto"><table class="data-table" style="width:100%;border-collapse:collapse"><thead><tr><th>بازیکن محروم</th><th>تیم</th><th>دلیل محرومیت</th><th>بازی بعدی تیم</th></tr></thead><tbody>${pending.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.team)}</td><td>${esc(p.reason)}</td><td>${p.nextMatch?`${esc(p.nextMatch.home)} – ${esc(p.nextMatch.away)}`:'هنوز ثبت نشده'}</td></tr>`).join('')}</tbody></table></div>`;
     }
     const baseYellow=Number((data.stats&&data.stats.yellow)||0),baseRed=Number((data.stats&&data.stats.red)||0);const newMatches=matches.filter(m=>Number(m.id||0)>24);const isArchive=(data.id||'')==='copa-suza-2026';const yellow=isArchive?baseYellow+newMatches.reduce((n,m)=>n+Number(m.homeYellowCount||0)+Number(m.awayYellowCount||0),0):matches.reduce((n,m)=>n+Number(m.homeYellowCount??m.yellowCount??0)+Number(m.awayYellowCount||0),0);const red=isArchive?baseRed+newMatches.reduce((n,m)=>n+Number(m.homeRedCount||0)+Number(m.awayRedCount||0),0):matches.reduce((n,m)=>n+Number(m.homeRedCount??m.redCount??0)+Number(m.awayRedCount||0),0);
     document.querySelectorAll('.stats .statcard .num').forEach((el,i)=>el.textContent=fa([finished.length,goals,finished.length?(goals/finished.length).toFixed(2):'0.00',yellow,red,draws][i]));
