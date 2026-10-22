@@ -124,7 +124,7 @@ function runPublishReadinessCheck(){
   const rawTeams=Array.isArray(data.teams)?data.teams:[];
   const normalized=rawTeams.map(function(t){return String(typeof t==='string'?t:(t&&t.name)||'').trim();}).filter(Boolean);
   const seen={};
-  normalized.forEach(function(t){const key=t.replace(/\\s+/g,' ').toLocaleLowerCase();seen[key]=(seen[key]||0)+1;});
+  normalized.forEach(function(t){const key=t.replace(/\s+/g,' ').toLocaleLowerCase();seen[key]=(seen[key]||0)+1;});
   const duplicates=Object.keys(seen).filter(function(k){return seen[k]>1;});
   if(!name)issues.push('نام تورنمنت ثبت نشده است.');
   if(!year)warnings.push('سال تورنمنت وارد نشده است.');
