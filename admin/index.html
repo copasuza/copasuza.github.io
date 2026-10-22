@@ -1,428 +1,117 @@
-<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>پنل مدیریت کوپا سوزا</title><style>body{margin:0;background:#071510;color:#edf3ef;font-family:Vazirmatn,Tahoma,sans-serif}.wrap{max-width:1150px;margin:auto;padding:20px}.card{background:#0b2119;border:1px solid #244b3a;border-radius:18px;padding:18px;margin-bottom:15px}.field label{display:block;color:#9eb1a8;font-size:12px;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;background:#06120e;color:#fff;border:1px solid #2b5745;border-radius:10px;padding:10px;font:inherit;box-sizing:border-box}.btn{border:0;border-radius:10px;padding:10px 15px;font:inherit;font-weight:800;cursor:pointer;background:#d9b85c;color:#10150f}.btn.secondary{background:#163629;color:#eaf2ed;border:1px solid #315b48}.btn.danger{background:#5d2929;color:#fff}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}.top h1{margin:0;color:#d9b85c;font-size:25px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.tab{background:#0b2119;color:#d9e5de;border:1px solid #244b3a;padding:9px 14px;border-radius:10px;cursor:pointer}.tab.active{background:#194a37;color:#d9b85c;border-color:#d9b85c}.panel{display:none}.panel.active{display:block}.hide{display:none}.status{padding:10px;border-radius:10px;background:#07140f;color:#9eb1a8;font-size:13px}.ok{color:#77d99a}.err{color:#ff8d8d}.small{font-size:11px;color:#90a49a}.notice{font-size:12px;line-height:1.8;color:#a9bab2}.matchrow,.ko-row{padding:14px 0;border-bottom:1px solid #18362a}.matchtop{display:grid;grid-template-columns:45px 1fr 1fr 75px 75px 110px auto;gap:7px;align-items:center}.matchextra,.ko-extra{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.teamstats,.ko-box{border:1px solid #1d4435;border-radius:10px;padding:10px;background:#06120e}.teamstats h4,.ko-box h4{margin:0 0 8px;color:#d9b85c;font-size:13px}.teamstatsgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.matchrow textarea,.ko-row textarea{min-height:72px;resize:vertical}.matchlabel,.ko-label{font-size:11px;color:#90a49a;margin-bottom:4px}.matchhint,.ko-hint{font-size:11px;color:#90a49a;margin-top:5px}.ko-top{display:grid;grid-template-columns:80px 1fr 1fr 75px 75px 90px 90px auto;gap:7px;align-items:center}@media(max-width:800px){.grid,.grid2{grid-template-columns:1fr}.matchtop{grid-template-columns:38px 1fr 1fr 65px 65px 1fr}.matchextra,.ko-extra{grid-template-columns:1fr}.ko-top{grid-template-columns:55px 1fr 1fr 60px 60px 1fr}}.reg-table{width:100%;border-collapse:collapse;min-width:760px}.reg-table th,.reg-table td{padding:10px;border-bottom:1px solid #1d4435;text-align:right;vertical-align:middle}.reg-table th{color:#d9b85c;font-size:12px;background:#06120e}.reg-table td{font-size:13px}.reg-pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#163629;border:1px solid #315b48;font-size:11px}.reg-actions{display:flex;gap:6px;flex-wrap:wrap}.reg-actions .btn{padding:7px 9px;font-size:11px}.reg-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.reg-box{background:#06120e;border:1px solid #1d4435;border-radius:12px;padding:12px}.reg-box h4{margin:0 0 9px;color:#d9b85c}.reg-players{width:100%;border-collapse:collapse}.reg-players td{padding:7px;border-bottom:1px solid #18362a}.reg-players td:first-child{width:45px;color:#d9b85c}.reg-edit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.reg-edit-players{width:100%;border-collapse:collapse}.reg-edit-players th,.reg-edit-players td{padding:7px;border-bottom:1px solid #18362a;text-align:right}.reg-edit-players input{width:100%;background:#06120e;color:#fff;border:1px solid #2b5745;border-radius:8px;padding:8px;box-sizing:border-box;font:inherit}@media(max-width:800px){.reg-edit-grid{grid-template-columns:1fr}}@media(max-width:800px){.reg-detail-grid{grid-template-columns:1fr}}.roster-add-team{display:flex;gap:8px;align-items:center}.roster-add-team input{min-width:0;flex:1}.roster-table{width:100%;border-collapse:collapse;min-width:680px}.roster-table th,.roster-table td{padding:8px;border-bottom:1px solid #1d4435;text-align:right}.roster-table th{color:#d9b85c;background:#06120e}.roster-table input{width:100%;background:#06120e;color:#fff;border:1px solid #2b5745;border-radius:8px;padding:8px;box-sizing:border-box;font:inherit}.player-picker{display:flex;flex-direction:column;gap:6px}.player-picker-row{display:grid;grid-template-columns:minmax(120px,1fr) auto auto auto;gap:5px;align-items:center}.player-picker-row select{min-width:0;width:100%;background:#06120e;color:#fff;border:1px solid #2b5745;border-radius:8px;padding:7px;font:inherit}.player-picker-row .btn{padding:6px 8px;font-size:11px}.player-picker textarea[readonly]{background:#081710;min-height:48px;color:#dbe8e0}@media(max-width:800px){.roster-add-team{align-items:stretch}.player-picker-row{grid-template-columns:1fr 1fr}.player-picker-row select{grid-column:1/-1}}
-/* Mobile phone layout improvements */
-@media(max-width:600px){
-  .wrap{padding:10px!important}
-  .card{padding:12px!important;border-radius:13px!important;margin-bottom:10px!important}
-  .top{align-items:stretch;flex-wrap:wrap;gap:9px}
-  .top>div{min-width:0;flex:1 1 100%}
-  .top h1{font-size:20px}
-  .top h3{font-size:17px}
-  .grid,.grid2,.reg-detail-grid,.reg-edit-grid{grid-template-columns:minmax(0,1fr)!important}
-  .field{min-width:0}
-  .field input,.field select,.field textarea{min-width:0;font-size:16px!important;padding:12px!important}
-  .btn{max-width:100%;white-space:normal;line-height:1.6;padding:11px 12px!important}
-  .tab{flex:1 1 calc(50% - 6px);padding:10px 8px;font-size:13px}
-  .matchrow,.ko-row{min-width:0;padding:10px!important}
-  .matchtop,.ko-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important}
-  .matchtop>*,.ko-top>*{min-width:0;width:100%;box-sizing:border-box}
-  .matchtop input,.matchtop select,.ko-top input,.ko-top select{min-width:0;width:100%;font-size:15px;padding:10px 7px}
-  .matchextra,.ko-extra{grid-template-columns:minmax(0,1fr)!important;gap:9px!important}
-  .teamstats,.ko-box{min-width:0;padding:9px}
-  .teamstatsgrid{grid-template-columns:minmax(0,1fr)!important}
-  .player-picker-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
-  .player-picker-row select{grid-column:1/-1}
-  .roster-add-team{flex-wrap:wrap}
-  .roster-add-team input{flex:1 1 100%;width:100%}
-  .reg-actions{gap:6px}
-  .status{display:inline-block;max-width:100%;overflow-wrap:anywhere}
-  #dashStandings,#dashScorers,#dashCards,#rosterTableWrap{max-width:100%;overflow-x:auto}
-}
-</style></head><body><div class="wrap"><div class="top"><div><h1>⚽ پنل مدیریت کوپا سوزا</h1><div class="small">بدون Firebase — ذخیره مستقیم در GitHub</div></div><a class="btn secondary" href="../" target="_blank">مشاهده سایت</a></div><div class="card" id="authCard"><h3>🔐 اتصال به GitHub</h3><div class="grid"><div class="field"><label>نام کاربری GitHub</label><input id="owner" value="copasuza"></div><div class="field"><label>نام Repository</label><input id="repo" value="copasuza.github.io"></div><div class="field"><label>Branch</label><input id="branch" value="main"></div></div><div class="field" style="margin-top:10px"><label>GitHub Token</label><input id="token" type="password" placeholder="github_pat_..."></div><div style="margin-top:10px"><button class="btn" id="connect">اتصال و دریافت اطلاعات</button> <span class="status" id="status">برای شروع، Token را وارد کنید.</span></div></div><div id="app" class="hide"><div class="card"><div class="top"><div><h3>🏆 مسابقات</h3></div><button class="btn" id="addTournament">+ مسابقه جدید</button></div><div class="grid2"><div class="field"><label>مسابقه فعال</label><select id="tournamentSelect"></select></div><div class="field"><label>نام مسابقه</label><input id="tournamentName"></div><div class="field"><label>سال</label><input id="tournamentYear"></div><div class="field"><label>عنوان/دوره</label><input id="tournamentEdition"></div></div><div style="margin-top:10px"><button class="btn secondary" id="saveTournamentMeta">ذخیره مشخصات مسابقه</button> <button class="btn danger" id="deleteTournament">حذف مسابقه فعال</button><span class="status" id="tournamentStatus">—</span></div></div><div id="archiveLockBanner" class="status" style="display:none;margin-bottom:12px">🔒 کوپا سوزا ۲۰۲۶ آرشیو نهایی است؛ ویرایش نتایج، برنامه، گلزنان و مشخصات این دوره غیرفعال است.</div><div class="tabs"><button class="tab active" data-tab="dashboard">📊 داشبورد</button><button class="tab" data-tab="matches">نتایج بازی‌ها</button><button class="tab" data-tab="schedule">برنامه</button><button class="tab" data-tab="scorers">گلزنان</button><button class="tab" data-tab="knockout">🏆 حذفی</button><button class="tab" data-tab="players">👥 بانک تیم‌ها و بازیکنان</button><button class="tab" data-tab="settings">تنظیمات</button></div><div class="panel active" id="panel-dashboard"><div class="card"><div class="top"><div><h3>📊 داشبورد مدیریت</h3><div class="small">مرکز مدیریت تورنمنت‌ها — آرشیو کوپا سوزا ۲۰۲۶ فقط‌خواندنی است</div></div><button class="btn secondary" id="refreshDashboard">↻ بروزرسانی</button></div><div class="grid"><div class="card" style="margin:0"><div class="small">تعداد تیم‌ها</div><div id="dashTeams" style="font-size:28px;font-weight:900;color:#d9b85c">۰</div></div><div class="card" style="margin:0"><div class="small">تعداد بازی‌ها</div><div id="dashMatches" style="font-size:28px;font-weight:900;color:#d9b85c">۰</div></div><div class="card" style="margin:0"><div class="small">تعداد گل‌ها</div><div id="dashGoals" style="font-size:28px;font-weight:900;color:#77d99a">۰</div></div></div><div class="grid2" style="margin-top:12px"><div class="card" style="margin:0"><h4 style="color:#d9b85c">مراحل ثبت‌شده</h4><div id="dashStages" class="notice"></div></div><div class="card" style="margin:0"><h4 style="color:#d9b85c">وضعیت داده</h4><div id="dashDataStatus" class="notice">—</div></div></div><div class="card" style="margin-top:12px"><div class="top"><div><h4 style="color:#d9b85c;margin:0">🧪 بررسی آمادگی انتشار</h4><div class="small">قبل از انتشار، ایرادهای رایج تیم‌ها، برنامه و نتایج را بررسی کن. این بررسی چیزی را ذخیره یا منتشر نمی‌کند.</div></div><button class="btn secondary" id="runPublishCheck" type="button">بررسی تورنمنت</button></div><div id="publishCheckResult" class="notice">برای دیدن گزارش، روی «بررسی تورنمنت» بزن.</div></div><div class="card" style="margin-top:12px"><h4 style="color:#d9b85c">📋 جدول رده‌بندی گروهی تورنمنت فعال</h4><div class="small">این جدول فقط از نتایج مرحله گروهی همین تورنمنت محاسبه می‌شود و در آرشیو ۲۰۲۶ فقط برای مشاهده است.</div><div id="dashStandings" style="overflow:auto;margin-top:8px"></div></div><div class="grid2" style="margin-top:12px"><div class="card" style="margin:0"><h4 style="color:#d9b85c">🥇 گلزنان برتر همین تورنمنت</h4><div id="dashScorers" style="overflow:auto"></div></div><div class="card" style="margin:0"><h4 style="color:#d9b85c">🟨 کارت‌های انضباطی همین تورنمنت</h4><div id="dashCards" style="overflow:auto"></div></div></div></div></div><div class="panel" id="panel-matches"><div class="card"><div class="top"><h3>⚽ نتایج</h3><button class="btn" id="addMatch">+ افزودن بازی</button></div><div id="matchesList"></div></div></div><div class="panel" id="panel-schedule"><div class="card"><div class="top"><h3>🗓️ برنامه</h3><button class="btn" id="addSchedule">+ افزودن برنامه</button></div><div id="scheduleList"></div></div></div><div class="panel" id="panel-scorers"><div class="card"><div class="top"><h3>🥇 جدول گلزنان</h3><button class="btn" id="addScorer">+ افزودن گلزن</button></div><div id="scorersList"></div></div></div><div class="panel" id="panel-knockout"><div class="card"><div class="top"><h3>🏆 نتایج مرحله حذفی</h3><div><button class="btn" id="addQF">+ یک‌چهارم</button> <button class="btn secondary" id="addSF">+ نیمه‌نهایی</button> <button class="btn secondary" id="addFinal">+ فینال</button></div></div><div id="knockoutMatchesList"></div></div><div class="card"><h3>🏆 برندگان حذفی</h3><div class="grid2"><div class="field"><label>برنده یک‌چهارم ۱</label><select id="qf1"></select></div><div class="field"><label>برنده یک‌چهارم ۲</label><select id="qf2"></select></div><div class="field"><label>برنده یک‌چهارم ۳</label><select id="qf3"></select></div><div class="field"><label>برنده یک‌چهارم ۴</label><select id="qf4"></select></div><div class="field"><label>برنده نیمه‌نهایی ۱</label><select id="sfwin1"></select></div><div class="field"><label>برنده نیمه‌نهایی ۲</label><select id="sfwin2"></select></div><div class="field"><label>قهرمان</label><select id="champion"></select></div></div></div></div><div class="panel" id="panel-players">
-  <div class="card" id="rosterBulkCard" style="border:2px solid #d9b85c">
-    <div class="top"><div><h3>➕ افزودن گروهی بازیکنان</h3><div class="small">اول تیم را در کارت «بانک اطلاعات تیم‌ها و بازیکنان» انتخاب کن، بعد نام‌ها را اینجا بچسبان.</div></div><span class="reg-pill">ورود سریع اسامی</span></div>
-    <div class="field"><label>فهرست بازیکنان — هر نام در یک خط</label><textarea id="rosterBulkNames" rows="6" placeholder="مثلاً:\nعلی احمدی\nمحمد رضایی\nحسین محمدی"></textarea></div>
-    <div style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn" type="button" id="rosterBulkAdd">افزودن اسامی به تیم انتخاب‌شده</button><span class="status" id="rosterBulkStatus">نام‌های تکراری اضافه نمی‌شوند.</span></div>
-    <div class="notice" style="margin-top:8px">اسامی ابتدا به جدول اضافه می‌شوند. برای ثبت دائمی، بعد از بررسی روی «ذخیره بانک در GitHub» بزن.</div>
-  </div>
-  <div class="card">
-    <div class="top">
-      <div><h3>👥 بانک اطلاعات تیم‌ها و بازیکنان</h3><div class="small">نام‌ها را یک بار ثبت کن تا در نتایج، گلزنان و کارت‌ها از فهرست انتخاب شوند.</div></div>
-      <span class="status" id="rosterCounts">—</span>
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پنل مدیریتی کوپا سوزا</title>
+<style>
+:root{--bg:#06110d;--side:#081a13;--card:#0c241b;--line:#28513e;--gold:#e2c15d;--text:#f3f7f4;--muted:#a7b8b0;--active:#1b4d39;--soft:#102b20}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#123c2b 0,#06110d 38%,#040c09 100%);color:var(--text);font-family:Tahoma,Vazirmatn,sans-serif;height:100vh;height:100dvh;overflow:hidden}.shell{height:100vh;height:100dvh;display:flex;flex-direction:column}.head{height:70px;flex:0 0 70px;background:linear-gradient(90deg,#0b241a,#081a13);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:relative;z-index:5;box-shadow:0 4px 20px #0005}.brand{display:flex;align-items:center;gap:12px}.brand .ball{font-size:31px;filter:drop-shadow(0 2px 4px #0008)}.brand strong{color:var(--gold);font-size:21px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:5px}.head-actions{display:flex;gap:9px;align-items:center}.view{display:inline-flex;align-items:center;text-decoration:none;color:#f1f6f3;background:var(--soft);border:1px solid #39644f;padding:10px 15px;border-radius:10px;font-weight:700;font-size:13px;transition:.2s}.view:hover{background:#17402f;border-color:var(--gold)}.toggle{display:none;border:1px solid var(--line);background:#10291f;color:var(--gold);border-radius:10px;padding:8px 11px;font-size:19px}.body{display:flex;min-height:0;flex:1}.side{width:250px;flex:0 0 250px;background:linear-gradient(180deg,#091c15,#071610);border-left:1px solid var(--line);padding:17px 11px;overflow:auto;box-shadow:8px 0 30px #0003}.side-title{color:#849b90;font-size:11px;font-weight:700;padding:6px 12px 9px}.nav{display:flex;flex-direction:column;gap:6px}.nav button{border:1px solid transparent;background:transparent;color:#e0ebe5;text-align:right;padding:13px 14px;border-radius:11px;font:inherit;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:11px;transition:.18s}.nav button span{font-size:17px;width:22px;text-align:center}.nav button:hover{background:#102b20;border-color:#244936}.nav button.active{background:linear-gradient(90deg,#1c4e39,#143a2b);border-color:#d6b650;color:var(--gold);font-weight:800;box-shadow:0 5px 16px #0003}.divider{height:1px;background:#1b3a2d;margin:12px 6px}.content{min-width:0;flex:1;position:relative;background:transparent}iframe{border:0;width:100%;height:100%;display:block;background:transparent}.mobile-shade{display:none}
+@media(max-width:800px){.head{height:62px;flex-basis:62px;padding:0 12px}.toggle{display:block}.head .view{display:none}.side{position:absolute;z-index:20;right:0;top:62px;bottom:0;width:270px;transform:translateX(105%);transition:.22s;box-shadow:-12px 0 40px #0009}.side.open{transform:translateX(0)}.mobile-shade{position:absolute;inset:62px 0 0;background:#0009;z-index:19}.mobile-shade.show{display:block}.brand strong{font-size:17px}.brand small{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="head">
+  <div class="brand"><span class="ball">⚽</span><div><strong>کوپا سوزا</strong><small>پنل مدیریت تورنمنت</small></div></div>
+  <div class="head-actions"><a class="view" href="../" target="_blank">مشاهده سایت ↗</a><button class="toggle" id="menuToggle">☰</button></div>
+</header>
+<div class="body">
+  <aside class="side" id="side">
+    <div class="side-title">مدیریت تورنمنت</div>
+    <div class="nav">
+      <button data-tab="dashboard" class="active"><span>📊</span> داشبورد</button>
+      <button data-tab="scorers"><span>🥇</span> گلزنان</button>
+      <button data-tab="matches"><span>⚽</span> نتایج بازی‌ها</button>
+      <button data-tab="schedule"><span>🗓️</span> برنامه مسابقات</button>
+      <button data-tab="knockout"><span>🏆</span> مراحل حذفی</button>
+      <div class="divider"></div>
+      <div class="side-title">تیم‌ها و بازیکنان</div>
+      <button data-tab="players"><span>👥</span> بانک تیم‌ها و بازیکنان</button>
+      <button data-section="registration"><span>📋</span> ثبت‌نام تیم‌ها</button>
+      <div class="divider"></div>
+      <button data-tab="settings"><span>⚙️</span> تنظیمات</button>
     </div>
-    <div class="grid2">
-      <div class="field"><label>تیم موردنظر در تورنمنت فعال</label><select id="rosterTeamSelect"></select></div>
-      <div class="field"><label>افزودن تیم جدید به بانک کلی</label><div class="roster-add-team"><input id="rosterNewTeamName" placeholder="نام دقیق تیم"><button class="btn" id="rosterAddTeam" type="button">+ افزودن تیم</button></div></div>
-    </div>
-    <div class="field" style="margin-top:10px"><label>انتخاب تیم از بانک کلی برای افزودن به تورنمنت فعال</label><select id="rosterBankTeamSelect"></select></div>
-    <div class="notice" style="margin-top:10px">فهرست این بخش فقط تیم‌های تورنمنت فعال را نشان می‌دهد. فهرست اولیه بازیکنان از نام‌هایی ساخته شده که قبلاً در گلزنان و کارت‌های مسابقات ثبت شده‌اند؛ این فهرست ممکن است کامل نباشد. فهرست رسمی هر تیم را بررسی و تکمیل کن. اطلاعات مسابقات قبلی حفظ می‌شود.</div><div style="margin-top:10px"><button class="btn secondary" id="rosterAddTeamToTournament" type="button">➕ افزودن تیم انتخاب‌شده به تورنمنت فعال</button><span class="small" style="margin-right:8px">این گزینه برای تورنمنت‌های جدید است؛ آرشیو ۲۰۲۶ قفل است.</span></div>
-<div class="grid2" style="margin-top:12px">
-      <div class="field"><label>اصلاح نام تیم انتخابی</label><div class="roster-add-team"><input id="rosterRenameTeamName" placeholder="نام صحیح تیم"><button class="btn secondary" id="rosterRenameTeam" type="button">تغییر نام</button></div></div>
-      <div class="field"><label>حذف تیم</label><button class="btn danger" id="rosterDeleteTeam" type="button">حذف تیم انتخابی</button><div class="small">حذف فقط وقتی ممکن است که تیم در بازی، برنامه یا جدول گلزنان استفاده نشده باشد.</div></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="top"><div><h3 id="rosterCurrentTitle">بازیکنان تیم</h3><div class="small">نام بازیکن الزامی است؛ شماره پیراهن اختیاری است. نام پدر یا اطلاعات خصوصی در این بانک ثبت نمی‌شود.</div></div><button class="btn" id="rosterAddPlayer" type="button">+ افزودن بازیکن</button></div>
-    <div id="rosterTableWrap"></div>
-    <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" id="rosterSave" type="button">💾 ذخیره بانک در GitHub</button><span class="status" id="rosterSaveStatus">تغییرات تا زمان ذخیره فقط در این صفحه هستند.</span></div>
-  </div>
+  </aside>
+  <div class="mobile-shade" id="shade"></div>
+  <main class="content"><iframe id="legacy" src="app.html?v=20261022-scoreselect3" title="پنل مدیریت کوپا سوزا"></iframe></main>
 </div>
-<div class="panel" id="panel-settings"><div class="card"><h3>⚙️ اطلاعات مسابقات</h3><div class="field"><label>قانون انضباطی</label><input id="disciplineRule"></div><div style="margin-top:12px"><button class="btn" id="save">💾 ذخیره در GitHub</button> <button class="btn secondary" id="reload">↻ دریافت دوباره</button> <button class="btn secondary" id="export">دانلود نسخه JSON</button></div><div class="status" id="saveStatus" style="margin-top:10px">هنوز تغییری ذخیره نشده.</div></div></div></div></div><script>const $=id=>document.getElementById(id);$('connect').onclick=async()=>{try{localStorage.setItem('copaSuzaAdminConfig',JSON.stringify({owner:$('owner').value.trim(),repo:$('repo').value.trim(),branch:$('branch').value.trim(),token:$('token').value.trim()}));$('status').textContent='در حال اتصال…';await getFile();$('authCard').classList.add('hide');$('status').textContent='اتصال موفق بود'}catch(e){$('status').textContent=e&&e.message?e.message:String(e)}};let data=null,sha=null,rootData=null,currentTournamentId=null,rosterDb=null,rosterSha=null;try{const saved=JSON.parse(localStorage.getItem('copaSuzaAdminConfig')||'{}');if(saved.owner)$('owner').value=saved.owner;if(saved.repo)$('repo').value=saved.repo;if(saved.branch)$('branch').value=saved.branch;if(saved.token)$('token').value=saved.token}catch(e){}const fa=n=>String(n??'').replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);const TEAM_FALLBACK=['اتحاد خلور','شهدای تنگه هرمز','چمران لاتیدان','غارکی سوزا','فانوس یاسوج','حرا مارین','آذرخش گیاهدان','میناب ۱۶۸','صحرا دفاری','متو ماهیان رمچاه','فجر مبین رمچاه','ستارگان افغان','امید درگهان','شاهین سوزا','سلمان جنوب','جوانان سوزا'];function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}function teamList(){const raw=Array.isArray(data?.teams)?data.teams:[];const names=raw.map(x=>typeof x==='string'?x:(x&&x.name)||'').filter(Boolean);return Array.from(new Set(names))}function teamSelect(k,current){const val=String(current??'');let opts='<option value="">انتخاب تیم</option>'+teamList().map(t=>`<option value="${esc(t)}" ${t===val?'selected':''}>${esc(t)}</option>`).join('');return `<select data-k="${k}">${opts}</select>`}function apiBase(){return `https://api.github.com/repos/${encodeURIComponent($('owner').value.trim())}/${encodeURIComponent($('repo').value.trim())}`}function headers(){return {'Accept':'application/vnd.github+json','Authorization':'Bearer '+$('token').value.trim(),'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'}}async function getFile(){
-  const branch=encodeURIComponent($('branch').value.trim());
-  const eventResponse=await fetch(apiBase()+'/contents/copa-data.json?ref='+branch,{headers:headers()});
-  if(!eventResponse.ok) throw new Error('دریافت فایل داده مسابقات ناموفق بود: '+eventResponse.status);
-  const eventFile=await eventResponse.json();sha=eventFile.sha;
-  const eventText=decodeURIComponent(escape(atob(eventFile.content.replace(/\n/g,''))));
-  const loaded=JSON.parse(eventText);
-  rootData=Array.isArray(loaded.tournaments)?loaded:{schemaVersion:2,tournaments:[Object.assign({id:'copa-suza-2026',name:'کوپا سوزا',year:'۲۰۲۶',edition:'آرشیو نهایی'},loaded)]};
-  if(!Array.isArray(rootData.tournaments))rootData.tournaments=[];
-  const rosterResponse=await fetch(apiBase()+'/contents/team-database.json?ref='+branch,{headers:headers()});
-  if(!rosterResponse.ok)throw new Error('فایل مستقل بانک تیم‌ها پیدا نشد؛ فایل team-database.json را در ریشه مخزن هم قرار بده. خطا: '+rosterResponse.status);
-  const rosterFile=await rosterResponse.json();rosterSha=rosterFile.sha;
-  const rosterText=decodeURIComponent(escape(atob(rosterFile.content.replace(/\n/g,''))));rosterDb=JSON.parse(rosterText);ensureRosterData();
-  currentTournamentId=currentTournamentId&&rootData.tournaments.some(t=>t.id===currentTournamentId)?currentTournamentId:(rootData.tournaments.find(t=>t.id==='copa-suza-2026')?.id||rootData.tournaments[0]?.id||null);
-  data=rootData.tournaments.find(t=>t.id===currentTournamentId)||rootData.tournaments[0]||null;
-  if(!data)throw new Error('هیچ تورنمنتی در فایل copa-data.json وجود ندارد.');
-  if(!Array.isArray(data.matches))data.matches=[];
-  if(!isArchivedTournament(data)){(data.matches||[]).forEach(m=>{m.homeYellowPlayers=m.homeYellowPlayers??'';m.homeRedPlayers=m.homeRedPlayers??'';m.awayYellowPlayers=m.awayYellowPlayers??'';m.awayRedPlayers=m.awayRedPlayers??'';if(m.homeYellowCount===undefined)m.homeYellowCount=m.yellowCount??null;if(m.awayYellowCount===undefined)m.awayYellowCount=null;if(m.homeRedCount===undefined)m.homeRedCount=m.redCount??null;if(m.awayRedCount===undefined)m.awayRedCount=null;});}
-  renderTournamentManager();
+</div>
+<script>
+const frame=document.getElementById('legacy'),side=document.getElementById('side'),toggle=document.getElementById('menuToggle'),shade=document.getElementById('shade');
+function closeMenu(){side.classList.remove('open');shade.classList.remove('show')}
+toggle.onclick=()=>{side.classList.toggle('open');shade.classList.toggle('show')};shade.onclick=closeMenu;
+function enhanceLegacy(){
+ const d=frame.contentDocument;if(!d)return;
+ d.querySelectorAll('.tabs').forEach(x=>x.style.display='none');
+ d.body.style.overflow='auto';d.body.style.background='transparent';d.body.style.fontFamily='Tahoma,Vazirmatn,sans-serif';d.body.style.fontSize='15px';
+ const style=d.createElement('style');
+ style.textContent=`
+   .wrap{max-width:none!important;padding:18px 22px!important}
+   .card{background:linear-gradient(145deg,#0d281e,#0a1e16)!important;border-color:#2a5642!important;border-radius:16px!important;box-shadow:0 7px 22px #0004!important}
+   .card h3{font-size:19px!important;color:#f0f5f2}
+   .card h4{font-size:15px!important}
+   .small{font-size:12px!important;color:#a7b8b0!important}
+   .notice,.status{font-size:14px!important;line-height:1.9!important}
+   .field label,.matchlabel,.ko-label{font-size:13px!important}
+   .field input,.field select,.field textarea{font-size:15px!important;padding:11px!important}
+   .btn{font-size:14px!important;padding:11px 16px!important}
+   .matchrow{padding:16px 0 20px!important;margin-bottom:14px!important;border:1px solid #28513e!important;border-radius:14px!important;background:#0a2017!important;box-shadow:0 4px 14px #0003!important}
+   .matchrow>*{margin-left:14px!important;margin-right:14px!important}
+   .matchtop{font-size:14px!important;gap:9px!important}
+   .matchextra{gap:12px!important;margin-top:14px!important}
+   .matchhint,.ko-hint{font-size:13px!important}
+   .reg-table th{font-size:13px!important}.reg-table td{font-size:14px!important}
+   .roster-table th,.roster-table td{font-size:14px!important}
+   .player-picker-row select{font-size:14px!important}
+   .matchrow .scorers,.matchrow [class*="scorer"],.matchrow [id*="scorer"],.matchrow [id*="goal"]{order:-10}
+   .matchrow .cards,.matchrow [class*="card"],.matchrow [id*="card"],.matchrow [class*="yellow"],.matchrow [class*="red"]{order:20}
+   @media(max-width:800px){.matchtop{grid-template-columns:1fr 1fr!important}.matchextra{grid-template-columns:1fr!important}.matchrow>*{margin-left:10px!important;margin-right:10px!important}}
+ `;
+ d.head.appendChild(style);
+ const wrap=d.querySelector('.wrap');if(wrap){wrap.style.maxWidth='none';wrap.style.padding='18px 22px'}
+ const oldTop=d.querySelector('.wrap > .top');if(oldTop)oldTop.style.display='none';
+ function tidyMatches(){
+   d.querySelectorAll('.matchrow').forEach(row=>{
+     const boxes=[...row.children];
+     const scoreBoxes=boxes.filter(el=>/گلزن|گلزنان|scorer|goal/i.test(el.textContent||''));
+     const cardBoxes=boxes.filter(el=>/کارت|زرد|قرمز|card|yellow|red/i.test(el.textContent||''));
+     scoreBoxes.forEach(el=>{el.style.order='-10'});
+     cardBoxes.forEach(el=>{el.style.order='20'});
+   });
+ }
+ function bindMatchSaveButtons(){
+   d.querySelectorAll('button').forEach(btn=>{
+     if(!/ثبت\s*مسابقه/.test(btn.textContent||''))return;
+     if(btn.classList.contains('match-save'))return;
+     if(btn.dataset.copaSaveBound)return;
+     btn.dataset.copaSaveBound='1';
+     btn.addEventListener('click',function(e){
+       e.preventDefault();
+       e.stopImmediatePropagation();
+       const win=d.defaultView;
+       if(win && typeof win.saveToGitHub==='function'){
+         const status=d.getElementById('status')||d.getElementById('tournamentStatus');
+         win.saveToGitHub(status,'ثبت مسابقه');
+       }else{
+         const saveBtn=d.getElementById('save');
+         if(saveBtn)saveBtn.click();
+       }
+     },true);
+   });
+ }
+ document.querySelectorAll('.nav button[data-tab]').forEach(btn=>{
+   btn.onclick=()=>{const target=d.querySelector('.tab[data-tab="'+btn.dataset.tab+'"]');if(target){target.click();setActive(btn);closeMenu();}}
+ });
+ document.querySelectorAll('.nav button[data-section]').forEach(btn=>{btn.onclick=()=>{const el=d.getElementById('registrationList')||d.getElementById('registrationsList');if(el)el.scrollIntoView({behavior:'smooth'});closeMenu()}});
+ const observer=new MutationObserver(()=>{syncActive();tidyMatches();bindMatchSaveButtons()});const tabs=d.querySelector('.tabs');if(tabs)observer.observe(tabs,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+ const list=d.getElementById('matchesList');if(list){new MutationObserver(()=>{tidyMatches();bindMatchSaveButtons()}).observe(list,{subtree:true,childList:true});}
+ bindMatchSaveButtons();
+ tidyMatches();syncActive();
 }
-function isArchivedTournament(t){return !!t&&t.id==='copa-suza-2026';}
-function isArchiveSelected(){return isArchivedTournament(data);}
-function applyArchiveLock(){
-  const locked=isArchiveSelected();const banner=$('archiveLockBanner');if(banner)banner.style.display=locked?'block':'none';
-  ['tournamentName','tournamentYear','tournamentEdition','saveTournamentMeta','deleteTournament','disciplineRule','save','addMatch','addQF','addSF','addFinal','addSchedule','addScorer'].forEach(function(id){const el=$(id);if(el)el.disabled=locked;});
-  ['panel-matches','panel-schedule','panel-scorers','panel-knockout'].forEach(function(id){const panel=$(id);if(panel)panel.querySelectorAll('input,select,textarea,button.del').forEach(function(el){el.disabled=locked;});});
-  const add=$('rosterAddTeamToTournament');if(add)add.disabled=locked;
-}
-function addSelectedBankTeamToTournament(){
-  if(isArchiveSelected()){$('rosterSaveStatus').textContent='آرشیو کوپا سوزا ۲۰۲۶ قفل است؛ ابتدا یک تورنمنت جدید بساز و انتخاب کن.';return;}
-  const team=$('rosterBankTeamSelect').value;if(!team){$('rosterSaveStatus').textContent='ابتدا یک تیم از بانک کلی انتخاب کن.';return;}
-  if(!Array.isArray(data.teams))data.teams=[];const names=data.teams.map(function(t){return typeof t==='string'?t:(t&&t.name)||'';});
-  if(names.indexOf(team)!==-1){$('rosterSaveStatus').textContent='این تیم از قبل در تورنمنت فعال وجود دارد.';return;}
-  data.teams.push(team);renderTournamentManager();renderRosterManager();$('rosterTeamSelect').value=team;renderRosterManager();$('rosterSaveStatus').textContent='✅ تیم به تورنمنت فعال اضافه شد. برای ذخیره، از تنظیمات روی «ذخیره در GitHub» بزن.';
-}
-function renderTournamentManager(){$('tournamentSelect').innerHTML=rootData.tournaments.map(t=>`<option value="${esc(t.id)}">${esc(t.name||t.title||t.id)} ${esc(t.year||'')}</option>`).join('');$('tournamentSelect').value=currentTournamentId;$('tournamentName').value=data.name||data.title||'';$('tournamentYear').value=data.year||'';$('tournamentEdition').value=data.edition||'';$('disciplineRule').value=data.disciplineRule||'';$('app').classList.remove('hide');render()}function switchTournament(id){currentTournamentId=id;data=rootData.tournaments.find(t=>t.id===id)||rootData.tournaments[0];renderTournamentManager()}function renderDashboard(){
-  if(!data)return;
-  const matches=Array.isArray(data.matches)?data.matches:[];
-  const teams=teamList();
-  const goals=matches.reduce((sum,m)=>sum+(Number(m.homeScore)||0)+(Number(m.awayScore)||0),0);
-  const counts={group:0,qf:0,sf:0,final:0};
-  matches.forEach(function(m){if(counts[m.stage]!==undefined)counts[m.stage]++;});
-  $('dashTeams').textContent=fa(teams.length);
-  $('dashMatches').textContent=fa(matches.length);
-  $('dashGoals').textContent=fa(goals);
-  $('dashStages').innerHTML='گروهی: <b>'+fa(counts.group)+'</b> بازی<br>یک‌چهارم: <b>'+fa(counts.qf)+'</b> بازی<br>نیمه‌نهایی: <b>'+fa(counts.sf)+'</b> بازی<br>فینال: <b>'+fa(counts.final)+'</b> بازی';
-  $('dashDataStatus').innerHTML='فایل داده: <b>copa-data.json</b><br>تورنمنت فعال: <b>'+esc(data.name||data.title||'—')+'</b><br>شناسه تورنمنت: <b>'+esc(data.id||'—')+'</b><br>آخرین بروزرسانی: <b>'+esc(rootData.updatedAt||'—')+'</b>';
-  const tableStyle='width:100%;border-collapse:collapse;min-width:480px';
-  const thStyle='padding:7px;text-align:right;border-bottom:1px solid #315b48;color:#d9b85c;white-space:nowrap';
-  const tdStyle='padding:7px;text-align:right;border-bottom:1px solid #18362a;white-space:nowrap';
-  const standings={};
-  teams.forEach(function(team){standings[team]={team:team,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0};});
-  matches.filter(function(m){return (m.stage||'group')==='group'&&m.home&&m.away&&m.homeScore!==null&&m.homeScore!==undefined&&m.awayScore!==null&&m.awayScore!==undefined&&m.homeScore!==''&&m.awayScore!=='';}).forEach(function(m){
-    [m.home,m.away].forEach(function(team){if(!standings[team])standings[team]={team:team,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0};});
-    const h=standings[m.home],a=standings[m.away],hs=Number(m.homeScore)||0,as=Number(m.awayScore)||0;
-    h.p++;a.p++;h.gf+=hs;h.ga+=as;a.gf+=as;a.ga+=hs;
-    if(hs>as){h.w++;h.pts+=3;a.l++;}else if(hs<as){a.w++;a.pts+=3;h.l++;}else{h.d++;a.d++;h.pts++;a.pts++;}
-  });
-  const rows=Object.values(standings).sort(function(a,b){return b.pts-a.pts||(b.gf-b.ga)-(a.gf-a.ga)||b.gf-a.gf||a.team.localeCompare(b.team,'fa');});
-  $('dashStandings').innerHTML=rows.length?'<table style="'+tableStyle+'"><thead><tr>'+['#','تیم','بازی','برد','مساوی','باخت','گل زده','گل خورده','تفاضل','امتیاز'].map(function(x){return '<th style="'+thStyle+'">'+x+'</th>';}).join('')+'</tr></thead><tbody>'+rows.map(function(x,i){return '<tr><td style="'+tdStyle+'">'+fa(i+1)+'</td><td style="'+tdStyle+'">'+esc(x.team)+'</td><td style="'+tdStyle+'">'+fa(x.p)+'</td><td style="'+tdStyle+'">'+fa(x.w)+'</td><td style="'+tdStyle+'">'+fa(x.d)+'</td><td style="'+tdStyle+'">'+fa(x.l)+'</td><td style="'+tdStyle+'">'+fa(x.gf)+'</td><td style="'+tdStyle+'">'+fa(x.ga)+'</td><td style="'+tdStyle+'">'+fa(x.gf-x.ga)+'</td><td style="'+tdStyle+'"><b>'+fa(x.pts)+'</b></td></tr>';}).join('')+'</tbody></table>':'<div class="notice">هنوز نتیجه کامل و قابل محاسبه‌ای برای مرحله گروهی ثبت نشده است.</div>';
-  let scorerRows=[];
-  if(Array.isArray(data.scorers)&&data.scorers.length){
-    scorerRows=data.scorers.map(function(x){return {name:String(x.name||'').trim(),team:String(x.team||''),goals:Number(x.goals)||0};}).filter(function(x){return x.name&&x.goals>0;});
-  }else{
-    const totals={};
-    matches.forEach(function(m){
-      [['homeScorers',m.home],['awayScorers',m.away]].forEach(function(pair){
-        cardNames(m[pair[0]]).forEach(function(name){
-          if(/گل\s*بخودی|گل به خودی|own\s*goal/i.test(name))return;
-          const key=name.trim()+'||'+pair[1];
-          if(!totals[key])totals[key]={name:name.trim(),team:pair[1]||'',goals:0};
-          totals[key].goals++;
-        });
-      });
-    });
-    scorerRows=Object.values(totals);
-  }
-  scorerRows.sort(function(a,b){return b.goals-a.goals||a.name.localeCompare(b.name,'fa');});
-  $('dashScorers').innerHTML=scorerRows.length?'<table style="'+tableStyle+'"><thead><tr><th style="'+thStyle+'">بازیکن</th><th style="'+thStyle+'">تیم</th><th style="'+thStyle+'">گل</th></tr></thead><tbody>'+scorerRows.slice(0,8).map(function(x){return '<tr><td style="'+tdStyle+'">'+esc(x.name)+'</td><td style="'+tdStyle+'">'+esc(x.team)+'</td><td style="'+tdStyle+'"><b>'+fa(x.goals)+'</b></td></tr>';}).join('')+'</tbody></table>':'<div class="notice">هنوز گلزنی برای این تورنمنت ثبت نشده است.</div>';
-  const cardTotals={yellow:0,red:0};
-  matches.forEach(function(m){
-    [['yellow','homeYellowPlayers','homeYellowCount'],['red','homeRedPlayers','homeRedCount'],['yellow','awayYellowPlayers','awayYellowCount'],['red','awayRedPlayers','awayRedCount']].forEach(function(pair){
-      const listed=cardNames(m[pair[1]]).length;
-      const count=listed||Number(m[pair[2]])||0;
-      cardTotals[pair[0]]+=count;
-    });
-  });
-  $('dashCards').innerHTML='<table style="'+tableStyle+'"><tbody><tr><td style="'+tdStyle+'">🟨 کارت زرد</td><td style="'+tdStyle+'"><b>'+fa(cardTotals.yellow)+'</b></td></tr><tr><td style="'+tdStyle+'">🟥 کارت قرمز</td><td style="'+tdStyle+'"><b>'+fa(cardTotals.red)+'</b></td></tr></tbody></table><div class="small" style="margin-top:8px">آمار از اطلاعات کارت‌های ثبت‌شده در بازی‌های همین تورنمنت محاسبه می‌شود.</div>';
-}
-function runPublishReadinessCheck(){
-  const issues=[],warnings=[];
-  const name=String(data.name||data.title||'').trim();
-  const year=String(data.year||'').trim();
-  const teams=teamList();
-  const rawTeams=Array.isArray(data.teams)?data.teams:[];
-  const normalized=rawTeams.map(function(t){return String(typeof t==='string'?t:(t&&t.name)||'').trim();}).filter(Boolean);
-  const seen={};
-  normalized.forEach(function(t){const key=t.replace(/\s+/g,' ').toLocaleLowerCase();seen[key]=(seen[key]||0)+1;});
-  const duplicates=Object.keys(seen).filter(function(k){return seen[k]>1;});
-  if(!name)issues.push('نام تورنمنت ثبت نشده است.');
-  if(!year)warnings.push('سال تورنمنت وارد نشده است.');
-  if(teams.length<2)issues.push('برای تورنمنت کمتر از دو تیم ثبت شده است.');
-  if(duplicates.length)issues.push('نام تیم تکراری وجود دارد؛ تیم‌های تکراری را اصلاح کن.');
-  const teamSet=new Set(teams);
-  const matches=Array.isArray(data.matches)?data.matches:[];
-  let missingScores=0,invalidTeams=0,sameTeam=0,negativeScores=0,played=0;
-  matches.forEach(function(m){
-    if(!m.home||!m.away||!teamSet.has(m.home)||!teamSet.has(m.away))invalidTeams++;
-    if(m.home&&m.away&&m.home===m.away)sameTeam++;
-    const h=m.homeScore,a=m.awayScore;
-    const hs=h!==null&&h!==undefined&&String(h)!=='';
-    const as=a!==null&&a!==undefined&&String(a)!=='';
-    if(hs!==as)missingScores++;
-    if(hs&&as){played++;if(Number(h)<0||Number(a)<0)negativeScores++;}
-  });
-  if(invalidTeams)issues.push(invalidTeams+' بازی تیم خالی یا تیمی خارج از فهرست تورنمنت دارد.');
-  if(sameTeam)issues.push(sameTeam+' بازی با انتخاب یک تیم در هر دو طرف ثبت شده است.');
-  if(missingScores)issues.push(missingScores+' بازی فقط یک طرف نتیجه دارد؛ نتیجه را کامل کن یا هر دو گل را خالی بگذار.');
-  if(negativeScores)issues.push(negativeScores+' نتیجه با تعداد گل منفی ثبت شده است.');
-  if(!matches.length)warnings.push('هنوز هیچ بازی‌ای ثبت نشده است.');
-  if(matches.length&&played===0)warnings.push('هنوز نتیجه کامل‌شده‌ای برای بازی‌ها وجود ندارد.');
-  const schedule=Array.isArray(data.schedule)?data.schedule:[];
-  if(schedule.some(function(m){return !m.home||!m.away||!teamSet.has(m.home)||!teamSet.has(m.away)||m.home===m.away;}))warnings.push('برخی ردیف‌های برنامه نیاز به بررسی تیم‌ها دارند.');
-  const el=$('publishCheckResult');
-  const escIssues=issues.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
-  const escWarnings=warnings.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
-  let html='<div style="margin-bottom:8px"><b>تورنمنت:</b> '+esc(name||'بدون نام')+' · <b>تیم‌ها:</b> '+fa(teams.length)+' · <b>بازی‌ها:</b> '+fa(matches.length)+' · <b>نتایج کامل:</b> '+fa(played)+'</div>';
-  if(!issues.length&&!warnings.length)html+='<div style="color:#77d99a;font-weight:800">✅ بررسی اولیه موفق بود؛ ایراد واضحی در اطلاعات پیدا نشد.</div>';
-  if(issues.length)html+='<div style="color:#ff9999;font-weight:800">مواردی که باید اصلاح شوند</div><ul>'+escIssues+'</ul>';
-  if(warnings.length)html+='<div style="color:#e8cc77;font-weight:800">موارد پیشنهادی برای بررسی</div><ul>'+escWarnings+'</ul>';
-  if(isArchiveSelected())html+='<div style="margin-top:8px;color:#e8cc77">🔒 این تورنمنت آرشیو ۲۰۲۶ است و همچنان فقط‌خواندنی باقی می‌ماند.</div>';
-  el.innerHTML=html;
-}
-function render(){ensureRosterData();renderDashboard();renderMatches();renderSchedule();renderScorers();renderKnockoutMatches();populateWinnerSelects();renderRosterManager();applyArchiveLock()}function cardNames(v){return String(v||'').split(/\n|،|,/).map(x=>x.trim()).filter(Boolean)}function syncMatch(i,d){let m=data.matches[i];['home','away','homeScorers','awayScorers','homeYellowPlayers','homeRedPlayers','awayYellowPlayers','awayRedPlayers'].forEach(k=>m[k]=d.querySelector('[data-k='+k+']').value);['homeScore','awayScore'].forEach(k=>{let v=d.querySelector('[data-k='+k+']').value;m[k]=v===''?null:+v});m.stage=d.querySelector('[data-k=stage]').value;[['homeYellowCount','homeYellowPlayers'],['homeRedCount','homeRedPlayers'],['awayYellowCount','awayYellowPlayers'],['awayRedCount','awayRedPlayers']].forEach(([c,p])=>m[c]=cardNames(m[p]).length)}function scoreSelect(k,value,placeholder){const current=value===null||value===undefined?'':String(value);let options='<option value="">'+esc(placeholder||'گل')+'</option>';for(let n=0;n<=20;n++){options+='<option value="'+n+'"'+(String(n)===current?' selected':'')+'>'+fa(n)+'</option>';}if(current!==''&&(!Number.isFinite(+current)||+current<0||+current>20)){options+='<option value="'+esc(current)+'" selected>'+esc(fa(current))+'</option>';}return '<select data-k="'+k+'">'+options+'</select>'}
-function renderMatches(){let el=$('matchesList');el.innerHTML='';(data.matches||[]).forEach((m,i)=>{let d=document.createElement('div');d.className='matchrow';d.innerHTML=`<div class="matchtop"><div>${fa(m.id)}</div>${teamSelect('home',m.home)}${teamSelect('away',m.away)}${scoreSelect('homeScore',m.homeScore,'گل تیم اول')}${scoreSelect('awayScore',m.awayScore,'گل تیم دوم')}<select data-k=stage><option value=group>گروهی</option><option value=qf>یک‌چهارم</option><option value=sf>نیمه‌نهایی</option><option value=final>فینال</option></select><button class="btn danger del">حذف</button></div><div class="matchextra"><div class="teamstats"><h4>🟢 ${esc(m.home||'تیم اول')}</h4><div class="teamstatsgrid"><div><div class="matchlabel">🟨 کارت زرد</div><textarea data-k=homeYellowPlayers placeholder="نام بازیکن(ها)، هر نفر یک خط">${esc(m.homeYellowPlayers)}</textarea></div><div><div class="matchlabel">🟥 کارت قرمز</div><textarea data-k=homeRedPlayers placeholder="نام بازیکن(ها)، هر نفر یک خط">${esc(m.homeRedPlayers)}</textarea></div></div></div><div class="teamstats"><h4>🔵 ${esc(m.away||'تیم دوم')}</h4><div class="teamstatsgrid"><div><div class="matchlabel">🟨 کارت زرد</div><textarea data-k=awayYellowPlayers placeholder="نام بازیکن(ها)، هر نفر یک خط">${esc(m.awayYellowPlayers)}</textarea></div><div><div class="matchlabel">🟥 کارت قرمز</div><textarea data-k=awayRedPlayers placeholder="نام بازیکن(ها)، هر نفر یک خط">${esc(m.awayRedPlayers)}</textarea></div></div></div><div><div class="matchlabel">⚽ گلزنان تیم اول</div><textarea data-k=homeScorers>${esc(m.homeScorers||'')}</textarea></div><div><div class="matchlabel">⚽ گلزنان تیم دوم</div><textarea data-k=awayScorers>${esc(m.awayScorers||'')}</textarea></div></div><div class=matchhint>نام هر بازیکن اخطاری را در یک خط وارد کن.</div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn match-save">💾 ثبت مسابقه</button><span class="status match-save-status">تغییرات این بازی هنوز ذخیره نشده است.</span></div>`;d.querySelector('[data-k=stage]').value=m.stage||'group';d.querySelectorAll('input,select,textarea').forEach(x=>{x.oninput=()=>{syncMatch(i,d);const st=d.querySelector('.match-save-status');if(st)st.textContent='تغییرات ذخیره‌نشده است.'};x.onchange=()=>{syncMatch(i,d);const st=d.querySelector('.match-save-status');if(st)st.textContent='تغییرات ذخیره‌نشده است.'}});d.querySelector('.match-save').onclick=async function(){syncMatch(i,d);const activeIndex=rootData.tournaments.findIndex(function(t){return t.id===currentTournamentId;});if(activeIndex>=0)rootData.tournaments[activeIndex]=data;await saveToGitHub(d.querySelector('.match-save-status'),'ثبت نتیجه مسابقه شماره '+m.id)};d.querySelector('.del').onclick=()=>{data.matches.splice(i,1);renderMatches()};el.appendChild(d)})}function renderSchedule(){let el=$('scheduleList');el.innerHTML='';(data.schedule||[]).forEach((m,i)=>{let d=document.createElement('div');d.className='card';d.innerHTML=`<div class=grid2><div class=field><label>تاریخ نمایشی</label><input data-k=date value="${esc(m.date||'')}"></div><div class=field><label>ساعت</label><input data-k=time value="${esc(m.time||'')}"></div><div class=field><label>تیم اول</label>${teamSelect('home',m.home)}</div><div class=field><label>تیم دوم</label>${teamSelect('away',m.away)}</div><div class=field><label>زمان ISO</label><input data-k=iso value="${esc(m.iso||'')}"></div></div><button class="btn danger del">حذف</button>`;d.querySelectorAll('input,select').forEach(x=>{x.oninput=()=>data.schedule[i][x.dataset.k]=x.value;x.onchange=()=>data.schedule[i][x.dataset.k]=x.value});d.querySelector('.del').onclick=()=>{data.schedule.splice(i,1);renderSchedule()};el.appendChild(d)})}function renderScorers(){
-  let el=$('scorersList');el.innerHTML='';
-  (data.scorers||[]).forEach(function(m,i){
-    let d=document.createElement('div');d.className='grid';
-    d.innerHTML='<div class="field"><label>نام گلزن</label>'+rosterPlayerSelect('name',m.team,m.name)+'</div><div class="field"><label>تیم</label>'+teamSelect('team',m.team)+'</div><div class="field"><label>تعداد گل</label><input data-k="goals" type="number" value="'+(m.goals||0)+'"></div><button class="btn danger del" type="button">حذف</button>';
-    d.querySelectorAll('input,select').forEach(function(x){x.oninput=function(){data.scorers[i][x.dataset.k]=x.dataset.k==='goals'?+x.value:x.value;};x.onchange=function(){data.scorers[i][x.dataset.k]=x.dataset.k==='goals'?+x.value:x.value;if(x.dataset.k==='team')renderScorers();};});
-    d.querySelector('.del').onclick=function(){data.scorers.splice(i,1);renderScorers();};el.appendChild(d);
-  });
-}
-function renderKnockoutMatches(){let el=$('knockoutMatchesList');el.innerHTML='';(data.matches||[]).map((m,i)=>({m,i})).filter(x=>['qf','sf','final'].includes(x.m.stage)).forEach(({m,i})=>{let d=document.createElement('div');d.className='ko-row';d.innerHTML=`<div class=ko-top><div><b>${m.stage==='qf'?'یک‌چهارم':m.stage==='sf'?'نیمه‌نهایی':'فینال'}</b><br><span class=small>#${fa(m.id)}</span></div>${teamSelect('home',m.home)}${teamSelect('away',m.away)}${scoreSelect('homeScore',m.homeScore,'گل تیم اول')}${scoreSelect('awayScore',m.awayScore,'گل تیم دوم')}${scoreSelect('penaltiesHome',m.penaltiesHome,'پنالتی تیم اول')}${scoreSelect('penaltiesAway',m.penaltiesAway,'پنالتی تیم دوم')}<button class="btn danger del">حذف</button></div><div class=ko-extra><div class=ko-box><h4>🟢 ${esc(m.home||'تیم اول')}</h4><div class=grid2><div><div class=ko-label>🟨 کارت زرد</div><textarea data-k=homeYellowPlayers>${esc(m.homeYellowPlayers||'')}</textarea></div><div><div class=ko-label>🟥 کارت قرمز</div><textarea data-k=homeRedPlayers>${esc(m.homeRedPlayers||'')}</textarea></div></div><div class=ko-label>⚽ گلزنان</div><textarea data-k=homeScorers>${esc(m.homeScorers||'')}</textarea></div><div class=ko-box><h4>🔵 ${esc(m.away||'تیم دوم')}</h4><div class=grid2><div><div class=ko-label>🟨 کارت زرد</div><textarea data-k=awayYellowPlayers>${esc(m.awayYellowPlayers||'')}</textarea></div><div><div class=ko-label>🟥 کارت قرمز</div><textarea data-k=awayRedPlayers>${esc(m.awayRedPlayers||'')}</textarea></div></div><div class=ko-label>⚽ گلزنان</div><textarea data-k=awayScorers>${esc(m.awayScorers||'')}</textarea></div></div>`;d.querySelectorAll('input,select,textarea').forEach(x=>x.oninput=()=>syncKO(i,d));d.querySelector('.del').onclick=()=>{data.matches.splice(i,1);renderKnockoutMatches()};el.appendChild(d)})}function syncKO(i,d){let m=data.matches[i];['home','away','homeScorers','awayScorers','homeYellowPlayers','homeRedPlayers','awayYellowPlayers','awayRedPlayers'].forEach(k=>m[k]=d.querySelector('[data-k='+k+']').value);['homeScore','awayScore','penaltiesHome','penaltiesAway'].forEach(k=>{let v=d.querySelector('[data-k='+k+']').value;m[k]=v===''?null:+v});[['homeYellowCount','homeYellowPlayers'],['homeRedCount','homeRedPlayers'],['awayYellowCount','awayYellowPlayers'],['awayRedCount','awayRedPlayers']].forEach(([c,p])=>m[c]=cardNames(m[p]).length)}function addKO(stage){data.matches.push({id:Math.max(0,...data.matches.map(x=>+x.id||0))+1,home:'',away:'',homeScore:null,awayScore:null,stage,penaltiesHome:null,penaltiesAway:null,homeYellowPlayers:'',homeRedPlayers:'',awayYellowPlayers:'',awayRedPlayers:'',homeScorers:'',awayScorers:''});renderKnockoutMatches()}function populateWinnerSelects(){['qf1','qf2','qf3','qf4','sfwin1','sfwin2','champion'].forEach(id=>{const e=$(id);e.innerHTML='<option value="">انتخاب تیم</option>'+teamList().map(t=>`<option>${esc(t)}</option>`).join('')})}$('refreshDashboard').onclick=renderDashboard;$('tournamentSelect').onchange=()=>switchTournament($('tournamentSelect').value);$('addMatch').onclick=()=>{data.matches.push({id:Math.max(0,...data.matches.map(x=>+x.id||0))+1,home:'',away:'',homeScore:null,awayScore:null,stage:'group',homeYellowPlayers:'',homeRedPlayers:'',awayYellowPlayers:'',awayRedPlayers:'',homeScorers:'',awayScorers:''});renderMatches()};$('addQF').onclick=()=>addKO('qf');$('addSF').onclick=()=>addKO('sf');$('addFinal').onclick=()=>addKO('final');$('addSchedule').onclick=()=>{data.schedule=data.schedule||[];data.schedule.push({});renderSchedule()};$('addScorer').onclick=()=>{data.scorers=data.scorers||[];data.scorers.push({name:'',team:'',goals:0});renderScorers()};$('saveTournamentMeta').onclick=()=>{if(isArchiveSelected())return;data.name=$('tournamentName').value.trim();data.title=data.name;data.year=$('tournamentYear').value.trim();data.edition=$('tournamentEdition').value.trim();renderTournamentManager()};$('addTournament').onclick=()=>{const id='tournament-'+Date.now();const t={id,name:'مسابقه جدید',title:'مسابقه جدید',year:'',edition:'',teams:[],matches:[],schedule:[],scorers:[],knockout:{},stats:{yellow:0,red:0}};rootData.tournaments.push(t);currentTournamentId=id;data=t;renderTournamentManager()};$('deleteTournament').onclick=()=>{if(isArchiveSelected()){alert('آرشیو کوپا سوزا ۲۰۲۶ قابل حذف نیست.');return;}if(rootData.tournaments.length<=1)return;if(!confirm('مسابقه فعال حذف شود؟'))return;rootData.tournaments.splice(rootData.tournaments.findIndex(t=>t.id===currentTournamentId),1);currentTournamentId=rootData.tournaments[0].id;data=rootData.tournaments[0];renderTournamentManager()};$('disciplineRule').oninput=e=>{if(!isArchiveSelected())data.disciplineRule=e.target.value;};$('reload').onclick=async()=>{await getFile();render()};$('save').onclick=()=>saveToGitHub($('saveStatus'),'ذخیره تورنمنت فعال از پنل کوپا سوزا');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('panel-'+b.dataset.tab).classList.add('active')});
-// ===== بانک تیم‌ها و بازیکنان، ذخیره مستقیم در GitHub =====
-function ensureRosterData(){
-  if(!rosterDb||typeof rosterDb!=='object'||Array.isArray(rosterDb))rosterDb={schemaVersion:1,teams:[],rosters:{}};
-  if(!Array.isArray(rosterDb.teams))rosterDb.teams=[];
-  if(!rosterDb.rosters||typeof rosterDb.rosters!=='object'||Array.isArray(rosterDb.rosters))rosterDb.rosters={};
-  rosterDb.teams=Array.from(new Set(rosterDb.teams.map(function(t){return String(typeof t==='string'?t:(t&&t.name)||'').trim();}).filter(Boolean)));
-  rosterDb.teams.forEach(function(team){
-    if(!Array.isArray(rosterDb.rosters[team]))rosterDb.rosters[team]=[];
-    rosterDb.rosters[team]=rosterDb.rosters[team].map(function(p){if(typeof p==='string')return {name:p.trim(),number:''};return {name:String(p.name||p.full_name||'').trim(),number:String(p.number||'').trim()};});
-  });
-}
-function rosterPlayers(team){
-  ensureRosterData();return (rosterDb.rosters[team]||[]).filter(function(p){return String(p.name||'').trim();});
-}
-function rosterPlayerSelect(k,team,current){
-  const val=String(current||'');
-  const names=rosterPlayers(team).map(function(p){return String(p.name||'').trim();});
-  if(val && names.indexOf(val)===-1) names.unshift(val);
-  const options=['<option value="">انتخاب بازیکن</option>'].concat(names.map(function(n){
-    return '<option value="'+esc(n)+'" '+(n===val?'selected':'')+'>'+esc(n)+'</option>';
-  })).join('');
-  return '<select data-k="'+esc(k)+'">'+options+'</select>';
-}
-function playerPicker(k,team,value,allowOwnGoal){
-  const current=cardNames(value||'');
-  const names=rosterPlayers(team).map(function(p){return String(p.name||'').trim();});
-  current.forEach(function(n){if(n && names.indexOf(n)===-1) names.push(n);});
-  if(allowOwnGoal && names.indexOf('گل بخودی')===-1) names.push('گل بخودی');
-  const options=['<option value="">انتخاب بازیکن از فهرست</option>'].concat(names.map(function(n){
-    return '<option value="'+esc(n)+'">'+esc(n)+'</option>';
-  })).join('');
-  return '<div class="player-picker"><div class="player-picker-row"><select data-player-pick="'+esc(k)+'">'+options+'</select><button type="button" class="btn secondary" data-add-player="'+esc(k)+'">افزودن</button><button type="button" class="btn secondary" data-remove-last="'+esc(k)+'">حذف آخرین</button><button type="button" class="btn danger" data-clear-players="'+esc(k)+'">پاک‌کردن</button></div><textarea data-k="'+esc(k)+'" readonly placeholder="نام‌های انتخاب‌شده">'+esc(value||'')+'</textarea></div>';
-}
-function wirePlayerPickers(container,onUpdate){
-  container.querySelectorAll('[data-add-player]').forEach(function(button){
-    button.onclick=function(){
-      const key=button.dataset.addPlayer;
-      const select=container.querySelector('[data-player-pick="'+key+'"]');
-      const field=container.querySelector('[data-k="'+key+'"]');
-      if(!select || !field || !select.value) return;
-      const entries=cardNames(field.value);
-      entries.push(select.value);
-      field.value=entries.join('\n');
-      select.value='';
-      onUpdate();
-    };
-  });
-  container.querySelectorAll('[data-remove-last]').forEach(function(button){
-    button.onclick=function(){
-      const key=button.dataset.removeLast;
-      const field=container.querySelector('[data-k="'+key+'"]');
-      if(!field) return;
-      const entries=cardNames(field.value);
-      entries.pop();
-      field.value=entries.join('\n');
-      onUpdate();
-    };
-  });
-  container.querySelectorAll('[data-clear-players]').forEach(function(button){
-    button.onclick=function(){
-      const key=button.dataset.clearPlayers;
-      const field=container.querySelector('[data-k="'+key+'"]');
-      if(!field) return;
-      field.value='';
-      onUpdate();
-    };
-  });
-}
-function activeTournamentTeamNames(){return teamList();}
-function renderRosterManager(){
-  ensureRosterData();const activeTeams=activeTournamentTeamNames();const teams=activeTeams.filter(function(team){return rosterDb.teams.indexOf(team)!==-1;});
-  const old=$('rosterTeamSelect').value;
-  $('rosterTeamSelect').innerHTML=teams.map(function(team){return '<option value="'+esc(team)+'">'+esc(team)+'</option>';}).join('');
-  const selected=teams.indexOf(old)!==-1?old:(teams[0]||'');$('rosterTeamSelect').value=selected;
-  const bankSelect=$('rosterBankTeamSelect');if(bankSelect){const candidates=rosterDb.teams.filter(function(team){return activeTeams.indexOf(team)===-1;});bankSelect.innerHTML='<option value="">انتخاب تیم از بانک کلی</option>'+candidates.map(function(team){return '<option value="'+esc(team)+'">'+esc(team)+'</option>';}).join('');}
-  $('rosterCurrentTitle').textContent=selected?'بازیکنان: '+selected:'بازیکنان تیم‌های تورنمنت فعال';
-  const total=teams.reduce(function(sum,team){return sum+rosterPlayers(team).length;},0);$('rosterCounts').textContent=fa(teams.length)+' تیم فعال · '+fa(total)+' بازیکن';
-  if(!selected){$('rosterTableWrap').innerHTML='<div class="status">در این تورنمنت هنوز تیمی ثبت نشده است. از فهرست بانک کلی، یک تیم اضافه کن.</div>';return;}
-  const players=rosterDb.rosters[selected]||[];
-  if(!players.length){$('rosterTableWrap').innerHTML='<div class="status">برای این تیم هنوز بازیکنی ثبت نشده؛ روی «افزودن بازیکن» بزن.</div>';return;}
-  $('rosterTableWrap').innerHTML='<div style="overflow:auto"><table class="roster-table"><thead><tr><th>#</th><th>نام و نام خانوادگی *</th><th>شماره پیراهن</th><th>حذف</th></tr></thead><tbody>'+players.map(function(player,i){return '<tr><td>'+fa(i+1)+'</td><td><input data-roster-index="'+i+'" data-roster-field="name" value="'+esc(player.name||'')+'" placeholder="نام کامل بازیکن"></td><td><input data-roster-index="'+i+'" data-roster-field="number" value="'+esc(player.number||'')+'" placeholder="—"></td><td><button type="button" class="btn danger" data-roster-delete="'+i+'">حذف</button></td></tr>';}).join('')+'</tbody></table></div>';
-  $('rosterTableWrap').querySelectorAll('[data-roster-field]').forEach(function(input){input.oninput=function(){const index=Number(input.dataset.rosterIndex),field=input.dataset.rosterField;if(rosterDb.rosters[selected]&&rosterDb.rosters[selected][index])rosterDb.rosters[selected][index][field]=input.value;};});
-  $('rosterTableWrap').querySelectorAll('[data-roster-delete]').forEach(function(button){button.onclick=function(){const index=Number(button.dataset.rosterDelete);if(!confirm('این بازیکن از بانک تیم مستقل حذف شود؟'))return;rosterDb.rosters[selected].splice(index,1);renderRosterManager();};});
-}
-function addRosterTeam(){
-  const name=$('rosterNewTeamName').value.trim();if(!name){$('rosterSaveStatus').textContent='نام تیم را وارد کن.';return;}ensureRosterData();
-  if(rosterDb.teams.indexOf(name)!==-1){$('rosterSaveStatus').textContent='این تیم قبلاً در بانک مستقل ثبت شده است.';return;}
-  rosterDb.teams.push(name);rosterDb.rosters[name]=[];$('rosterNewTeamName').value='';renderRosterManager();$('rosterSaveStatus').textContent='تیم به بانک کلی اضافه شد؛ برای افزودن به تورنمنت فعال آن را از فهرست جداگانه انتخاب کن.';
-}
-async function saveToGitHub(statusElement,message){
-  try{
-    if(isArchiveSelected())throw new Error('آرشیو کوپا سوزا ۲۰۲۶ قفل است و قابل ویرایش نیست. ابتدا یک تورنمنت جدید بساز و آن را انتخاب کن.');
-    if(!sha)throw new Error('ابتدا اتصال به GitHub را برقرار کن.');
-    rootData.updatedAt=new Date().toISOString();const content=btoa(unescape(encodeURIComponent(JSON.stringify(rootData,null,2))));
-    const response=await fetch(apiBase()+'/contents/copa-data.json',{method:'PUT',headers:headers(),body:JSON.stringify({message:message||'بروزرسانی تورنمنت کوپا سوزا',content:content,branch:$('branch').value.trim(),sha:sha})});
-    const result=await response.json();if(!response.ok)throw new Error(result.message||'خطا در ذخیره GitHub: '+response.status);sha=result.content.sha;
-    if(statusElement)statusElement.textContent='✅ تورنمنت فعال ذخیره شد؛ آرشیو کوپا سوزا ۲۰۲۶ از این عملیات تغییر نکرد.';
-  }catch(error){if(statusElement)statusElement.textContent='❌ '+error.message;}
-}
-function renameRosterTeam(){
-  const oldName=$('rosterTeamSelect').value,newName=String($('rosterRenameTeamName').value||'').trim();
-  if(!oldName){$('rosterSaveStatus').textContent='ابتدا تیم را انتخاب کن.';return;}if(!newName){$('rosterSaveStatus').textContent='نام جدید تیم را وارد کن.';return;}if(newName===oldName){$('rosterSaveStatus').textContent='نام جدید با نام فعلی یکسان است.';return;}if(rosterDb.teams.indexOf(newName)!==-1){$('rosterSaveStatus').textContent='تیمی با این نام از قبل در بانک وجود دارد.';return;}
-  const used=(rootData.tournaments||[]).some(function(t){if(t.id==='copa-suza-2026')return false;return (Array.isArray(t.teams)?t.teams:[]).some(function(x){return (typeof x==='string'?x:x&&x.name)===oldName;})||(t.matches||[]).some(function(m){return m.home===oldName||m.away===oldName;})||(t.schedule||[]).some(function(m){return m.home===oldName||m.away===oldName;})||(t.scorers||[]).some(function(s){return s.team===oldName;});});
-  if(used){$('rosterSaveStatus').textContent='این تیم در یک تورنمنت غیرآرشیوی استفاده شده؛ ابتدا آن تورنمنت را اصلاح کن.';return;}
-  rosterDb.teams=rosterDb.teams.map(function(t){return t===oldName?newName:t;});rosterDb.rosters[newName]=rosterDb.rosters[oldName]||[];delete rosterDb.rosters[oldName];$('rosterRenameTeamName').value='';renderRosterManager();$('rosterTeamSelect').value=newName;renderRosterManager();$('rosterSaveStatus').textContent='نام تیم فقط در بانک مستقل تغییر کرد؛ آرشیو ۲۰۲۶ دست‌نخورده ماند. برای ثبت دائمی ذخیره بانک را بزن.';
-}
-function deleteRosterTeam(){
-  const team=$('rosterTeamSelect').value;if(!team){$('rosterSaveStatus').textContent='ابتدا تیم را انتخاب کن.';return;}
-  const used=(rootData.tournaments||[]).some(function(t){if(t.id==='copa-suza-2026')return false;return (Array.isArray(t.teams)?t.teams:[]).some(function(x){return (typeof x==='string'?x:x&&x.name)===team;})||(t.matches||[]).some(function(m){return m.home===team||m.away===team;})||(t.schedule||[]).some(function(m){return m.home===team||m.away===team;})||(t.scorers||[]).some(function(s){return s.team===team;})||JSON.stringify(t.knockout||{}).includes(team);});
-  if(used){$('rosterSaveStatus').textContent='این تیم در یک تورنمنت فعال استفاده شده و برای حفظ اطلاعات قابل حذف نیست.';return;}
-  if(!confirm('تیم «'+team+'» و فهرست بازیکنانش فقط از بانک مستقل حذف شود؟'))return;
-  rosterDb.teams=rosterDb.teams.filter(function(t){return t!==team;});delete rosterDb.rosters[team];renderRosterManager();$('rosterSaveStatus').textContent='تیم فقط از بانک مستقل حذف شد؛ آرشیو کوپا سوزا ۲۰۲۶ تغییر نکرد. برای ثبت دائمی ذخیره بانک را بزن.';
-}
-async function saveRosterBank(){
-  ensureRosterData();
-  for(const team of rosterDb.teams){const players=rosterDb.rosters[team]||[];const empty=players.findIndex(function(p){return !String(p.name||'').trim();});if(empty!==-1){$('rosterTeamSelect').value=team;renderRosterManager();$('rosterSaveStatus').textContent='❌ نام بازیکن ردیف '+fa(empty+1)+' در تیم «'+team+'» خالی است؛ تکمیلش کن یا ردیف را حذف کن.';return;}}
-  try{
-    if(!rosterSha)throw new Error('نسخه فایل team-database.json دریافت نشده؛ دوباره اتصال به GitHub را بزن.');
-    rosterDb.updatedAt=new Date().toISOString();const content=btoa(unescape(encodeURIComponent(JSON.stringify(rosterDb,null,2))));
-    const response=await fetch(apiBase()+'/contents/team-database.json',{method:'PUT',headers:headers(),body:JSON.stringify({message:'به‌روزرسانی بانک مستقل تیم‌ها و بازیکنان',content:content,branch:$('branch').value.trim(),sha:rosterSha})});
-    const result=await response.json();if(!response.ok)throw new Error(result.message||'خطا در ذخیره بانک GitHub: '+response.status);rosterSha=result.content.sha;
-    $('rosterSaveStatus').textContent='✅ بانک مستقل در team-database.json ذخیره شد؛ آرشیو ۲۰۲۶ تغییر نکرد.';
-  }catch(error){$('rosterSaveStatus').textContent='❌ '+error.message;}
-}
-function renderMatches(){
-  const el=$('matchesList');el.innerHTML='';
-  (data.matches||[]).forEach(function(m,i){
-    const d=document.createElement('div');d.className='matchrow';
-    d.innerHTML=[
-      '<div class="matchtop"><div>'+fa(m.id)+'</div>'+teamSelect('home',m.home)+teamSelect('away',m.away)+scoreSelect('homeScore',m.homeScore,'گل تیم اول')+scoreSelect('awayScore',m.awayScore,'گل تیم دوم')+'<select data-k="stage"><option value="group">گروهی</option><option value="qf">یک‌چهارم</option><option value="sf">نیمه‌نهایی</option><option value="final">فینال</option></select><button type="button" class="btn danger del">حذف</button></div>',
-      '<div class="matchextra"><div class="teamstats"><h4>🟢 '+esc(m.home||'تیم اول')+'</h4><div class="teamstatsgrid"><div><div class="matchlabel">🟨 کارت زرد</div>'+playerPicker('homeYellowPlayers',m.home,m.homeYellowPlayers,false)+'</div><div><div class="matchlabel">🟥 کارت قرمز</div>'+playerPicker('homeRedPlayers',m.home,m.homeRedPlayers,false)+'</div></div></div>',
-      '<div class="teamstats"><h4>🔵 '+esc(m.away||'تیم دوم')+'</h4><div class="teamstatsgrid"><div><div class="matchlabel">🟨 کارت زرد</div>'+playerPicker('awayYellowPlayers',m.away,m.awayYellowPlayers,false)+'</div><div><div class="matchlabel">🟥 کارت قرمز</div>'+playerPicker('awayRedPlayers',m.away,m.awayRedPlayers,false)+'</div></div></div>',
-      '<div><div class="matchlabel">⚽ گلزنان تیم اول</div>'+playerPicker('homeScorers',m.home,m.homeScorers,true)+'</div><div><div class="matchlabel">⚽ گلزنان تیم دوم</div>'+playerPicker('awayScorers',m.away,m.awayScorers,true)+'</div></div><div class="matchhint">برای هر گل، گلزن را از فهرست انتخاب و «افزودن» را بزن؛ اگر بازیکن چند گل زده، چند بار انتخابش کن.</div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn match-save">💾 ثبت مسابقه</button><span class="status match-save-status">تغییرات این بازی هنوز ذخیره نشده است.</span></div>'
-    ].join('');
-    d.querySelector('[data-k="stage"]').value=m.stage||'group';
-    d.querySelectorAll('input,select,textarea').forEach(function(x){
-      x.oninput=function(){syncMatch(i,d);};
-      x.onchange=function(){
-        syncMatch(i,d);
-        if(x.dataset.k==='home'||x.dataset.k==='away') renderMatches();
-      };
-    });
-    wirePlayerPickers(d,function(){syncMatch(i,d);});
-    d.querySelector('.match-save').onclick=function(){
-      syncMatch(i,d);
-      saveToGitHub(d.querySelector('.match-save-status'),'ثبت نتیجه مسابقه شماره '+m.id);
-    };
-    d.querySelectorAll('input,select,textarea').forEach(function(x){
-      x.addEventListener('input',function(){const st=d.querySelector('.match-save-status');if(st)st.textContent='تغییرات ذخیره‌نشده است.';});
-    });
-    d.querySelector('.del').onclick=function(){data.matches.splice(i,1);renderMatches();};
-    el.appendChild(d);
-  });
-}
-function renderSchedule(){
-  let el=$('scheduleList');el.innerHTML='';
-  (data.schedule||[]).forEach(function(m,i){
-    let d=document.createElement('div');d.className='card';
-    d.innerHTML='<div class="grid2"><div class="field"><label>تاریخ نمایشی</label><input data-k="date" value="'+esc(m.date||'')+'"></div><div class="field"><label>ساعت</label><input data-k="time" value="'+esc(m.time||'')+'"></div><div class="field"><label>تیم اول</label>'+teamSelect('home',m.home)+'</div><div class="field"><label>تیم دوم</label>'+teamSelect('away',m.away)+'</div><div class="field"><label>زمان ISO</label><input data-k="iso" value="'+esc(m.iso||'')+'"></div></div><button class="btn danger del">حذف</button>';
-    d.querySelectorAll('input,select').forEach(function(x){x.oninput=function(){data.schedule[i][x.dataset.k]=x.value;};x.onchange=function(){data.schedule[i][x.dataset.k]=x.value;};});
-    d.querySelector('.del').onclick=function(){data.schedule.splice(i,1);renderSchedule();};
-    el.appendChild(d);
-  });
-}
-function renderScorers(){
-  let el=$('scorersList');el.innerHTML='';
-  (data.scorers||[]).forEach(function(m,i){
-    let d=document.createElement('div');d.className='grid';
-    d.innerHTML='<div class="field"><label>نام گلزن</label>'+rosterPlayerSelect('name',m.team,m.name)+'</div><div class="field"><label>تیم</label>'+teamSelect('team',m.team)+'</div><div class="field"><label>تعداد گل</label><input data-k="goals" type="number" value="'+(m.goals||0)+'"></div><button class="btn danger del" type="button">حذف</button>';
-    d.querySelectorAll('input,select').forEach(function(x){x.oninput=function(){data.scorers[i][x.dataset.k]=x.dataset.k==='goals'?+x.value:x.value;};x.onchange=function(){data.scorers[i][x.dataset.k]=x.dataset.k==='goals'?+x.value:x.value;if(x.dataset.k==='team')renderScorers();};});
-    d.querySelector('.del').onclick=function(){data.scorers.splice(i,1);renderScorers();};el.appendChild(d);
-  });
-}
-function renderKnockoutMatches(){
-  let el=$('knockoutMatchesList');el.innerHTML='';
-  (data.matches||[]).map(function(m,i){return {m:m,i:i};}).filter(function(x){return ['qf','sf','final'].includes(x.m.stage);}).forEach(function(item){
-    const m=item.m,i=item.i;let d=document.createElement('div');d.className='ko-row';
-    d.innerHTML=[
-      '<div class="ko-top"><div><b>'+(m.stage==='qf'?'یک‌چهارم':m.stage==='sf'?'نیمه‌نهایی':'فینال')+'</b><br><span class="small">#'+fa(m.id)+'</span></div>'+teamSelect('home',m.home)+teamSelect('away',m.away)+scoreSelect('homeScore',m.homeScore,'گل تیم اول')+scoreSelect('awayScore',m.awayScore,'گل تیم دوم')+scoreSelect('penaltiesHome',m.penaltiesHome,'پنالتی تیم اول')+scoreSelect('penaltiesAway',m.penaltiesAway,'پنالتی تیم دوم')+'<button type="button" class="btn danger del">حذف</button></div>',
-      '<div class="ko-extra"><div class="ko-box"><h4>🟢 '+esc(m.home||'تیم اول')+'</h4><div class="grid2"><div><div class="ko-label">🟨 کارت زرد</div>'+playerPicker('homeYellowPlayers',m.home,m.homeYellowPlayers,false)+'</div><div><div class="ko-label">🟥 کارت قرمز</div>'+playerPicker('homeRedPlayers',m.home,m.homeRedPlayers,false)+'</div></div><div class="ko-label">⚽ گلزنان</div>'+playerPicker('homeScorers',m.home,m.homeScorers,true)+'</div>',
-      '<div class="ko-box"><h4>🔵 '+esc(m.away||'تیم دوم')+'</h4><div class="grid2"><div><div class="ko-label">🟨 کارت زرد</div>'+playerPicker('awayYellowPlayers',m.away,m.awayYellowPlayers,false)+'</div><div><div class="ko-label">🟥 کارت قرمز</div>'+playerPicker('awayRedPlayers',m.away,m.awayRedPlayers,false)+'</div></div><div class="ko-label">⚽ گلزنان</div>'+playerPicker('awayScorers',m.away,m.awayScorers,true)+'</div></div>'
-    ].join('');
-    d.querySelectorAll('input,select,textarea').forEach(function(x){
-      x.oninput=function(){syncKO(i,d);};
-      x.onchange=function(){
-        syncKO(i,d);
-        if(x.dataset.k==='home'||x.dataset.k==='away') renderKnockoutMatches();
-      };
-    });
-    wirePlayerPickers(d,function(){syncKO(i,d);});
-    d.querySelector('.del').onclick=function(){data.matches.splice(i,1);renderKnockoutMatches();};
-    el.appendChild(d);
-  });
-}
-$('runPublishCheck').onclick=runPublishReadinessCheck;
-$('rosterTeamSelect').onchange=renderRosterManager;
-$('rosterAddTeam').onclick=addRosterTeam;
-$('rosterAddTeamToTournament').onclick=addSelectedBankTeamToTournament;
-$('rosterNewTeamName').onkeydown=function(e){if(e.key==='Enter') addRosterTeam();};
-$('rosterRenameTeam').onclick=renameRosterTeam;
-$('rosterDeleteTeam').onclick=deleteRosterTeam;
-$('rosterAddPlayer').onclick=function(){
-  const team=$('rosterTeamSelect').value;
-  if(!team) return;
-  if(!rosterDb.rosters[team]) rosterDb.rosters[team]=[];
-  rosterDb.rosters[team].push({name:'',number:''});
-  renderRosterManager();
-  const inputs=$('rosterTableWrap').querySelectorAll('[data-roster-field="name"]');
-  if(inputs.length) inputs[inputs.length-1].focus();
-};
-function rosterNameKey(value){return String(value||'').trim().replace(/\s+/g,' ').replace(/[يى]/g,'ی').replace(/ك/g,'ک').toLocaleLowerCase();}
-function addRosterBulkPlayers(){
-  const team=$('rosterTeamSelect').value;
-  if(!team){$('rosterBulkStatus').textContent='ابتدا تیم را از فهرست کشویی انتخاب کن.';return;}
-  const names=String($('rosterBulkNames').value||'').split(/\r?\n/).map(function(n){return n.trim().replace(/\s+/g,' ');}).filter(Boolean);
-  if(!names.length){$('rosterBulkStatus').textContent='فهرست اسامی را وارد کن.';return;}
-  if(!rosterDb.rosters[team])rosterDb.rosters[team]=[];
-  const existing=rosterDb.rosters[team].map(function(p){return rosterNameKey(p.name);});let added=0;
-  names.forEach(function(name){const key=rosterNameKey(name);if(existing.indexOf(key)!==-1)return;rosterDb.rosters[team].push({name:name,number:''});existing.push(key);added++;});
-  $('rosterBulkNames').value='';renderRosterManager();$('rosterBulkStatus').textContent='✅ '+fa(added)+' بازیکن به بانک مستقل اضافه شد. برای ثبت دائمی «ذخیره بانک در GitHub» را بزن.';
-}
-$('rosterSave').onclick=saveRosterBank;
-$('rosterBulkAdd').onclick=addRosterBulkPlayers;
-$('save').onclick=function(){saveToGitHub($('saveStatus'),'بروزرسانی اطلاعات کوپا سوزا از پنل مدیریت');};
-document.querySelector('[data-tab="players"]').addEventListener('click',renderRosterManager);
-</script></body></html>
+function setActive(btn){document.querySelectorAll('.nav button[data-tab]').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+function syncActive(){const d=frame.contentDocument;if(!d)return;const active=d.querySelector('.tab.active');if(active){const b=document.querySelector('.nav button[data-tab="'+active.dataset.tab+'"]');if(b)setActive(b)}}
+frame.addEventListener('load',()=>setTimeout(enhanceLegacy,50));
+</script>
+</body>
+</html>
