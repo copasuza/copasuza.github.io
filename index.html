@@ -115,16 +115,37 @@ const teamModal=document.getElementById('team-modal'),teamModalClose=document.ge
     const matches=(data.matches||[]).filter(m=>m.home&&m.away).sort((a,b)=>(+a.id||0)-(+b.id||0)),group=matches.filter(m=>m.stage==='group'),finished=matches.filter(m=>m.homeScore!=null&&m.awayScore!=null);const goals=finished.reduce((n,m)=>n+Number(m.homeScore||0)+Number(m.awayScore||0),0);const draws=finished.filter(m=>m.homeScore===m.awayScore).length;
     updateDiscipline(matches);
     function updateDiscipline(allMatches){
-      const players={};
       const names=value=>{if(Array.isArray(value))return value.map(x=>typeof x==='string'?x.trim():String(x?.name||x?.player||'').trim()).filter(Boolean);const str=String(value||'').trim();if(!str)return [];return str.split(/[،,;]+/).flatMap(x=>x.split(String.fromCharCode(10))).map(x=>x.trim()).filter(Boolean)};
-      const add=(name,team,type,match)=>{const key=name.toLocaleLowerCase('fa')+'||'+team;if(!players[key])players[key]={name,team,yellow:0,red:0,matches:[]};if(type==='yellow')players[key].yellow++;else players[key].red++;if(match&&!players[key].matches.includes(match))players[key].matches.push(match)};
-      allMatches.forEach(m=>{names(m.homeYellowPlayers).forEach(n=>add(n,m.home,'yellow',m.id));names(m.homeRedPlayers).forEach(n=>add(n,m.home,'red',m.id));names(m.awayYellowPlayers).forEach(n=>add(n,m.away,'yellow',m.id));names(m.awayRedPlayers).forEach(n=>add(n,m.away,'red',m.id));});
-      const list=Object.values(players).sort((a,b)=>(b.yellow>=2)-(a.yellow>=2)||b.yellow-a.yellow||b.red-a.red||a.name.localeCompare(b.name,'fa'));
-      const suspended=list.filter(p=>p.yellow>=2),sentOff=list.filter(p=>p.red>0);
-      const summary=document.getElementById('discipline-summary');if(summary)summary.innerHTML=`<div class="statcard"><div class="num">${fa(suspended.length)}</div><div class="label">بازیکنان دو اخطاره</div></div><div class="statcard"><div class="num">${fa(sentOff.length)}</div><div class="label">بازیکنان اخراج‌شده</div></div>`;
+      const ordered=allMatches.slice().sort((a,b)=>(Number(a.id)||0)-(Number(b.id)||0));
+      const booked={};
+      const keyFor=(name,team)=>name.toLocaleLowerCase('fa').replace(/\s+/g,' ').trim()+'||'+team;
+      ordered.forEach((m,index)=>{
+        const completed=m.homeScore!=null&&m.awayScore!=null;
+        [['homeYellowPlayers',m.home,'yellow'],['awayYellowPlayers',m.away,'yellow'],['homeRedPlayers',m.home,'red'],['awayRedPlayers',m.away,'red']].forEach(([field,team,type])=>{
+          names(m[field]).forEach(name=>{
+            const key=keyFor(name,team);
+            if(!booked[key])booked[key]={name,team,yellows:0,events:[]};
+            if(type==='yellow')booked[key].yellows++;
+            const trigger=type==='red'||(type==='yellow'&&booked[key].yellows===2);
+            if(trigger)booked[key].events.push({index,match:m,reason:type==='red'?'کارت قرمز':'دو کارت زرد'});
+          });
+        });
+      });
+      const pending=[];
+      Object.values(booked).forEach(p=>{
+        p.events.forEach(event=>{
+          const next=ordered.find((m,i)=>i>event.index&&(m.home===p.team||m.away===p.team));
+          if(next&&(next.homeScore==null||next.awayScore==null)){
+            if(!pending.some(x=>x.name===p.name&&x.team===p.team))pending.push({name:p.name,team:p.team,reason:event.reason,nextMatch:next});
+          }
+        });
+      });
+      const summary=document.getElementById('discipline-summary');
+      if(summary)summary.innerHTML=`<div class="statcard"><div class="num">${fa(pending.length)}</div><div class="label">محرومان بازی بعد</div></div>`;
       const box=document.getElementById('discipline-list');if(!box)return;
-      if(!list.length){box.innerHTML='<p class="empty">هنوز نام بازیکنی برای کارت‌ها ثبت نشده است.</p>';return;}
-      box.innerHTML=`<div style="overflow-x:auto"><table class="data-table" style="width:100%;border-collapse:collapse"><thead><tr><th>بازیکن</th><th>تیم</th><th>🟨 زرد</th><th>🟥 قرمز</th><th>وضعیت</th></tr></thead><tbody>${list.map(p=>`<tr><td>${esc(p.name)}</td><td>${esc(p.team)}</td><td>${fa(p.yellow)}</td><td>${fa(p.red)}</td><td>${p.yellow>=2?'<b style="color:#b45309">محروم؛ دو اخطاره</b>':p.red>0?'<b style="color:#dc2626">دارای کارت قرمز</b>':'—'}</td></tr>`).join('')}</tbody></table></div>`;
+      if(!pending.length){box.innerHTML='<p class="empty">در حال حاضر بازیکن محرومی برای بازی بعدی ثبت نشده است.</p>';return;}
+      pending.sort((a,b)=>a.team.localeCompare(b.team,'fa')||a.name.localeCompare(b.name,'fa'));
+      box.innerHTML=`<div style="overflow-x:auto"><table class="data-table" style="width:100%;border-collapse:collapse"><thead><tr><th>بازیکن محروم</th><th>تیم</th><th>دلیل محرومیت</th><th>بازی بعدی تیم</th></tr></thead><tbody>${pending.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.team)}</td><td>${esc(p.reason)}</td><td>${esc(p.nextMatch.home)} – ${esc(p.nextMatch.away)}</td></tr>`).join('')}</tbody></table></div>`;
     }
     const baseYellow=Number((data.stats&&data.stats.yellow)||0),baseRed=Number((data.stats&&data.stats.red)||0);const newMatches=matches.filter(m=>Number(m.id||0)>24);const isArchive=(data.id||'')==='copa-suza-2026';const yellow=isArchive?baseYellow+newMatches.reduce((n,m)=>n+Number(m.homeYellowCount||0)+Number(m.awayYellowCount||0),0):matches.reduce((n,m)=>n+Number(m.homeYellowCount??m.yellowCount??0)+Number(m.awayYellowCount||0),0);const red=isArchive?baseRed+newMatches.reduce((n,m)=>n+Number(m.homeRedCount||0)+Number(m.awayRedCount||0),0):matches.reduce((n,m)=>n+Number(m.homeRedCount??m.redCount??0)+Number(m.awayRedCount||0),0);
     document.querySelectorAll('.stats .statcard .num').forEach((el,i)=>el.textContent=fa([finished.length,goals,finished.length?(goals/finished.length).toFixed(2):'0.00',yellow,red,draws][i]));
