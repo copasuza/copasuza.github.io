@@ -83,6 +83,7 @@ function enhanceLegacy(){
  function bindMatchSaveButtons(){
    d.querySelectorAll('button').forEach(btn=>{
      if(!/ثبت\s*مسابقه/.test(btn.textContent||''))return;
+     if(btn.classList.contains('match-save'))return;
      if(btn.dataset.copaSaveBound)return;
      btn.dataset.copaSaveBound='1';
      btn.addEventListener('click',function(e){
