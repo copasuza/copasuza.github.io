@@ -116,20 +116,25 @@ function renderTournamentManager(){$('tournamentSelect').innerHTML=rootData.tour
   });
   const rows=Object.values(standings).sort(function(a,b){return b.pts-a.pts||(b.gf-b.ga)-(a.gf-a.ga)||b.gf-a.gf||a.team.localeCompare(b.team,'fa');});
   $('dashStandings').innerHTML=rows.length?'<table style="'+tableStyle+'"><thead><tr>'+['#','تیم','بازی','برد','مساوی','باخت','گل زده','گل خورده','تفاضل','امتیاز'].map(function(x){return '<th style="'+thStyle+'">'+x+'</th>';}).join('')+'</tr></thead><tbody>'+rows.map(function(x,i){return '<tr><td style="'+tdStyle+'">'+fa(i+1)+'</td><td style="'+tdStyle+'">'+esc(x.team)+'</td><td style="'+tdStyle+'">'+fa(x.p)+'</td><td style="'+tdStyle+'">'+fa(x.w)+'</td><td style="'+tdStyle+'">'+fa(x.d)+'</td><td style="'+tdStyle+'">'+fa(x.l)+'</td><td style="'+tdStyle+'">'+fa(x.gf)+'</td><td style="'+tdStyle+'">'+fa(x.ga)+'</td><td style="'+tdStyle+'">'+fa(x.gf-x.ga)+'</td><td style="'+tdStyle+'"><b>'+fa(x.pts)+'</b></td></tr>';}).join('')+'</tbody></table>':'<div class="notice">هنوز نتیجه کامل و قابل محاسبه‌ای برای مرحله گروهی ثبت نشده است.</div>';
-  const scorerTotals={};
-  matches.forEach(function(m){
-    if(m.homeScore===null||m.homeScore===undefined||m.homeScore===''||m.awayScore===null||m.awayScore===undefined||m.awayScore==='')return;
-    [['homeScorers',m.home],['awayScorers',m.away]].forEach(function(pair){
-      cardNames(m[pair[0]]).forEach(function(rawName){
-        const name=String(rawName||'').trim();
-        if(!name||/گل\s*بخودی|گل\s*به\s*خودی|گل‌به‌خودی|own\s*goal/i.test(name))return;
-        const key=name+'||'+String(pair[1]||'').trim();
-        if(!scorerTotals[key])scorerTotals[key]={name:name,team:String(pair[1]||'').trim(),goals:0};
-        scorerTotals[key].goals++;
+  let scorerRows=[];
+  if(isArchiveSelected()){
+    scorerRows=(data.scorers||[]).map(function(x){return {name:String(x.name||'').trim(),team:String(x.team||'').trim(),goals:Number(x.goals)||0};}).filter(function(x){return x.name&&x.team&&x.goals>0;});
+  }else{
+    const scorerTotals={};
+    matches.forEach(function(m){
+      if(m.homeScore===null||m.homeScore===undefined||m.homeScore===''||m.awayScore===null||m.awayScore===undefined||m.awayScore==='')return;
+      [['homeScorers',m.home],['awayScorers',m.away]].forEach(function(pair){
+        cardNames(m[pair[0]]).forEach(function(rawName){
+          const name=String(rawName||'').trim();
+          if(!name||/گل\s*بخودی|گل\s*به\s*خودی|گل‌به‌خودی|own\s*goal/i.test(name))return;
+          const key=name+'||'+String(pair[1]||'').trim();
+          if(!scorerTotals[key])scorerTotals[key]={name:name,team:String(pair[1]||'').trim(),goals:0};
+          scorerTotals[key].goals++;
+        });
       });
     });
-  });
-  const scorerRows=Object.values(scorerTotals);
+    scorerRows=Object.values(scorerTotals);
+  }
   scorerRows.sort(function(a,b){return b.goals-a.goals||a.name.localeCompare(b.name,'fa');});
   $('dashScorers').innerHTML=scorerRows.length?'<table style="'+tableStyle+'"><thead><tr><th style="'+thStyle+'">بازیکن</th><th style="'+thStyle+'">تیم</th><th style="'+thStyle+'">گل</th></tr></thead><tbody>'+scorerRows.slice(0,8).map(function(x){return '<tr><td style="'+tdStyle+'">'+esc(x.name)+'</td><td style="'+tdStyle+'">'+esc(x.team)+'</td><td style="'+tdStyle+'"><b>'+fa(x.goals)+'</b></td></tr>';}).join('')+'</tbody></table>':'<div class="notice">هنوز گلزنی برای این تورنمنت ثبت نشده است.</div>';
   const cardTotals={yellow:0,red:0};
