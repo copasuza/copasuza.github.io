@@ -857,6 +857,24 @@
           "homeRedCount": 1,
           "awayYellowCount": 1,
           "awayRedCount": 0
+        },
+        {
+          "id": 3,
+          "home": "تیم آزمایشی د",
+          "away": "تیم آزمایشی ب",
+          "homeScore": 1,
+          "awayScore": 2,
+          "stage": "group",
+          "homeYellowPlayers": "بازیکن اول د",
+          "homeRedPlayers": "",
+          "awayYellowPlayers": "تست دوم",
+          "awayRedPlayers": "",
+          "homeScorers": "بازیکن اول د",
+          "awayScorers": "علی آزمایشی\nعلی آزمایشی",
+          "homeYellowCount": 1,
+          "homeRedCount": 0,
+          "awayYellowCount": 1,
+          "awayRedCount": 0
         }
       ],
       "schedule": [],
@@ -868,5 +886,5 @@
       }
     }
   ],
-  "updatedAt": "2026-10-22T12:07:09.908Z"
+  "updatedAt": "2026-10-24T15:36:14.353Z"
 }
